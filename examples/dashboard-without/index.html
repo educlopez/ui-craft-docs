@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics Dashboard</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: system-ui, sans-serif;
+  background: linear-gradient(135deg, #0f0a1e 0%, #1a1035 50%, #0d1525 100%);
+  color: #e0e0ff;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 240px;
+  height: 100vh;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255,255,255,0.06);
+  padding: 24px 16px;
+  z-index: 10;
+}
+
+.sidebar-logo {
+  font-size: 22px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #818cf8, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 40px;
+}
+
+.sidebar-nav { list-style: none; }
+.sidebar-nav li { margin-bottom: 4px; }
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+.sidebar-nav a:hover {
+  background: rgba(129,140,248,0.15);
+  color: #fff;
+  transform: translateX(4px);
+}
+.sidebar-nav a.active {
+  background: linear-gradient(135deg, rgba(129,140,248,0.2), rgba(6,182,212,0.2));
+  color: #fff;
+  box-shadow: 0 0 20px rgba(129,140,248,0.15);
+}
+.sidebar-nav .emoji { font-size: 18px; }
+
+/* Main */
+.main {
+  margin-left: 240px;
+  padding: 32px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #c7d2fe, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+.header-btn {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  color: #c7d2fe;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.header-btn:hover {
+  background: rgba(129,140,248,0.2);
+  box-shadow: 0 0 20px rgba(129,140,248,0.2);
+  transform: translateY(-2px);
+}
+.header-btn.primary {
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+  border: none;
+  color: #fff;
+}
+.header-btn.primary:hover {
+  box-shadow: 0 0 30px rgba(99,102,241,0.4);
+  transform: translateY(-2px);
+}
+
+/* Metric Cards */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.metric-card {
+  background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(6,182,212,0.1));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 28px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(129,140,248,0.1) 0%, transparent 60%);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.metric-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(99,102,241,0.3), 0 0 60px rgba(6,182,212,0.15);
+  border-color: rgba(129,140,248,0.3);
+}
+.metric-card:hover::before { opacity: 1; }
+
+.metric-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+.metric-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.metric-value {
+  font-size: 36px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.metric-change {
+  font-size: 13px;
+  color: #34d399;
+  margin-top: 8px;
+}
+
+/* Chart Section with SVG */
+.chart-section {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  padding: 28px;
+  margin-bottom: 32px;
+}
+.chart-section h2 {
+  font-size: 20px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #c7d2fe, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.chart-section svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Activity Table */
+.table-section {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  padding: 28px;
+  margin-bottom: 32px;
+}
+.table-section h2 {
+  font-size: 20px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #c7d2fe, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.4);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+td {
+  padding: 16px;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+tr {
+  transition: all 0.3s ease;
+}
+tr:hover {
+  background: rgba(129,140,248,0.05);
+}
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.status-completed {
+  background: rgba(52,211,153,0.15);
+  color: #34d399;
+}
+.status-pending {
+  background: rgba(251,191,36,0.15);
+  color: #fbbf24;
+}
+.status-failed {
+  background: rgba(248,113,113,0.15);
+  color: #f87171;
+}
+
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Top Products */
+.products-section h2 {
+  font-size: 20px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #c7d2fe, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.product-card {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  padding: 28px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(99,102,241,0.25);
+  border-color: rgba(129,140,248,0.3);
+}
+.product-icon {
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+.product-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.product-revenue {
+  font-size: 24px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #818cf8, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 4px;
+}
+.product-sales {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-logo">&#x2728; AnalyticsAI</div>
+  <ul class="sidebar-nav">
+    <li><a href="#" class="active"><span class="emoji">&#x1F4CA;</span> Dashboard</a></li>
+    <li><a href="#"><span class="emoji">&#x1F4C8;</span> Analytics</a></li>
+    <li><a href="#"><span class="emoji">&#x1F465;</span> Customers</a></li>
+    <li><a href="#"><span class="emoji">&#x1F4E6;</span> Products</a></li>
+    <li><a href="#"><span class="emoji">&#x1F4B0;</span> Revenue</a></li>
+    <li><a href="#"><span class="emoji">&#x2699;&#xFE0F;</span> Settings</a></li>
+  </ul>
+</aside>
+
+<!-- Main Content -->
+<main class="main">
+  <!-- Header -->
+  <div class="header">
+    <h1>&#x1F680; Dashboard Overview</h1>
+    <div class="header-actions">
+      <button class="header-btn">&#x1F4C5; Last 30 Days</button>
+      <button class="header-btn primary">&#x2B07;&#xFE0F; Export Report</button>
+    </div>
+  </div>
+
+  <!-- Metric Cards -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-icon">&#x1F4B5;</div>
+      <div class="metric-label">Revenue</div>
+      <div class="metric-value">$48,352</div>
+      <div class="metric-change">&#x2191; +12.5% from last month</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon">&#x1F464;</div>
+      <div class="metric-label">Users</div>
+      <div class="metric-value">2,847</div>
+      <div class="metric-change">&#x2191; +8.2% from last month</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon">&#x1F4C8;</div>
+      <div class="metric-label">Conversion</div>
+      <div class="metric-value">3.2%</div>
+      <div class="metric-change">&#x2191; +0.4% from last month</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon">&#x1F504;</div>
+      <div class="metric-label">MRR</div>
+      <div class="metric-value">$12,580</div>
+      <div class="metric-change">&#x2191; +5.3% from last month</div>
+    </div>
+  </div>
+
+  <!-- Chart Section with real SVG bar chart -->
+  <div class="chart-section">
+    <h2>&#x1F4CA; Revenue Trend</h2>
+    <svg viewBox="0 0 800 260" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#818cf8" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#6366f1" stop-opacity="0.4"/>
+        </linearGradient>
+        <linearGradient id="barGradHigh" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#818cf8" stop-opacity="0.5"/>
+        </linearGradient>
+      </defs>
+      <!-- Grid lines -->
+      <line x1="50" y1="30" x2="780" y2="30" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+      <line x1="50" y1="75" x2="780" y2="75" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+      <line x1="50" y1="120" x2="780" y2="120" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+      <line x1="50" y1="165" x2="780" y2="165" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+      <line x1="50" y1="210" x2="780" y2="210" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+      <!-- Y-axis labels -->
+      <text x="42" y="34" text-anchor="end" fill="rgba(255,255,255,0.3)" font-size="10" font-family="system-ui">$60k</text>
+      <text x="42" y="79" text-anchor="end" fill="rgba(255,255,255,0.3)" font-size="10" font-family="system-ui">$45k</text>
+      <text x="42" y="124" text-anchor="end" fill="rgba(255,255,255,0.3)" font-size="10" font-family="system-ui">$30k</text>
+      <text x="42" y="169" text-anchor="end" fill="rgba(255,255,255,0.3)" font-size="10" font-family="system-ui">$15k</text>
+      <text x="42" y="214" text-anchor="end" fill="rgba(255,255,255,0.3)" font-size="10" font-family="system-ui">$0</text>
+      <!-- Bars -->
+      <rect x="65" y="150" width="42" height="60" rx="4" fill="url(#barGrad)"/>
+      <rect x="125" y="130" width="42" height="80" rx="4" fill="url(#barGrad)"/>
+      <rect x="185" y="115" width="42" height="95" rx="4" fill="url(#barGrad)"/>
+      <rect x="245" y="100" width="42" height="110" rx="4" fill="url(#barGrad)"/>
+      <rect x="305" y="90" width="42" height="120" rx="4" fill="url(#barGrad)"/>
+      <rect x="365" y="75" width="42" height="135" rx="4" fill="url(#barGrad)"/>
+      <rect x="425" y="85" width="42" height="125" rx="4" fill="url(#barGrad)"/>
+      <rect x="485" y="65" width="42" height="145" rx="4" fill="url(#barGradHigh)"/>
+      <rect x="545" y="55" width="42" height="155" rx="4" fill="url(#barGradHigh)"/>
+      <rect x="605" y="45" width="42" height="165" rx="4" fill="url(#barGradHigh)"/>
+      <rect x="665" y="50" width="42" height="160" rx="4" fill="url(#barGradHigh)"/>
+      <rect x="725" y="35" width="42" height="175" rx="4" fill="url(#barGradHigh)"/>
+      <!-- X-axis labels -->
+      <text x="86" y="232" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="10" font-family="system-ui">Apr</text>
+      <text x="206" y="232" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="10" font-family="system-ui">Jun</text>
+      <text x="326" y="232" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="10" font-family="system-ui">Aug</text>
+      <text x="446" y="232" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="10" font-family="system-ui">Oct</text>
+      <text x="566" y="232" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="10" font-family="system-ui">Dec</text>
+      <text x="686" y="232" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="10" font-family="system-ui">Feb</text>
+      <text x="746" y="232" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="10" font-family="system-ui">Mar</text>
+    </svg>
+  </div>
+
+  <!-- Activity Table -->
+  <div class="table-section">
+    <h2>&#x26A1; Recent Activity</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Action</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="user-cell">
+              <span class="user-avatar" style="background:rgba(139,92,246,0.3);color:#c084fc">SJ</span>
+              Sarah Johnson
+            </div>
+          </td>
+          <td>Subscription Upgrade</td>
+          <td>$299.00</td>
+          <td>Mar 18, 2026</td>
+          <td><span class="status-badge status-completed">Completed</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="user-cell">
+              <span class="user-avatar" style="background:rgba(6,182,212,0.3);color:#22d3ee">MC</span>
+              Mike Chen
+            </div>
+          </td>
+          <td>New Purchase</td>
+          <td>$149.00</td>
+          <td>Mar 18, 2026</td>
+          <td><span class="status-badge status-completed">Completed</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="user-cell">
+              <span class="user-avatar" style="background:rgba(168,85,247,0.3);color:#c084fc">EW</span>
+              Emma Wilson
+            </div>
+          </td>
+          <td>Refund Request</td>
+          <td>$79.00</td>
+          <td>Mar 17, 2026</td>
+          <td><span class="status-badge status-pending">Pending</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="user-cell">
+              <span class="user-avatar" style="background:rgba(248,113,113,0.3);color:#f87171">AR</span>
+              Alex Rivera
+            </div>
+          </td>
+          <td>Payment Retry</td>
+          <td>$199.00</td>
+          <td>Mar 17, 2026</td>
+          <td><span class="status-badge status-failed">Failed</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="user-cell">
+              <span class="user-avatar" style="background:rgba(52,211,153,0.3);color:#34d399">LP</span>
+              Lisa Park
+            </div>
+          </td>
+          <td>Annual Plan</td>
+          <td>$599.00</td>
+          <td>Mar 16, 2026</td>
+          <td><span class="status-badge status-completed">Completed</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="user-cell">
+              <span class="user-avatar" style="background:rgba(251,191,36,0.3);color:#fbbf24">DK</span>
+              David Kim
+            </div>
+          </td>
+          <td>Plan Downgrade</td>
+          <td>$49.00</td>
+          <td>Mar 16, 2026</td>
+          <td><span class="status-badge status-completed">Completed</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="user-cell">
+              <span class="user-avatar" style="background:rgba(129,140,248,0.3);color:#a5b4fc">TM</span>
+              Tanya Miller
+            </div>
+          </td>
+          <td>New Purchase</td>
+          <td>$299.00</td>
+          <td>Mar 15, 2026</td>
+          <td><span class="status-badge status-completed">Completed</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="user-cell">
+              <span class="user-avatar" style="background:rgba(244,114,182,0.3);color:#f472b6">RG</span>
+              Rachel Green
+            </div>
+          </td>
+          <td>Subscription Upgrade</td>
+          <td>$199.00</td>
+          <td>Mar 15, 2026</td>
+          <td><span class="status-badge status-pending">Pending</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Top Products -->
+  <div class="products-section">
+    <h2>&#x1F31F; Top Products</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-icon">&#x1F4BB;</div>
+        <div class="product-name">Pro Suite</div>
+        <div class="product-revenue">$18,420</div>
+        <div class="product-sales">342 sales</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">&#x1F680;</div>
+        <div class="product-name">Starter Kit</div>
+        <div class="product-revenue">$12,350</div>
+        <div class="product-sales">287 sales</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">&#x2B50;</div>
+        <div class="product-name">Enterprise</div>
+        <div class="product-revenue">$9,840</div>
+        <div class="product-sales">156 sales</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">&#x1F48E;</div>
+        <div class="product-name">Premium Add-on</div>
+        <div class="product-revenue">$7,742</div>
+        <div class="product-sales">198 sales</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acme - Sign In</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0a0e2a 0%, #1a0533 50%, #0d1b3e 100%);
+  overflow: hidden;
+}
+
+/* Background blobs */
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.4;
+  z-index: 0;
+}
+.blob-1 {
+  width: 500px; height: 500px;
+  background: #8b5cf6;
+  top: -150px; right: -100px;
+  animation: blobFloat 10s ease-in-out infinite;
+}
+.blob-2 {
+  width: 400px; height: 400px;
+  background: #06b6d4;
+  bottom: -120px; left: -80px;
+  animation: blobFloat 10s ease-in-out infinite reverse;
+}
+.blob-3 {
+  width: 300px; height: 300px;
+  background: #a855f7;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: blobFloat 12s ease-in-out infinite;
+  animation-delay: -4s;
+  opacity: 0.2;
+}
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(40px, -30px); }
+}
+
+/* Fake screenshot behind */
+.bg-screenshot {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 700px;
+  z-index: 0;
+  opacity: 0.06;
+  pointer-events: none;
+}
+.bg-screenshot-inner {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.bg-ss-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  margin-bottom: 12px;
+  width: 60%;
+}
+.bg-ss-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.bg-ss-card {
+  height: 60px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}
+.bg-ss-chart {
+  height: 120px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+}
+
+/* Layout wrapper */
+.signin-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  max-width: 900px;
+  padding: 40px;
+}
+
+/* Left marketing panel */
+.marketing-panel {
+  flex: 1;
+  max-width: 340px;
+}
+.marketing-headline {
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #ffffff, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.marketing-sub {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.avatar-stack {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.avatar-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(10, 14, 42, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: white;
+  margin-right: -10px;
+}
+.avatar-circle:nth-child(1) { background: #8b5cf6; z-index: 5; }
+.avatar-circle:nth-child(2) { background: #06b6d4; z-index: 4; }
+.avatar-circle:nth-child(3) { background: #a855f7; z-index: 3; }
+.avatar-circle:nth-child(4) { background: #f59e0b; z-index: 2; }
+.avatar-circle:nth-child(5) { background: #10b981; z-index: 1; }
+.avatar-more {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(10, 14, 42, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  margin-right: -10px;
+  z-index: 0;
+}
+.marketing-trust {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  padding-left: 4px;
+}
+.marketing-trust strong {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 700;
+}
+
+/* Card */
+.signin-card {
+  position: relative;
+  z-index: 1;
+  width: 420px;
+  padding: 48px 40px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  flex-shrink: 0;
+}
+.signin-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.6), rgba(6, 182, 212, 0.6));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.card-logo {
+  text-align: center;
+  margin-bottom: 8px;
+}
+.card-logo span {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #a855f7, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #ffffff, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+  margin-bottom: 32px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+.form-group input:focus {
+  border-color: rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1);
+}
+
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.remember-me input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #8b5cf6;
+  cursor: pointer;
+}
+.remember-me span {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+.forgot a {
+  color: #c084fc;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.forgot a:hover {
+  color: #a855f7;
+}
+
+.btn-signin {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+  transition: all 0.3s ease;
+  margin-bottom: 24px;
+}
+.btn-signin:hover {
+  box-shadow: 0 0 50px rgba(139, 92, 246, 0.6);
+  transform: translateY(-2px);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.divider span {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.8rem;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.social-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+.social-btn:hover {
+  transform: translateY(-2px);
+}
+.social-btn--google {
+  background: #4285f4;
+  color: white;
+}
+.social-btn--github {
+  background: #333;
+  color: white;
+}
+
+.signup-link {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+}
+.signup-link a {
+  color: #22d3ee;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.signup-link a:hover {
+  color: #06b6d4;
+}
+
+@media (max-width: 860px) {
+  .signin-wrapper {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .marketing-panel {
+    text-align: center;
+    max-width: 100%;
+  }
+  .avatar-stack {
+    justify-content: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<div class="bg-screenshot" aria-hidden="true">
+  <div class="bg-screenshot-inner">
+    <div class="bg-ss-bar"></div>
+    <div class="bg-ss-grid">
+      <div class="bg-ss-card"></div>
+      <div class="bg-ss-card"></div>
+      <div class="bg-ss-card"></div>
+    </div>
+    <div class="bg-ss-chart"></div>
+  </div>
+</div>
+
+<div class="signin-wrapper">
+  <div class="marketing-panel">
+    <h2 class="marketing-headline">Join 10,000+ teams growing with Acme</h2>
+    <p class="marketing-sub">Get real-time analytics, smart link management, and multi-touch attribution that actually works. Free for your first 1,000 links.</p>
+    <div class="avatar-stack">
+      <span class="avatar-circle">SJ</span>
+      <span class="avatar-circle">MC</span>
+      <span class="avatar-circle">EW</span>
+      <span class="avatar-circle">AR</span>
+      <span class="avatar-circle">LP</span>
+      <span class="avatar-more">+9k</span>
+    </div>
+    <p class="marketing-trust"><strong>4.9/5</strong> average rating from 2,400+ reviews</p>
+  </div>
+
+  <div class="signin-card">
+    <div class="card-logo"><span>Acme</span></div>
+    <h1>Welcome Back!</h1>
+    <p class="subtitle">Sign in to continue to your dashboard</p>
+
+    <form>
+      <div class="form-group">
+        <input type="email" placeholder="Email address" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Password" autocomplete="current-password">
+      </div>
+      <div class="form-options">
+        <label class="remember-me">
+          <input type="checkbox" name="remember">
+          <span>Remember me</span>
+        </label>
+        <div class="forgot">
+          <a href="#">Forgot password?</a>
+        </div>
+      </div>
+      <button type="submit" class="btn-signin">Sign In</button>
+    </form>
+
+    <div class="divider"><span>or continue with</span></div>
+
+    <div class="social-buttons">
+      <button class="social-btn social-btn--google" type="button">Google</button>
+      <button class="social-btn social-btn--github" type="button">GitHub</button>
+    </div>
+
+    <p class="signup-link">Don&#x2019;t have an account? <a href="#">Sign Up</a></p>
+  </div>
+</div>
+
+</body>
+</html>

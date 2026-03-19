@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fafafa">
+<title>Acme – What you get</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --accent: oklch(0.458 0.305 268.13);
+  --accent-hover: oklch(0.40 0.28 268.13);
+  --accent-light: oklch(0.95 0.03 268.13);
+  --text-primary: oklch(0.15 0.01 250);
+  --text-secondary: oklch(0.45 0.01 250);
+  --text-tertiary: oklch(0.60 0.008 250);
+  --surface: oklch(0.985 0.002 250);
+  --surface-white: #ffffff;
+  --border: oklch(0.92 0.005 250);
+  --border-subtle: oklch(0.95 0.003 250);
+  --shadow-sm: 0 1px 2px oklch(0.2 0.01 250 / 0.04);
+  --shadow-md: 0 4px 12px oklch(0.2 0.01 250 / 0.06), 0 1px 3px oklch(0.2 0.01 250 / 0.04);
+  --shadow-lg: 0 8px 24px oklch(0.2 0.01 250 / 0.08), 0 2px 6px oklch(0.2 0.01 250 / 0.04);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--surface);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  padding: 8px 16px;
+  background: var(--accent);
+  color: white;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-decoration: none;
+  z-index: 100;
+}
+.skip-link:focus { top: 16px; }
+
+/* ── Section ── */
+.features-section {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: clamp(60px, 10vw, 140px) clamp(24px, 5vw, 64px) clamp(80px, 10vw, 160px);
+}
+
+.section-header {
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+.section-header h1 {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.section-header p {
+  font-size: 1.0625rem;
+  color: var(--text-secondary);
+  max-width: 420px;
+  line-height: 1.55;
+}
+
+/* ── Bento Grid ── */
+.bento {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 14px;
+}
+
+.card {
+  background: var(--surface-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 200ms var(--ease-out), transform 200ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+}
+
+/* Big card spanning 2 rows */
+.card-chart {
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+}
+.card-chart-header {
+  padding: 24px 28px 0;
+}
+.card-chart-header h2 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.card-chart-header p {
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+}
+.card-chart-body {
+  flex: 1;
+  padding: 20px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.chart-container {
+  width: 100%;
+}
+.chart-container svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.chart-grid {
+  stroke: var(--border-subtle);
+  stroke-width: 0.5;
+}
+.chart-area-fill {
+  opacity: 0.1;
+}
+.chart-line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.75;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.chart-dot {
+  fill: var(--accent);
+}
+.chart-dot-ring {
+  fill: white;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+.chart-label {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  fill: var(--text-tertiary);
+  font-weight: 500;
+}
+.chart-y-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  fill: var(--text-tertiary);
+  font-weight: 400;
+}
+.chart-metric-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.chart-metric-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+.chart-metric-change {
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Metric card (top right) */
+.card-metric {
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-metric-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}
+.card-metric-value {
+  font-size: 2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+.card-metric-comparison {
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.card-metric-sparkline {
+  margin-top: 16px;
+}
+.card-metric-sparkline svg {
+  display: block;
+  width: 100%;
+  height: 40px;
+}
+.sparkline {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.sparkline-fill { opacity: 0.1; }
+
+/* Feature list card (bottom right) */
+.card-features {
+  padding: 24px 28px;
+}
+.card-features h3 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+.feature-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.feature-list li .check {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.feature-list li .check svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--accent);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Focus ── */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 720px) {
+  .bento {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .card-chart {
+    grid-row: auto;
+  }
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<main id="main">
+  <section class="features-section" aria-label="Product features">
+    <div class="section-header">
+      <h1>What you get</h1>
+      <p>Everything you need to understand, attribute, and grow your link traffic.</p>
+    </div>
+
+    <div class="bento">
+      <!-- Big card: detailed area chart product preview -->
+      <article class="card card-chart">
+        <div class="card-chart-header">
+          <h2>Real-time analytics</h2>
+          <p>Track 50+ metrics across all your links in one&nbsp;view</p>
+        </div>
+        <div class="card-chart-body">
+          <div class="chart-metric-row">
+            <span class="chart-metric-value">14,209</span>
+            <span class="chart-metric-change">+22.4% from last month</span>
+          </div>
+          <div class="chart-container" role="img" aria-label="Area chart showing clicks trending upward over the past 30 days">
+            <svg viewBox="0 0 460 160" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0.18"/>
+                  <stop offset="100%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <!-- Grid -->
+              <line class="chart-grid" x1="40" y1="15" x2="450" y2="15"/>
+              <line class="chart-grid" x1="40" y1="40" x2="450" y2="40"/>
+              <line class="chart-grid" x1="40" y1="65" x2="450" y2="65"/>
+              <line class="chart-grid" x1="40" y1="90" x2="450" y2="90"/>
+              <line class="chart-grid" x1="40" y1="115" x2="450" y2="115"/>
+              <!-- Y-axis labels -->
+              <text class="chart-y-label" x="34" y="19" text-anchor="end">20k</text>
+              <text class="chart-y-label" x="34" y="44" text-anchor="end">15k</text>
+              <text class="chart-y-label" x="34" y="69" text-anchor="end">10k</text>
+              <text class="chart-y-label" x="34" y="94" text-anchor="end">5k</text>
+              <text class="chart-y-label" x="34" y="119" text-anchor="end">0</text>
+              <!-- Area -->
+              <polygon class="chart-area-fill" fill="url(#areaGrad)"
+                points="40,108 72,104 114,98 156,92 198,86 220,80 240,75 260,72 282,68 310,58 338,50 366,42 394,36 422,32 450,28 450,115 40,115"/>
+              <!-- Line -->
+              <polyline class="chart-line"
+                points="40,108 72,104 114,98 156,92 198,86 220,80 240,75 260,72 282,68 310,58 338,50 366,42 394,36 422,32 450,28"/>
+              <!-- Dot at end -->
+              <circle class="chart-dot-ring" cx="450" cy="28" r="4.5"/>
+              <circle class="chart-dot" cx="450" cy="28" r="2"/>
+              <!-- X labels -->
+              <text class="chart-label" x="40" y="132" text-anchor="middle">Mar 1</text>
+              <text class="chart-label" x="156" y="132" text-anchor="middle">Mar 8</text>
+              <text class="chart-label" x="282" y="132" text-anchor="middle">Mar 15</text>
+              <text class="chart-label" x="408" y="132" text-anchor="middle">Mar 22</text>
+              <!-- X-axis line -->
+              <line x1="40" y1="115" x2="450" y2="115" stroke="var(--border)" stroke-width="1"/>
+            </svg>
+          </div>
+        </div>
+      </article>
+
+      <!-- Top right: conversion metric with prominent sparkline -->
+      <article class="card card-metric">
+        <div>
+          <div class="card-metric-label">Conversion rate</div>
+          <div class="card-metric-value">4.7%</div>
+          <div class="card-metric-comparison">vs 3.8% last month</div>
+        </div>
+        <div class="card-metric-sparkline" aria-hidden="true">
+          <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <polygon class="sparkline-fill" fill="url(#sparkGrad)" points="0,35 15,33 30,34 45,28 60,30 75,24 90,20 105,18 120,14 135,10 150,8 165,6 180,4 180,40 0,40"/>
+            <polyline class="sparkline" points="0,35 15,33 30,34 45,28 60,30 75,24 90,20 105,18 120,14 135,10 150,8 165,6 180,4"/>
+            <!-- Dot at end -->
+            <circle cx="180" cy="4" r="2.5" fill="white" stroke="oklch(0.458 0.305 268.13)" stroke-width="1.5"/>
+            <circle cx="180" cy="4" r="1" fill="oklch(0.458 0.305 268.13)"/>
+          </svg>
+        </div>
+      </article>
+
+      <!-- Bottom right: feature checklist -->
+      <article class="card card-features">
+        <h3>Built for scale</h3>
+        <ul class="feature-list">
+          <li>
+            <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Track 50+ metrics in real-time
+          </li>
+          <li>
+            <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Attribute conversions across 12&nbsp;channels
+          </li>
+          <li>
+            <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            API with &lt;50ms p99 latency
+          </li>
+          <li>
+            <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            SOC&nbsp;2 Type&nbsp;II certified
+          </li>
+        </ul>
+      </article>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

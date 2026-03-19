@@ -1,0 +1,418 @@
+---
+import '../styles/global.css';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="UI Craft is an AI coding agent skill that teaches your agent to build interfaces with real design taste. 12 domains, 4 modes, anti-slop detection. Better UI from every prompt." />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href="https://ui-craft.dev/" />
+    <meta property="og:title" content="UI Craft — Design taste for AI coding agents" />
+    <meta property="og:description" content="Stop getting generic AI interfaces. UI Craft teaches your coding agent real design engineering — animation, layout, typography, color, accessibility, and 7 more domains." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ui-craft.dev/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="UI Craft — Design taste for AI coding agents" />
+    <meta name="twitter:description" content="Stop getting generic AI interfaces. UI Craft teaches your coding agent real design engineering across 12 domains." />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="apple-touch-icon" href="/icon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+    <title>UI Craft — Design taste for AI coding agents</title>
+  </head>
+  <body class="font-[family-name:var(--font-body)] text-[15px] leading-relaxed text-[var(--color-text)] bg-white">
+    <a href="#main" class="absolute -top-full left-4 px-4 py-2 bg-blue-600 text-white font-medium text-sm rounded-b-md z-50 transition-[top] duration-200 ease-[var(--ease-out)] focus:top-0">Skip to content</a>
+
+    <div class="mx-auto max-w-2xl px-[clamp(1.25rem,4vw,2rem)] py-[clamp(4rem,10vw,8rem)]">
+      <!-- Hero -->
+      <header class="text-center mb-6">
+        <img src="/icon.png" alt="" width="80" height="80" class="mx-auto rounded-[18px] w-20 h-20 mb-2 shadow-[0_4px_20px_oklch(0.458_0.305_268.13/0.15)]" data-enter="1" />
+        <p class="text-[17px] font-semibold text-blue-600 mb-5" data-enter="1">UI&nbsp;Craft</p>
+        <h1 class="text-[clamp(2rem,5vw,3rem)] font-bold tracking-tight leading-[1.1] [text-wrap:balance]" data-enter="2">Stop getting generic AI&nbsp;interfaces</h1>
+        <p class="text-[var(--color-text-secondary)] text-base mt-3 leading-relaxed max-w-lg mx-auto" data-enter="3">A skill for AI coding agents that teaches them to build UIs with real design taste — not gradient cards and bounce&nbsp;animations.</p>
+      </header>
+
+      <!-- Install -->
+      <section class="text-center mb-24" aria-label="Installation">
+        <div class="inline-flex items-center gap-3 bg-white border border-[var(--color-border)] rounded-xl px-4 py-3 mb-2 shadow-[0_1px_3px_oklch(0%_0_0/0.06),0_4px_12px_oklch(0%_0_0/0.04)]" data-enter="4">
+          <code class="text-[13.5px] font-[family-name:var(--font-mono)] text-[var(--color-text)] whitespace-nowrap">npx skills add educlopez/ui-craft</code>
+          <button class="copy-btn flex items-center justify-center shrink-0 w-7 h-7 rounded text-[var(--color-text-secondary)] hover:text-blue-600 transition-colors duration-150 ease-[var(--ease-out)] touch-manipulation focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.92]" aria-label="Copy install command" data-command="npx skills add educlopez/ui-craft">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+        </div>
+        <p class="text-[13px] text-[var(--color-text-secondary)]">Works with Claude Code, Cursor, Windsurf, and any agent that supports&nbsp;skills.</p>
+      </section>
+
+      <main id="main">
+        <!-- Comparison Section -->
+        <section class="py-24" aria-label="Before and after comparison">
+          <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Same prompt. Same model. Different&nbsp;result.</h2>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-6 max-w-lg mx-auto" data-reveal>Left is an AI agent without the skill. Right is the same agent with UI&nbsp;Craft. Drag to&nbsp;compare.</p>
+
+          <nav class="flex flex-wrap gap-2 mb-5 justify-center" data-reveal aria-label="Comparison examples">
+            <button class="tab active text-sm font-medium px-4 py-2 min-h-[44px] rounded-full bg-blue-600 text-white cursor-pointer touch-manipulation transition-all duration-150 ease-[var(--ease-out)] focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.97]" data-tab="hero" type="button">Hero</button>
+            <button class="tab text-sm font-medium px-4 py-2 min-h-[44px] rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 cursor-pointer touch-manipulation transition-all duration-150 ease-[var(--ease-out)] focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.97]" data-tab="features" type="button">Features</button>
+            <button class="tab text-sm font-medium px-4 py-2 min-h-[44px] rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 cursor-pointer touch-manipulation transition-all duration-150 ease-[var(--ease-out)] focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.97]" data-tab="dashboard" type="button">Dashboard</button>
+            <button class="tab text-sm font-medium px-4 py-2 min-h-[44px] rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 cursor-pointer touch-manipulation transition-all duration-150 ease-[var(--ease-out)] focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.97]" data-tab="signin" type="button">Sign&nbsp;in</button>
+          </nav>
+
+          <div class="flex justify-between mb-2" data-reveal>
+            <span class="text-[11px] font-semibold uppercase tracking-widest text-[var(--color-text-secondary)]">Without</span>
+            <span class="text-[11px] font-semibold uppercase tracking-widest text-blue-600">With UI&nbsp;Craft</span>
+          </div>
+
+          <div class="comparison active" data-comparison="hero">
+            <div class="comparison-slider" tabindex="0" role="slider" aria-label="Drag to compare hero section" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <img src="/screenshots/hero-with.png" alt="Hero built with UI Craft" class="slider-after" width="1440" height="900" loading="lazy" />
+              <img src="/screenshots/hero-without.png" alt="Hero built without UI Craft" class="slider-before" width="1440" height="900" loading="lazy" />
+              <div class="slider-handle">
+                <div class="slider-handle-line"></div>
+                <div class="slider-handle-grip" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M18 8l4 4-4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 8l-4 4 4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison" data-comparison="features">
+            <div class="comparison-slider" tabindex="0" role="slider" aria-label="Drag to compare features section" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <img src="/screenshots/features-with.png" alt="Features built with UI Craft" class="slider-after" width="1440" height="900" loading="lazy" />
+              <img src="/screenshots/features-without.png" alt="Features built without UI Craft" class="slider-before" width="1440" height="900" loading="lazy" />
+              <div class="slider-handle">
+                <div class="slider-handle-line"></div>
+                <div class="slider-handle-grip" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M18 8l4 4-4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 8l-4 4 4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison" data-comparison="dashboard">
+            <div class="comparison-slider" tabindex="0" role="slider" aria-label="Drag to compare dashboard" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <img src="/screenshots/dashboard-with.png" alt="Dashboard built with UI Craft" class="slider-after" width="1440" height="900" loading="lazy" />
+              <img src="/screenshots/dashboard-without.png" alt="Dashboard built without UI Craft" class="slider-before" width="1440" height="900" loading="lazy" />
+              <div class="slider-handle">
+                <div class="slider-handle-line"></div>
+                <div class="slider-handle-grip" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M18 8l4 4-4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 8l-4 4 4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison" data-comparison="signin">
+            <div class="comparison-slider" tabindex="0" role="slider" aria-label="Drag to compare sign in screen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <img src="/screenshots/signin-with.png" alt="Sign in built with UI Craft" class="slider-after" width="1440" height="900" loading="lazy" />
+              <img src="/screenshots/signin-without.png" alt="Sign in built without UI Craft" class="slider-before" width="1440" height="900" loading="lazy" />
+              <div class="slider-handle">
+                <div class="slider-handle-line"></div>
+                <div class="slider-handle-grip" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M18 8l4 4-4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 8l-4 4 4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Why Section -->
+        <section class="py-24" aria-label="Why UI Craft exists">
+          <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>AI agents write code fast. They don't know what looks&nbsp;good.</h2>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-5 max-w-lg mx-auto" data-reveal>Without design knowledge, every AI-generated interface ends up with the same gradient cards, bounce animations, and glassmorphism. Functional — but instantly recognizable as AI&nbsp;output.</p>
+          <p class="text-[var(--color-text)] leading-relaxed text-center max-w-lg mx-auto" data-reveal>UI&nbsp;Craft is not a template library or a component kit. It's <strong class="font-semibold">design engineering knowledge</strong> — 12&nbsp;domains of opinionated rules about animation, layout, typography, color, accessibility, and more. The kind of knowledge that takes years to develop as a frontend&nbsp;engineer.</p>
+        </section>
+
+        <!-- Modes Section -->
+        <section class="py-24" aria-label="How it works">
+          <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Say what you need. It picks the right&nbsp;mode.</h2>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>No configuration. Just describe your task and the skill routes to the right approach.</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[var(--color-border)] rounded-xl overflow-hidden" data-reveal>
+            <div class="flex flex-col gap-1.5 p-5 bg-white">
+              <strong class="text-[15px] font-semibold text-blue-600 tracking-[-0.01em]" data-reveal>Build</strong>
+              <span class="text-[13px] font-[family-name:var(--font-mono)] text-[var(--color-text-secondary)] opacity-70 before:content-['>_']" data-reveal>"Build a pricing page"</span>
+              <span class="text-[13.5px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Layout, typography, color, spacing, accessibility, and responsive — all handled in a single pass. Not one concern at a time.</span>
+            </div>
+            <div class="flex flex-col gap-1.5 p-5 bg-white">
+              <strong class="text-[15px] font-semibold text-blue-600 tracking-[-0.01em]" data-reveal>Animate</strong>
+              <span class="text-[13px] font-[family-name:var(--font-mono)] text-[var(--color-text-secondary)] opacity-70 before:content-['>_']" data-reveal>"Add an entrance to this modal"</span>
+              <span class="text-[13.5px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Picks the right easing, duration, and origin. Knows that modals need ease-out at 200ms, not bounce at 500ms.</span>
+            </div>
+            <div class="flex flex-col gap-1.5 p-5 bg-white">
+              <strong class="text-[15px] font-semibold text-blue-600 tracking-[-0.01em]" data-reveal>Review</strong>
+              <span class="text-[13px] font-[family-name:var(--font-mono)] text-[var(--color-text-secondary)] opacity-70 before:content-['>_']" data-reveal>"Review this component"</span>
+              <span class="text-[13.5px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Audits for generic AI patterns, accessibility gaps, and missed details. Returns a structured table of issues with&nbsp;fixes.</span>
+            </div>
+            <div class="flex flex-col gap-1.5 p-5 bg-white">
+              <strong class="text-[15px] font-semibold text-blue-600 tracking-[-0.01em]" data-reveal>Polish</strong>
+              <span class="text-[13px] font-[family-name:var(--font-mono)] text-[var(--color-text-secondary)] opacity-70 before:content-['>_']" data-reveal>"Polish this dashboard"</span>
+              <span class="text-[13.5px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Finds the twenty small things — layered shadows, optical alignment, focus rings, monospace numbers — that turn "done" into&nbsp;"crafted."</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Domains Section -->
+        <section class="py-24" aria-label="12 domains of design knowledge">
+          <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>12 domains. Opinionated rules for&nbsp;each.</h2>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>Not generic best practices. Specific, opinionated rules derived from how Stripe, Linear, and Vercel actually build their&nbsp;interfaces.</p>
+
+          <div data-reveal>
+            <dl class="flex flex-col sm:grid sm:grid-cols-2 sm:gap-x-7">
+              <div class="py-2.5 border-b border-[var(--color-border)] sm:first:border-t first:border-t">
+                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Animation</dt>
+                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Easing curves, spring physics, duration rules, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">prefers-reduced-motion</code>, and when not to animate at all</dd>
+              </div>
+              <div class="py-2.5 border-b border-[var(--color-border)] sm:border-t">
+                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Layout</dt>
+                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Spacing systems, optical alignment, depth with layered shadows, visual hierarchy without decoration</dd>
+              </div>
+              <div class="py-2.5 border-b border-[var(--color-border)]">
+                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Typography</dt>
+                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]"><code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">text-wrap: balance</code>, tabular-nums for data, font scale, measure, curly quotes, non-breaking spaces</dd>
+              </div>
+              <div class="py-2.5 border-b border-[var(--color-border)]">
+                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Color</dt>
+                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">OKLCH for perceptual uniformity, design tokens, dark mode with <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">color-scheme</code>, APCA contrast</dd>
+              </div>
+              <div class="py-2.5 border-b border-[var(--color-border)]">
+                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Accessibility</dt>
+                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">WAI-ARIA patterns, keyboard navigation, focus management, touch targets, screen reader semantics</dd>
+              </div>
+              <div class="py-2.5 border-b border-[var(--color-border)]">
+                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Performance</dt>
+                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Compositor-only animations, FLIP technique, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">will-change</code> discipline, virtualization, CLS prevention</dd>
+              </div>
+              <div class="py-2.5 border-b border-[var(--color-border)]">
+                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Modern&nbsp;CSS</dt>
+                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">View Transitions API, scroll-driven animations, container queries, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">:has()</code>, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">@starting-style</code></dd>
+              </div>
+              <div class="py-2.5 border-b border-[var(--color-border)]">
+                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Responsive</dt>
+                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Fluid sizing with clamp, mobile-first, touch zones, safe areas, adaptive not just responsive</dd>
+              </div>
+              <div class="py-2.5 border-b border-[var(--color-border)]">
+                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Sound</dt>
+                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Web Audio API, feedback sounds, appropriateness matrix — when sound helps and when it annoys</dd>
+              </div>
+              <div class="py-2.5 border-b border-[var(--color-border)]">
+                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">UX&nbsp;Copy</dt>
+                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Error messages that help, empty states that guide, CTAs that are specific, microcopy that respects</dd>
+              </div>
+              <div class="py-2.5 border-b border-[var(--color-border)]">
+                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">UI&nbsp;Review</dt>
+                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Systematic critique methodology — visual audit, interaction audit, accessibility audit, anti-slop check</dd>
+              </div>
+              <div class="py-2.5 border-b border-[var(--color-border)]">
+                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Orchestration</dt>
+                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Multi-stage animation sequences, stagger timing, readable choreography code, entrance/exit coordination</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+        <!-- Anti-slop Section -->
+        <section class="py-24" aria-label="What the skill rejects">
+          <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Anti-slop built in</h2>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-8 max-w-lg mx-auto" data-reveal>Every UI gets tested against a single question: <em class="italic">"Would someone believe AI&nbsp;made this?"</em> If yes, it starts over. The skill actively rejects:</p>
+          <div class="flex flex-wrap justify-center gap-2" data-reveal>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Purple-cyan gradients</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Glassmorphism</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Identical card grids</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Bounce easing</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Glow effects</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Colored accent borders</span>
+          </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-32 text-center" aria-label="Install UI Craft">
+          <img src="/icon.png" alt="" width="80" height="80" class="mx-auto rounded-[18px] w-20 h-20 mb-4 shadow-[0_4px_20px_oklch(0.458_0.305_268.13/0.15)]" data-reveal />
+          <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight leading-tight [text-wrap:balance]" data-reveal>One command. Better UI from the next&nbsp;prompt.</h2>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed mt-3 mb-8 max-w-lg mx-auto" data-reveal>Install the skill, ask your agent to build something, and see the&nbsp;difference.</p>
+          <div class="inline-flex items-center gap-3 bg-white border border-[var(--color-border)] rounded-xl px-4 py-3 mb-3 shadow-[0_1px_3px_oklch(0%_0_0/0.06),0_4px_12px_oklch(0%_0_0/0.04)]" data-reveal>
+            <code class="text-[13.5px] font-[family-name:var(--font-mono)] text-[var(--color-text)] whitespace-nowrap">npx skills add educlopez/ui-craft</code>
+            <button class="copy-btn flex items-center justify-center shrink-0 w-7 h-7 rounded text-[var(--color-text-secondary)] hover:text-blue-600 transition-colors duration-150 ease-[var(--ease-out)] touch-manipulation focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.92]" aria-label="Copy install command" data-command="npx skills add educlopez/ui-craft">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
+          </div>
+          <p class="text-[13px] text-[var(--color-text-secondary)]" data-reveal>Free and open source. Works with any agent that supports&nbsp;skills.</p>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="mt-12 pt-5 border-t border-[var(--color-border)] flex items-center justify-between">
+        <p class="text-[13px] text-[var(--color-text-secondary)]">UI&nbsp;Craft by <a href="https://x.com/educalvolpz" class="text-[var(--color-text)] font-medium transition-colors duration-150 ease-[var(--ease-out)] hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">Eduardo&nbsp;Calvo</a></p>
+        <div class="flex items-center gap-3">
+          <a href="https://github.com/educlopez/ui-craft" class="text-[var(--color-text-secondary)] transition-colors duration-150 ease-[var(--ease-out)] hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" aria-label="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="https://x.com/educalvolpz" class="text-[var(--color-text-secondary)] transition-colors duration-150 ease-[var(--ease-out)] hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" aria-label="X (Twitter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const copySvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+      const checkSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+
+      document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const cmd = this.getAttribute('data-command');
+          navigator.clipboard.writeText(cmd).then(() => {
+            this.innerHTML = checkSvg;
+            this.classList.add('copied');
+            setTimeout(() => { this.innerHTML = copySvg; this.classList.remove('copied'); }, 2000);
+          });
+        });
+      });
+
+      const tabs = document.querySelectorAll('.tab');
+      const comparisons = document.querySelectorAll('.comparison[data-comparison]');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+          const target = this.getAttribute('data-tab');
+          tabs.forEach(t => {
+            t.classList.remove('active', 'bg-blue-600', 'text-white');
+            t.classList.add('bg-gray-100', 'text-gray-600');
+          });
+          this.classList.add('active', 'bg-blue-600', 'text-white');
+          this.classList.remove('bg-gray-100', 'text-gray-600');
+          comparisons.forEach(c => {
+            if (c.getAttribute('data-comparison') === target) {
+              c.classList.add('active');
+            } else { c.classList.remove('active'); }
+          });
+        });
+      });
+
+      document.querySelectorAll('.comparison-slider').forEach(slider => {
+        const beforeImg = slider.querySelector('.slider-before');
+        const handle = slider.querySelector('.slider-handle');
+        let isDragging = false;
+        function setPosition(pct) {
+          const c = Math.max(0, Math.min(100, pct));
+          const right = 100 - c;
+          beforeImg.style.clipPath = `inset(0 ${right}% 0 0)`;
+          handle.style.left = c + '%';
+          slider.setAttribute('aria-valuenow', Math.round(c));
+        }
+        function getPct(x) { const r = slider.getBoundingClientRect(); return ((x - r.left) / r.width) * 100; }
+        slider.addEventListener('pointerdown', e => { isDragging = true; slider.setPointerCapture(e.pointerId); setPosition(getPct(e.clientX)); });
+        slider.addEventListener('pointermove', e => { if (isDragging) setPosition(getPct(e.clientX)); });
+        slider.addEventListener('pointerup', () => { isDragging = false; });
+        slider.addEventListener('pointercancel', () => { isDragging = false; });
+        slider.addEventListener('keydown', e => {
+          const cur = parseFloat(slider.getAttribute('aria-valuenow')) || 50;
+          if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); setPosition(cur - 2); }
+          else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); setPosition(cur + 2); }
+        });
+      });
+
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const seen = new Set();
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (!e.isIntersecting || seen.has(e.target)) return;
+            seen.add(e.target);
+            const parent = e.target.parentElement;
+            const sibs = parent ? [...parent.querySelectorAll(':scope > [data-reveal]')] : [];
+            const idx = sibs.indexOf(e.target);
+            e.target.style.transitionDelay = `${idx > 0 ? idx * 50 : 0}ms`;
+            e.target.classList.add('is-visible');
+            obs.unobserve(e.target);
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+        document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+      } else {
+        document.querySelectorAll('[data-reveal]').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+      }
+    </script>
+
+    <!-- Minimal slider CSS that can't be expressed with Tailwind utilities -->
+    <style>
+      .comparison { display: none; }
+      .comparison.active { display: block; }
+
+      .comparison-slider {
+        position: relative;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        border: 1px solid var(--color-border);
+        cursor: ew-resize;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .comparison-slider:focus-visible {
+        outline: 2px solid var(--color-blue-600);
+        outline-offset: 3px;
+      }
+
+      .slider-after,
+      .slider-before {
+        display: block;
+        width: 100%;
+        height: auto;
+        -webkit-user-drag: none;
+        pointer-events: none;
+      }
+      .slider-before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        clip-path: inset(0 50% 0 0);
+      }
+
+      .slider-handle {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .slider-handle-line {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 2px;
+        margin-left: -1px;
+        background: white;
+        box-shadow: 0 0 4px oklch(0% 0 0 / 0.3);
+      }
+      .slider-handle-grip {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background: white;
+        border: 2px solid oklch(0.458 0.305 268.13 / 0.2);
+        box-shadow: 0 1px 3px oklch(0% 0 0 / 0.12), 0 6px 16px oklch(0% 0 0 / 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: oklch(0.458 0.305 268.13);
+      }
+
+      .copy-btn.copied { color: var(--color-blue-600); }
+    </style>
+  </body>
+</html>

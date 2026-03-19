@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>Analytics Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Reset ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── Tokens ── */
+:root {
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  --text-xs:   0.6875rem;
+  --text-sm:   0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg:   1rem;
+  --text-xl:   1.125rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  2.25rem;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --surface-page:    oklch(1 0 0);
+  --surface-primary: oklch(1 0 0);
+  --surface-hover:   oklch(0.975 0.003 250);
+
+  --text-primary:   oklch(0.15 0.01 250);
+  --text-secondary: oklch(0.50 0.01 250);
+  --text-tertiary:  oklch(0.62 0.008 250);
+
+  --border-default: oklch(0.92 0.005 250);
+  --border-subtle:  oklch(0.95 0.003 250);
+
+  --accent:       oklch(0.458 0.305 268.13);
+  --accent-hover: oklch(0.40 0.28 268.13);
+  --accent-light: oklch(0.95 0.03 268.13);
+  --accent-muted: oklch(0.85 0.06 268.13);
+
+  --shadow-sm: 0 1px 2px oklch(0.2 0.01 250 / 0.04);
+  --shadow-md: 0 4px 8px oklch(0.2 0.01 250 / 0.06), 0 1px 3px oklch(0.2 0.01 250 / 0.04);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Base ── */
+html { height: 100%; }
+body {
+  font-family: var(--font-sans);
+  background: var(--surface-page);
+  color: var(--text-primary);
+  line-height: 1.5;
+  font-size: var(--text-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+}
+
+h1, h2, h3, h4 { text-wrap: balance; }
+p, li, dd { text-wrap: pretty; }
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-decoration: none;
+  z-index: 100;
+}
+.skip-link:focus { top: var(--space-md); }
+
+/* ── Layout: expanded sidebar + content ── */
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+}
+
+/* ── Expanded Sidebar ── */
+.sidebar {
+  background: var(--surface-page);
+  border-right: 1px solid var(--border-default);
+  padding: var(--space-md) var(--space-sm);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  overflow-y: auto;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: var(--space-xs) var(--space-sm);
+  margin-bottom: var(--space-md);
+  flex-shrink: 0;
+}
+.sidebar-logo-mark {
+  width: 28px;
+  height: 28px;
+  background: var(--accent);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sidebar-logo-mark svg {
+  width: 16px;
+  height: 16px;
+  stroke: white;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.sidebar-logo-text {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.sidebar-nav { list-style: none; }
+.sidebar-nav li + li { margin-top: 2px; }
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--text-tertiary);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: background 160ms var(--ease-out), color 160ms var(--ease-out);
+  touch-action: manipulation;
+}
+.sidebar-nav a:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+.sidebar-nav a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.sidebar-nav a:active { transform: scale(0.97); }
+.sidebar-nav a[aria-current="page"] {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+.sidebar-nav svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sidebar-spacer { flex: 1; }
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ── Main ── */
+.main {
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* ── Page Header ── */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-xl);
+  border-bottom: 1px solid var(--border-default);
+  min-height: 52px;
+}
+.page-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+.page-header h1 {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.page-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* ── Ghost Buttons ── */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border-default);
+  background: transparent;
+  color: var(--text-secondary);
+  transition: background 160ms var(--ease-out), color 160ms var(--ease-out), border-color 160ms var(--ease-out), transform 160ms var(--ease-out);
+  min-height: 32px;
+  touch-action: manipulation;
+}
+.btn-ghost:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+  border-color: oklch(0.88 0.005 250);
+}
+.btn-ghost:active { transform: scale(0.97); }
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.btn-ghost svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Content Area ── */
+.content {
+  padding: var(--space-xl) var(--space-xl) var(--space-3xl);
+  max-width: 1200px;
+}
+
+/* ── Primary Metric (floating, no card) ── */
+.primary-metric {
+  margin-bottom: var(--space-xs);
+}
+.primary-metric-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+}
+.primary-metric-label .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.primary-metric-value {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.primary-metric-comparison {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  margin-top: var(--space-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Area Chart ── */
+.chart-area {
+  margin: var(--space-lg) 0 var(--space-2xl);
+  position: relative;
+}
+.chart-area svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.chart-grid-line {
+  stroke: var(--border-subtle);
+  stroke-width: 0.5;
+}
+.chart-line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.75;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.chart-axis-label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  fill: var(--text-tertiary);
+  font-weight: 500;
+}
+.chart-dot {
+  fill: var(--accent);
+}
+.chart-dot-ring {
+  fill: white;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+
+/* ── Metric Cards Row (with sparklines) ── */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-default);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: var(--space-2xl);
+}
+.metric-card {
+  background: var(--surface-primary);
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+}
+.metric-card-label {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-xs);
+}
+.metric-card-value {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+.metric-card-change {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+.metric-card-sparkline {
+  margin-top: auto;
+  padding-top: var(--space-sm);
+}
+.metric-card-sparkline svg {
+  display: block;
+  width: 100%;
+  height: 32px;
+}
+.sparkline-line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.25;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.sparkline-fill {
+  opacity: 0.08;
+}
+
+/* ── Tabbed Sections (side by side) ── */
+.split-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-2xl);
+}
+
+.panel {
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-primary);
+  overflow: hidden;
+}
+
+/* ── Tab Bar ── */
+.tab-bar {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border-default);
+  padding: 0 var(--space-md);
+}
+.tab-btn {
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-tertiary);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+  margin-bottom: -1px;
+  touch-action: manipulation;
+}
+.tab-btn:hover {
+  color: var(--text-primary);
+}
+.tab-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.tab-btn[aria-selected="true"] {
+  color: var(--text-primary);
+  border-bottom-color: var(--text-primary);
+}
+
+/* ── Proportion List ── */
+.proportion-list {
+  list-style: none;
+  padding: var(--space-sm) var(--space-md) var(--space-md);
+}
+.proportion-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 8px 0;
+}
+.proportion-item + .proportion-item {
+  border-top: 1px solid var(--border-subtle);
+}
+.proportion-item-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.proportion-label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.country-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+}
+.proportion-bar-track {
+  width: 100%;
+  height: 6px;
+  background: var(--border-subtle);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.proportion-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 400ms var(--ease-out);
+}
+.proportion-value {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+/* ── Activity Table ── */
+.table-section {
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-primary);
+  overflow: hidden;
+}
+.table-header {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--border-default);
+}
+.table-header h2 {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.table-wrap {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th {
+  text-align: left;
+  padding: var(--space-sm) var(--space-lg);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--border-default);
+  white-space: nowrap;
+}
+td {
+  padding: 10px var(--space-lg);
+  font-size: var(--text-sm);
+  border-bottom: 1px solid var(--border-subtle);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+tbody tr:last-child td { border-bottom: none; }
+
+@media (hover: hover) and (pointer: fine) {
+  tbody tr {
+    transition: background 150ms ease;
+  }
+  tbody tr:hover {
+    background: var(--surface-hover);
+  }
+}
+
+/* User cell with avatar */
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.user-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Status dot (not badge) */
+.status-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-sm);
+}
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.status-dot--success { background: oklch(0.55 0.17 150); }
+.status-dot--pending { background: oklch(0.70 0.15 70); }
+.status-dot--failed  { background: oklch(0.55 0.20 25); }
+
+.amount-cell {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+/* ── Focus-visible global ── */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<div class="layout">
+  <!-- Sidebar: expanded with icon + text labels -->
+  <nav class="sidebar" aria-label="Main navigation">
+    <div class="sidebar-logo">
+      <span class="sidebar-logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </span>
+      <span class="sidebar-logo-text">Acme</span>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="#">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Dashboard
+      </a></li>
+      <li><a href="#" aria-current="page">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Analytics
+      </a></li>
+      <li><a href="#">
+        <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        Links
+      </a></li>
+      <li><a href="#">
+        <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        Events
+      </a></li>
+      <li><a href="#">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </a></li>
+    </ul>
+
+    <div class="sidebar-spacer"></div>
+
+    <ul class="sidebar-nav sidebar-bottom">
+      <li><a href="#">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Help
+      </a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main" id="main-content">
+    <!-- Page Header -->
+    <header class="page-header">
+      <div class="page-header-left">
+        <h1>Analytics</h1>
+        <button class="btn-ghost" type="button">
+          <svg viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          Filter
+        </button>
+        <button class="btn-ghost" type="button">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Last 24&nbsp;hours
+        </button>
+      </div>
+      <div class="page-header-right">
+        <button class="btn-ghost" type="button">Switch to Events</button>
+      </div>
+    </header>
+
+    <div class="content">
+      <!-- Primary Metric: Clicks (no card, floating) -->
+      <section class="primary-metric" aria-label="Primary metric">
+        <div class="primary-metric-label">
+          <span class="dot" aria-hidden="true"></span>
+          Clicks
+        </div>
+        <div class="primary-metric-value">27</div>
+        <div class="primary-metric-comparison">vs 19 last period</div>
+      </section>
+
+      <!-- Large Area Chart with gradient fill -->
+      <div class="chart-area" role="img" aria-label="Clicks over the last 24 hours, showing an upward trend peaking at 4pm">
+        <svg viewBox="0 0 900 220" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Grid lines -->
+          <line class="chart-grid-line" x1="40" y1="180" x2="880" y2="180"/>
+          <line class="chart-grid-line" x1="40" y1="135" x2="880" y2="135"/>
+          <line class="chart-grid-line" x1="40" y1="90" x2="880" y2="90"/>
+          <line class="chart-grid-line" x1="40" y1="45" x2="880" y2="45"/>
+
+          <!-- Y-axis labels -->
+          <text class="chart-axis-label" x="32" y="184" text-anchor="end">0</text>
+          <text class="chart-axis-label" x="32" y="139" text-anchor="end">2</text>
+          <text class="chart-axis-label" x="32" y="94" text-anchor="end">4</text>
+          <text class="chart-axis-label" x="32" y="49" text-anchor="end">6</text>
+
+          <!-- Area fill (gradient fading to transparent) -->
+          <polygon fill="url(#chartGrad)"
+            points="40,180 110,168 180,172 250,165 320,155 390,142 460,125 530,98 600,65 670,45 740,72 810,110 880,135 880,180"/>
+
+          <!-- Line -->
+          <polyline class="chart-line"
+            points="40,180 110,168 180,172 250,165 320,155 390,142 460,125 530,98 600,65 670,45 740,72 810,110 880,135"/>
+
+          <!-- Highlight dot at peak -->
+          <circle class="chart-dot-ring" cx="670" cy="45" r="4"/>
+          <circle class="chart-dot" cx="670" cy="45" r="2"/>
+
+          <!-- X-axis labels -->
+          <text class="chart-axis-label" x="40" y="200" text-anchor="middle">12am</text>
+          <text class="chart-axis-label" x="180" y="200" text-anchor="middle">4am</text>
+          <text class="chart-axis-label" x="320" y="200" text-anchor="middle">8am</text>
+          <text class="chart-axis-label" x="460" y="200" text-anchor="middle">12pm</text>
+          <text class="chart-axis-label" x="600" y="200" text-anchor="middle">4pm</text>
+          <text class="chart-axis-label" x="740" y="200" text-anchor="middle">8pm</text>
+          <text class="chart-axis-label" x="880" y="200" text-anchor="middle">Now</text>
+        </svg>
+      </div>
+
+      <!-- Metric Cards with Sparklines -->
+      <section class="metrics-row" aria-label="Key metrics">
+        <div class="metric-card">
+          <div class="metric-card-label">Leads</div>
+          <div class="metric-card-value">12</div>
+          <div class="metric-card-change">+3 from last period</div>
+          <div class="metric-card-sparkline">
+            <svg viewBox="0 0 120 32" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="spark1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0.15"/>
+                  <stop offset="100%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <polygon class="sparkline-fill" fill="url(#spark1)" points="0,28 15,24 30,26 45,20 60,18 75,14 90,10 105,12 120,8 120,32 0,32"/>
+              <polyline class="sparkline-line" points="0,28 15,24 30,26 45,20 60,18 75,14 90,10 105,12 120,8"/>
+            </svg>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-label">Sales</div>
+          <div class="metric-card-value">$2,140</div>
+          <div class="metric-card-change">+$380 from last period</div>
+          <div class="metric-card-sparkline">
+            <svg viewBox="0 0 120 32" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="spark2" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0.15"/>
+                  <stop offset="100%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <polygon class="sparkline-fill" fill="url(#spark2)" points="0,22 15,20 30,24 45,18 60,22 75,15 90,12 105,8 120,6 120,32 0,32"/>
+              <polyline class="sparkline-line" points="0,22 15,20 30,24 45,18 60,22 75,15 90,12 105,8 120,6"/>
+            </svg>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-label">Customers</div>
+          <div class="metric-card-value">847</div>
+          <div class="metric-card-change">+42 from last period</div>
+          <div class="metric-card-sparkline">
+            <svg viewBox="0 0 120 32" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="spark3" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0.15"/>
+                  <stop offset="100%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <polygon class="sparkline-fill" fill="url(#spark3)" points="0,26 15,28 30,22 45,24 60,18 75,16 90,14 105,10 120,8 120,32 0,32"/>
+              <polyline class="sparkline-line" points="0,26 15,28 30,22 45,24 60,18 75,16 90,14 105,10 120,8"/>
+            </svg>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-label">Avg&nbsp;Duration</div>
+          <div class="metric-card-value">2m&nbsp;34s</div>
+          <div class="metric-card-change">+12s from last period</div>
+          <div class="metric-card-sparkline">
+            <svg viewBox="0 0 120 32" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="spark4" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0.15"/>
+                  <stop offset="100%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <polygon class="sparkline-fill" fill="url(#spark4)" points="0,16 15,20 30,14 45,18 60,12 75,16 90,10 105,14 120,8 120,32 0,32"/>
+              <polyline class="sparkline-line" points="0,16 15,20 30,14 45,18 60,12 75,16 90,10 105,14 120,8"/>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- Split Panels: Links + Countries -->
+      <div class="split-sections">
+        <!-- Left Panel: Short Links -->
+        <section class="panel" aria-label="Top links">
+          <div class="tab-bar" role="tablist">
+            <button class="tab-btn" role="tab" aria-selected="true" id="tab-links" aria-controls="panel-links">Short&nbsp;Links</button>
+            <button class="tab-btn" role="tab" aria-selected="false" id="tab-urls" aria-controls="panel-urls" tabindex="-1">Destination&nbsp;URLs</button>
+          </div>
+          <div role="tabpanel" id="panel-links" aria-labelledby="tab-links">
+            <ul class="proportion-list">
+              <li class="proportion-item">
+                <div class="proportion-item-left">
+                  <span class="proportion-label">acme.co/launch</span>
+                  <div class="proportion-bar-track"><div class="proportion-bar-fill" style="width:100%"></div></div>
+                </div>
+                <span class="proportion-value">8</span>
+              </li>
+              <li class="proportion-item">
+                <div class="proportion-item-left">
+                  <span class="proportion-label">acme.co/pricing</span>
+                  <div class="proportion-bar-track"><div class="proportion-bar-fill" style="width:62%"></div></div>
+                </div>
+                <span class="proportion-value">5</span>
+              </li>
+              <li class="proportion-item">
+                <div class="proportion-item-left">
+                  <span class="proportion-label">acme.co/blog</span>
+                  <div class="proportion-bar-track"><div class="proportion-bar-fill" style="width:50%"></div></div>
+                </div>
+                <span class="proportion-value">4</span>
+              </li>
+              <li class="proportion-item">
+                <div class="proportion-item-left">
+                  <span class="proportion-label">acme.co/docs</span>
+                  <div class="proportion-bar-track"><div class="proportion-bar-fill" style="width:37%"></div></div>
+                </div>
+                <span class="proportion-value">3</span>
+              </li>
+              <li class="proportion-item">
+                <div class="proportion-item-left">
+                  <span class="proportion-label">acme.co/github</span>
+                  <div class="proportion-bar-track"><div class="proportion-bar-fill" style="width:25%"></div></div>
+                </div>
+                <span class="proportion-value">2</span>
+              </li>
+            </ul>
+          </div>
+          <div role="tabpanel" id="panel-urls" aria-labelledby="tab-urls" hidden>
+            <ul class="proportion-list">
+              <li class="proportion-item">
+                <div class="proportion-item-left">
+                  <span class="proportion-label">app.acme.co</span>
+                  <div class="proportion-bar-track"><div class="proportion-bar-fill" style="width:100%"></div></div>
+                </div>
+                <span class="proportion-value">10</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Right Panel: Countries -->
+        <section class="panel" aria-label="Top locations">
+          <div class="tab-bar" role="tablist">
+            <button class="tab-btn" role="tab" aria-selected="true" id="tab-countries" aria-controls="panel-countries">Countries</button>
+            <button class="tab-btn" role="tab" aria-selected="false" id="tab-cities" aria-controls="panel-cities" tabindex="-1">Cities</button>
+            <button class="tab-btn" role="tab" aria-selected="false" id="tab-continents" aria-controls="panel-continents" tabindex="-1">Continents</button>
+          </div>
+          <div role="tabpanel" id="panel-countries" aria-labelledby="tab-countries">
+            <ul class="proportion-list">
+              <li class="proportion-item">
+                <div class="proportion-item-left">
+                  <span class="proportion-label"><span class="country-dot" style="background:oklch(0.55 0.17 250)" aria-hidden="true"></span> United States</span>
+                  <div class="proportion-bar-track"><div class="proportion-bar-fill" style="width:100%"></div></div>
+                </div>
+                <span class="proportion-value">11</span>
+              </li>
+              <li class="proportion-item">
+                <div class="proportion-item-left">
+                  <span class="proportion-label"><span class="country-dot" style="background:oklch(0.55 0.17 150)" aria-hidden="true"></span> United Kingdom</span>
+                  <div class="proportion-bar-track"><div class="proportion-bar-fill" style="width:54%"></div></div>
+                </div>
+                <span class="proportion-value">6</span>
+              </li>
+              <li class="proportion-item">
+                <div class="proportion-item-left">
+                  <span class="proportion-label"><span class="country-dot" style="background:oklch(0.60 0.15 70)" aria-hidden="true"></span> Germany</span>
+                  <div class="proportion-bar-track"><div class="proportion-bar-fill" style="width:36%"></div></div>
+                </div>
+                <span class="proportion-value">4</span>
+              </li>
+              <li class="proportion-item">
+                <div class="proportion-item-left">
+                  <span class="proportion-label"><span class="country-dot" style="background:oklch(0.55 0.20 25)" aria-hidden="true"></span> India</span>
+                  <div class="proportion-bar-track"><div class="proportion-bar-fill" style="width:27%"></div></div>
+                </div>
+                <span class="proportion-value">3</span>
+              </li>
+              <li class="proportion-item">
+                <div class="proportion-item-left">
+                  <span class="proportion-label"><span class="country-dot" style="background:oklch(0.55 0.17 140)" aria-hidden="true"></span> Brazil</span>
+                  <div class="proportion-bar-track"><div class="proportion-bar-fill" style="width:27%"></div></div>
+                </div>
+                <span class="proportion-value">3</span>
+              </li>
+            </ul>
+          </div>
+          <div role="tabpanel" id="panel-cities" aria-labelledby="tab-cities" hidden>
+            <ul class="proportion-list">
+              <li class="proportion-item">
+                <div class="proportion-item-left">
+                  <span class="proportion-label">San Francisco</span>
+                  <div class="proportion-bar-track"><div class="proportion-bar-fill" style="width:100%"></div></div>
+                </div>
+                <span class="proportion-value">5</span>
+              </li>
+            </ul>
+          </div>
+          <div role="tabpanel" id="panel-continents" aria-labelledby="tab-continents" hidden>
+            <ul class="proportion-list">
+              <li class="proportion-item">
+                <div class="proportion-item-left">
+                  <span class="proportion-label">North America</span>
+                  <div class="proportion-bar-track"><div class="proportion-bar-fill" style="width:100%"></div></div>
+                </div>
+                <span class="proportion-value">14</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <!-- Recent Activity Table -->
+      <section class="table-section" aria-label="Recent activity">
+        <div class="table-header">
+          <h2>Recent Events</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">User</th>
+                <th scope="col">Event</th>
+                <th scope="col">Link</th>
+                <th scope="col">Country</th>
+                <th scope="col">Time</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="user-cell">
+                    <span class="user-avatar" aria-hidden="true">SJ</span>
+                    Sarah Johnson
+                  </div>
+                </td>
+                <td>Link click</td>
+                <td><span style="color:var(--accent);font-weight:500">acme.co/launch</span></td>
+                <td><span class="status-cell"><span class="country-dot" style="background:oklch(0.55 0.17 250)" aria-hidden="true"></span> US</span></td>
+                <td>2 min ago</td>
+                <td><div class="status-cell"><span class="status-dot status-dot--success" aria-hidden="true"></span> Completed</div></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="user-cell">
+                    <span class="user-avatar" aria-hidden="true">MC</span>
+                    Mike Chen
+                  </div>
+                </td>
+                <td>Link click</td>
+                <td><span style="color:var(--accent);font-weight:500">acme.co/pricing</span></td>
+                <td><span class="status-cell"><span class="country-dot" style="background:oklch(0.55 0.17 150)" aria-hidden="true"></span> GB</span></td>
+                <td>8 min ago</td>
+                <td><div class="status-cell"><span class="status-dot status-dot--success" aria-hidden="true"></span> Completed</div></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="user-cell">
+                    <span class="user-avatar" aria-hidden="true">EW</span>
+                    Emma Wilson
+                  </div>
+                </td>
+                <td>QR scan</td>
+                <td><span style="color:var(--accent);font-weight:500">acme.co/blog</span></td>
+                <td><span class="status-cell"><span class="country-dot" style="background:oklch(0.60 0.15 70)" aria-hidden="true"></span> DE</span></td>
+                <td>14 min ago</td>
+                <td><div class="status-cell"><span class="status-dot status-dot--pending" aria-hidden="true"></span> Pending</div></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="user-cell">
+                    <span class="user-avatar" aria-hidden="true">AR</span>
+                    Alex Rivera
+                  </div>
+                </td>
+                <td>Link click</td>
+                <td><span style="color:var(--accent);font-weight:500">acme.co/docs</span></td>
+                <td><span class="status-cell"><span class="country-dot" style="background:oklch(0.55 0.20 25)" aria-hidden="true"></span> IN</span></td>
+                <td>23 min ago</td>
+                <td><div class="status-cell"><span class="status-dot status-dot--failed" aria-hidden="true"></span> Bot</div></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="user-cell">
+                    <span class="user-avatar" aria-hidden="true">LP</span>
+                    Lisa Park
+                  </div>
+                </td>
+                <td>Link click</td>
+                <td><span style="color:var(--accent);font-weight:500">acme.co/github</span></td>
+                <td><span class="status-cell"><span class="country-dot" style="background:oklch(0.55 0.17 140)" aria-hidden="true"></span> BR</span></td>
+                <td>41 min ago</td>
+                <td><div class="status-cell"><span class="status-dot status-dot--success" aria-hidden="true"></span> Completed</div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<script>
+// Simple tab switching
+document.querySelectorAll('.tab-bar').forEach(bar => {
+  const tabs = bar.querySelectorAll('.tab-btn');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const panel = bar.closest('.panel');
+      // Deselect all tabs in this bar
+      tabs.forEach(t => {
+        t.setAttribute('aria-selected', 'false');
+        t.setAttribute('tabindex', '-1');
+        const p = panel.querySelector('#' + t.getAttribute('aria-controls'));
+        if (p) p.hidden = true;
+      });
+      // Select clicked tab
+      tab.setAttribute('aria-selected', 'true');
+      tab.removeAttribute('tabindex');
+      const target = panel.querySelector('#' + tab.getAttribute('aria-controls'));
+      if (target) target.hidden = false;
+    });
+
+    // Arrow key navigation between tabs
+    tab.addEventListener('keydown', (e) => {
+      const tabsArr = Array.from(tabs);
+      const idx = tabsArr.indexOf(tab);
+      let next;
+      if (e.key === 'ArrowRight') next = tabsArr[(idx + 1) % tabsArr.length];
+      if (e.key === 'ArrowLeft') next = tabsArr[(idx - 1 + tabsArr.length) % tabsArr.length];
+      if (next) {
+        e.preventDefault();
+        next.click();
+        next.focus();
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>

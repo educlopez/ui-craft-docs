@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing Plans</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: system-ui, sans-serif;
+  background: linear-gradient(135deg, #0f0a1e 0%, #1a1035 50%, #0d1525 100%);
+  color: #e0e0ff;
+  min-height: 100vh;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 100px 24px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(129,140,248,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero h1 {
+  font-size: 56px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #c7d2fe, #818cf8, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+.hero p {
+  font-size: 20px;
+  color: rgba(255,255,255,0.5);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Pricing Grid */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+  align-items: center;
+}
+
+.pricing-card {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 44px 36px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(99,102,241,0.2);
+}
+
+/* Featured card */
+.pricing-card.featured {
+  background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(6,182,212,0.08));
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  transform: scale(1.05);
+  box-shadow: 0 0 60px rgba(99,102,241,0.3), 0 0 120px rgba(6,182,212,0.1);
+}
+.pricing-card.featured::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 26px;
+  background: linear-gradient(135deg, #6366f1, #06b6d4, #818cf8);
+  z-index: -1;
+}
+.pricing-card.featured:hover {
+  transform: scale(1.05) translateY(-8px);
+  box-shadow: 0 0 80px rgba(99,102,241,0.4), 0 0 160px rgba(6,182,212,0.15);
+}
+
+.popular-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+  color: white;
+  margin-bottom: 20px;
+}
+
+.plan-name {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.plan-price {
+  font-size: 60px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #fff, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+.plan-price span {
+  font-size: 18px;
+  font-weight: 400;
+  -webkit-text-fill-color: rgba(255,255,255,0.4);
+}
+.plan-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 32px;
+}
+
+.features-list {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 36px;
+}
+.features-list li {
+  padding: 10px 0;
+  font-size: 15px;
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.features-list li:last-child { border-bottom: none; }
+.check {
+  font-size: 18px;
+}
+
+.plan-btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  color: #c7d2fe;
+  transition: all 0.3s ease;
+}
+.plan-btn:hover {
+  background: rgba(129,140,248,0.2);
+  box-shadow: 0 0 30px rgba(129,140,248,0.2);
+  transform: translateY(-2px);
+}
+.plan-btn.featured-btn {
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+  border: none;
+  color: #fff;
+}
+.plan-btn.featured-btn:hover {
+  box-shadow: 0 0 40px rgba(99,102,241,0.5);
+  transform: translateY(-2px);
+}
+
+/* FAQ */
+.faq-section {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+.faq-section h2 {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 48px;
+  background: linear-gradient(135deg, #c7d2fe, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.faq-item {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.faq-item:hover {
+  background: rgba(129,140,248,0.08);
+  border-color: rgba(129,140,248,0.2);
+}
+.faq-question {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.faq-question .arrow { color: #818cf8; font-size: 20px; }
+.faq-answer {
+  font-size: 15px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+}
+
+/* Bottom CTA */
+.bottom-cta {
+  text-align: center;
+  padding: 80px 24px 100px;
+  position: relative;
+}
+.bottom-cta::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.bottom-cta h2 {
+  font-size: 40px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #c7d2fe, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bottom-cta p {
+  font-size: 18px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 32px;
+}
+.bottom-cta-btn {
+  display: inline-block;
+  padding: 18px 48px;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+.bottom-cta-btn:hover {
+  box-shadow: 0 0 50px rgba(99,102,241,0.5), 0 0 100px rgba(6,182,212,0.2);
+  transform: translateY(-4px);
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>&#x2728; Choose Your Plan</h1>
+  <p>Unlock the full power of our AI-driven analytics platform. Scale as you grow with flexible pricing.</p>
+</section>
+
+<!-- Pricing Cards -->
+<div class="pricing-grid">
+  <!-- Free -->
+  <div class="pricing-card">
+    <div class="plan-name">Free</div>
+    <div class="plan-price">$0<span>/month</span></div>
+    <div class="plan-desc">Perfect for getting started</div>
+    <ul class="features-list">
+      <li><span class="check">&#x2705;</span> Up to 1,000 events/month</li>
+      <li><span class="check">&#x2705;</span> Basic analytics dashboard</li>
+      <li><span class="check">&#x2705;</span> 1 team member</li>
+      <li><span class="check">&#x2705;</span> 7-day data retention</li>
+      <li><span class="check">&#x2705;</span> Email support</li>
+    </ul>
+    <button class="plan-btn">Get Started</button>
+  </div>
+
+  <!-- Pro (Featured) -->
+  <div class="pricing-card featured">
+    <div class="popular-badge">&#x1F525; Most Popular</div>
+    <div class="plan-name">Pro</div>
+    <div class="plan-price">$29<span>/month</span></div>
+    <div class="plan-desc">For growing businesses</div>
+    <ul class="features-list">
+      <li><span class="check">&#x2705;</span> Unlimited events</li>
+      <li><span class="check">&#x2705;</span> Advanced analytics & funnels</li>
+      <li><span class="check">&#x2705;</span> Up to 10 team members</li>
+      <li><span class="check">&#x2705;</span> 1-year data retention</li>
+      <li><span class="check">&#x2705;</span> Priority support</li>
+    </ul>
+    <button class="plan-btn featured-btn">Get Started</button>
+  </div>
+
+  <!-- Enterprise -->
+  <div class="pricing-card">
+    <div class="plan-name">Enterprise</div>
+    <div class="plan-price">Custom</div>
+    <div class="plan-desc">For large-scale operations</div>
+    <ul class="features-list">
+      <li><span class="check">&#x2705;</span> Everything in Pro</li>
+      <li><span class="check">&#x2705;</span> Unlimited team members</li>
+      <li><span class="check">&#x2705;</span> Custom integrations</li>
+      <li><span class="check">&#x2705;</span> Unlimited data retention</li>
+      <li><span class="check">&#x2705;</span> Dedicated account manager</li>
+    </ul>
+    <button class="plan-btn">Get Started</button>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <h2>&#x2753; Frequently Asked Questions</h2>
+  <div class="faq-item">
+    <div class="faq-question">Can I switch plans anytime? <span class="arrow">&#x2192;</span></div>
+    <div class="faq-answer">Yes! You can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Is there a free trial? <span class="arrow">&#x2192;</span></div>
+    <div class="faq-answer">Absolutely! All paid plans come with a 14-day free trial. No credit card required to start.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">What payment methods do you accept? <span class="arrow">&#x2192;</span></div>
+    <div class="faq-answer">We accept all major credit cards, PayPal, and wire transfers for Enterprise plans.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Do you offer refunds? <span class="arrow">&#x2192;</span></div>
+    <div class="faq-answer">Yes, we offer a 30-day money-back guarantee on all paid plans. No questions asked.</div>
+  </div>
+</section>
+
+<!-- Bottom CTA -->
+<section class="bottom-cta">
+  <h2>&#x1F680; Ready to Get Started?</h2>
+  <p>Join thousands of companies already using our platform.</p>
+  <button class="bottom-cta-btn">&#x2728; Get Started Now</button>
+</section>
+
+</body>
+</html>

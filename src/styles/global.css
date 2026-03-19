@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-blue-600: oklch(0.458 0.305 268.13);
+  --color-border: oklch(90% 0.005 250);
+  --color-text: oklch(18% 0.005 250);
+  --color-text-secondary: oklch(45% 0.005 250);
+  --color-code-bg: oklch(96% 0.005 250);
+
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Base resets */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: oklch(0.458 0.305 268.13 / 0.15);
+}
+
+/* Scroll reveal */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+}
+
+/* Page load entrance (above fold) */
+[data-enter] {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: enter 600ms var(--ease-out) forwards;
+}
+
+[data-enter="1"] { animation-delay: 0ms; }
+[data-enter="2"] { animation-delay: 80ms; }
+[data-enter="3"] { animation-delay: 160ms; }
+[data-enter="4"] { animation-delay: 240ms; }
+[data-enter="5"] { animation-delay: 320ms; }
+
+@keyframes enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-enter] {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+}

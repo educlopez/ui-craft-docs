@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acme - Features</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, #0a0e2a 0%, #1a0533 100%);
+  color: white;
+  min-height: 100vh;
+}
+
+.features-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 40px;
+  text-align: center;
+}
+
+.section-badge {
+  display: inline-block;
+  padding: 6px 18px;
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 50px;
+  font-size: 0.8rem;
+  color: #c084fc;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff, #c084fc, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.05rem;
+  max-width: 550px;
+  margin: 0 auto 60px;
+  line-height: 1.7;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.feature-card {
+  position: relative;
+  padding: 40px 28px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  text-align: center;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.5), rgba(6, 182, 212, 0.5));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.3), 0 0 80px rgba(6, 182, 212, 0.1);
+}
+
+.feature-icon-area {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.feature-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.feature-card p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.feature-detail {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.6;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: left;
+}
+
+.features-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.btn-see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: transparent;
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  border-radius: 50px;
+  color: #c084fc;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-see-all:hover {
+  border-color: rgba(139, 92, 246, 0.8);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+  transform: translateY(-2px);
+}
+.btn-see-all span {
+  transition: transform 0.3s ease;
+}
+.btn-see-all:hover span {
+  transform: translateX(4px);
+}
+</style>
+</head>
+<body>
+
+<section class="features-section">
+  <span class="section-badge">Features</span>
+  <h2>Everything You Need to Scale</h2>
+  <p class="section-subtitle">From real-time analytics to enterprise security, Acme gives your team the tools to grow faster and smarter.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon-area" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(168, 85, 247, 0.15));">&#x1F4CA;</div>
+      <h3>Real-Time Analytics</h3>
+      <p>Track every metric as it happens. Our engine processes millions of events per second with sub-100ms latency, so your dashboards are always fresh.</p>
+      <div class="feature-detail">
+        &#x2022; 50+ built-in metrics &nbsp; &#x2022; Custom event tracking &nbsp; &#x2022; Funnel analysis &nbsp; &#x2022; Cohort reports
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-area" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(34, 211, 238, 0.15));">&#x26A1;</div>
+      <h3>Lightning Performance</h3>
+      <p>Built on a global edge network with 99.99% uptime. Queries execute in under 50ms p99 no matter how much data you throw at it.</p>
+      <div class="feature-detail">
+        &#x2022; 200+ edge locations &nbsp; &#x2022; Auto-scaling infrastructure &nbsp; &#x2022; 99.99% SLA
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-area" style="background: linear-gradient(135deg, rgba(52, 211, 153, 0.25), rgba(16, 185, 129, 0.15));">&#x1F512;</div>
+      <h3>Enterprise Security</h3>
+      <p>SOC 2 Type II certified with end-to-end encryption, SSO, SCIM provisioning, and role-based access controls your security team will love.</p>
+      <div class="feature-detail">
+        &#x2022; SOC 2 &amp; GDPR compliant &nbsp; &#x2022; SSO / SAML &nbsp; &#x2022; Audit logs &nbsp; &#x2022; Data residency
+      </div>
+    </div>
+  </div>
+
+  <div class="features-grid-2">
+    <div class="feature-card">
+      <div class="feature-icon-area" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.25), rgba(245, 158, 11, 0.15));">&#x1F517;</div>
+      <h3>Smart Link Management</h3>
+      <p>Create branded short links with built-in UTM parameters, A/B testing, and deep link routing. Every link becomes a data source.</p>
+      <div class="feature-detail">
+        &#x2022; Custom domains &nbsp; &#x2022; QR codes &nbsp; &#x2022; Deep linking &nbsp; &#x2022; Link expiration
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-area" style="background: linear-gradient(135deg, rgba(244, 114, 182, 0.25), rgba(236, 72, 153, 0.15));">&#x1F504;</div>
+      <h3>Workflow Automations</h3>
+      <p>Set up triggers and actions that run when visitors click, convert, or hit milestones. Connect to Slack, Salesforce, HubSpot, and 200+ more.</p>
+      <div class="feature-detail">
+        &#x2022; Zapier &amp; webhooks &nbsp; &#x2022; Conditional logic &nbsp; &#x2022; Slack alerts &nbsp; &#x2022; CRM sync
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-area" style="background: linear-gradient(135deg, rgba(129, 140, 248, 0.25), rgba(99, 102, 241, 0.15));">&#x1F4C8;</div>
+      <h3>Attribution Engine</h3>
+      <p>Multi-touch attribution across 12 channels. Know exactly which campaign, ad, or referrer drove every signup, purchase, and upgrade.</p>
+      <div class="feature-detail">
+        &#x2022; First-touch &amp; last-touch &nbsp; &#x2022; Multi-touch models &nbsp; &#x2022; Revenue attribution
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-see-all">
+    See all features <span>&rarr;</span>
+  </button>
+</section>
+
+</body>
+</html>

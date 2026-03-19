@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fafafa">
+<title>Acme – Turn every click into revenue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── Reset ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --accent: oklch(0.458 0.305 268.13);
+  --accent-hover: oklch(0.40 0.28 268.13);
+  --accent-light: oklch(0.95 0.03 268.13);
+  --text-primary: oklch(0.15 0.01 250);
+  --text-secondary: oklch(0.45 0.01 250);
+  --text-tertiary: oklch(0.60 0.008 250);
+  --surface: oklch(0.985 0.002 250);
+  --surface-white: #ffffff;
+  --border: oklch(0.92 0.005 250);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --radius-sm: 6px;
+  --radius-md: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html { height: 100%; }
+body {
+  font-family: var(--font-sans);
+  background: var(--surface);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  position: relative;
+}
+
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+/* ── Background grid pattern ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(oklch(0.92 0.005 250 / 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.92 0.005 250 / 0.4) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
+}
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  padding: 8px 16px;
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-decoration: none;
+  z-index: 100;
+}
+.skip-link:focus { top: 16px; }
+
+/* ── Nav ── */
+nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(24px, 5vw, 64px);
+  height: 64px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-white);
+}
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.nav-logo-mark {
+  width: 24px;
+  height: 24px;
+  background: var(--accent);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-logo-mark svg {
+  width: 14px;
+  height: 14px;
+  stroke: white;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.nav-center {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-center a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 160ms var(--ease-out);
+}
+.nav-center a:hover { color: var(--text-primary); }
+.nav-center a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.nav-right .btn-primary-sm {
+  padding: 8px 18px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 160ms var(--ease-out), transform 160ms var(--ease-out);
+  min-height: 36px;
+  touch-action: manipulation;
+}
+.nav-right .btn-primary-sm:hover { background: var(--accent-hover); }
+.nav-right .btn-primary-sm:active { transform: scale(0.97); }
+.nav-right .btn-primary-sm:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(60px, 10vw, 120px) clamp(24px, 5vw, 64px) clamp(40px, 6vw, 80px);
+  display: flex;
+  align-items: center;
+  gap: clamp(40px, 6vw, 80px);
+}
+.hero-content {
+  flex: 1;
+  min-width: 0;
+}
+h1 {
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 40px;
+  max-width: 480px;
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  min-height: 44px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 160ms var(--ease-out), transform 160ms var(--ease-out);
+  touch-action: manipulation;
+}
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-primary:active { transform: scale(0.97); }
+.btn-primary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 24px;
+  min-height: 44px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 160ms var(--ease-out), color 160ms var(--ease-out), border-color 160ms var(--ease-out), transform 160ms var(--ease-out);
+  touch-action: manipulation;
+}
+.btn-ghost:hover {
+  background: var(--surface-white);
+  color: var(--text-primary);
+  border-color: oklch(0.88 0.005 250);
+}
+.btn-ghost:active { transform: scale(0.97); }
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.btn-ghost svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Product mockup ── */
+.hero-mockup {
+  flex: 1;
+  max-width: 480px;
+  min-width: 300px;
+  perspective: 1000px;
+}
+.mockup-frame {
+  background: var(--surface-white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow:
+    0 8px 30px oklch(0.2 0.01 250 / 0.08),
+    0 2px 8px oklch(0.2 0.01 250 / 0.04);
+  overflow: hidden;
+  transform: rotateY(-3deg) rotateX(2deg);
+  transition: transform 400ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .mockup-frame:hover {
+    transform: rotateY(-1deg) rotateX(1deg);
+  }
+}
+
+.mockup-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: oklch(0.98 0.002 250);
+}
+.mockup-nav-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: oklch(0.88 0.005 250);
+}
+.mockup-nav-bar {
+  flex: 1;
+  height: 20px;
+  background: oklch(0.96 0.003 250);
+  border-radius: 4px;
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+.mockup-nav-url {
+  font-size: 0.6rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.mockup-body {
+  padding: 16px;
+}
+.mockup-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.mockup-header-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.mockup-header-badge {
+  font-size: 0.55rem;
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.mockup-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.mockup-metric {
+  padding: 10px;
+  background: oklch(0.98 0.002 250);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.mockup-metric-label {
+  font-size: 0.55rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.mockup-metric-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+.mockup-metric-change {
+  font-size: 0.5rem;
+  color: var(--text-tertiary);
+  margin-top: 1px;
+}
+
+/* Mini area chart inside mockup */
+.mockup-chart {
+  margin-bottom: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface-white);
+}
+.mockup-chart-header {
+  padding: 8px 10px 0;
+  font-size: 0.55rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+.mockup-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.mockup-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.mockup-list-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+}
+.mockup-list-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.mockup-list-label {
+  flex: 1;
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+}
+.mockup-list-bar {
+  width: 50px;
+  height: 3px;
+  background: oklch(0.95 0.003 250);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.mockup-list-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.6;
+}
+.mockup-list-value {
+  font-size: 0.55rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  width: 28px;
+  text-align: right;
+}
+
+/* ── Social proof ── */
+.social-proof {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 64px) clamp(40px, 6vw, 80px);
+}
+.social-proof-inner {
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.social-proof-label {
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.logos {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 4vw, 48px);
+  flex-wrap: wrap;
+}
+.logo-item {
+  font-weight: 600;
+  color: oklch(0.70 0.005 250);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+/* ── Scroll indicator ── */
+.scroll-hint {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  z-index: 2;
+}
+.scroll-hint-line {
+  width: 1px;
+  height: 24px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-hint-line::after {
+  content: '';
+  position: absolute;
+  top: -24px;
+  left: 0;
+  width: 1px;
+  height: 12px;
+  background: var(--text-tertiary);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(48px); }
+}
+
+/* ── Focus visible ── */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .hero {
+    flex-direction: column;
+  }
+  .hero-mockup {
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav aria-label="Main navigation">
+  <a href="#" class="nav-left">
+    <span class="nav-logo-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    </span>
+    Acme
+  </a>
+  <ul class="nav-center">
+    <li><a href="#">Product</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Customers</a></li>
+    <li><a href="#">Docs</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-primary-sm" type="button">Start free</button>
+  </div>
+</nav>
+
+<main id="main">
+  <section class="hero" aria-label="Introduction">
+    <div class="hero-content">
+      <h1>Turn every click into <em>revenue</em></h1>
+      <p class="hero-subtitle">Track, attribute, and optimize every link across your marketing stack. See exactly what drives conversions.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" type="button">Start free</button>
+        <button class="btn-ghost" type="button">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          See how it works
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-mockup" aria-hidden="true">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <span class="mockup-nav-dot"></span>
+          <span class="mockup-nav-dot"></span>
+          <span class="mockup-nav-dot"></span>
+          <div class="mockup-nav-bar">
+            <span class="mockup-nav-url">app.acme.co/analytics</span>
+          </div>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-header-row">
+            <span class="mockup-header-title">Analytics Overview</span>
+            <span class="mockup-header-badge">Last 30 days</span>
+          </div>
+          <div class="mockup-metrics">
+            <div class="mockup-metric">
+              <div class="mockup-metric-label">Clicks</div>
+              <div class="mockup-metric-value">14,209</div>
+              <div class="mockup-metric-change">+22.4% from last month</div>
+            </div>
+            <div class="mockup-metric">
+              <div class="mockup-metric-label">Leads</div>
+              <div class="mockup-metric-value">847</div>
+              <div class="mockup-metric-change">+12 from last month</div>
+            </div>
+            <div class="mockup-metric">
+              <div class="mockup-metric-label">Conv. rate</div>
+              <div class="mockup-metric-value">4.7%</div>
+              <div class="mockup-metric-change">vs 3.8% last month</div>
+            </div>
+          </div>
+          <div class="mockup-chart">
+            <div class="mockup-chart-header">Clicks over time</div>
+            <svg viewBox="0 0 400 100" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <linearGradient id="mgrd" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0.12"/>
+                  <stop offset="100%" stop-color="oklch(0.458 0.305 268.13)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <!-- Grid -->
+              <line x1="0" y1="25" x2="400" y2="25" stroke="oklch(0.95 0.003 250)" stroke-width="0.5"/>
+              <line x1="0" y1="50" x2="400" y2="50" stroke="oklch(0.95 0.003 250)" stroke-width="0.5"/>
+              <line x1="0" y1="75" x2="400" y2="75" stroke="oklch(0.95 0.003 250)" stroke-width="0.5"/>
+              <!-- Area -->
+              <polygon fill="url(#mgrd)" points="0,80 30,75 60,72 90,68 120,65 150,60 180,52 210,45 240,38 270,30 300,25 330,22 360,18 400,15 400,100 0,100"/>
+              <!-- Line -->
+              <polyline fill="none" stroke="oklch(0.458 0.305 268.13)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"
+                points="0,80 30,75 60,72 90,68 120,65 150,60 180,52 210,45 240,38 270,30 300,25 330,22 360,18 400,15"/>
+              <!-- Dot -->
+              <circle cx="400" cy="15" r="3" fill="white" stroke="oklch(0.458 0.305 268.13)" stroke-width="1.5"/>
+              <circle cx="400" cy="15" r="1.5" fill="oklch(0.458 0.305 268.13)"/>
+              <!-- X labels -->
+              <text x="0" y="96" font-family="Inter,sans-serif" font-size="7" fill="oklch(0.60 0.008 250)">Mar 1</text>
+              <text x="130" y="96" font-family="Inter,sans-serif" font-size="7" fill="oklch(0.60 0.008 250)">Mar 10</text>
+              <text x="265" y="96" font-family="Inter,sans-serif" font-size="7" fill="oklch(0.60 0.008 250)">Mar 20</text>
+              <text x="380" y="96" font-family="Inter,sans-serif" font-size="7" fill="oklch(0.60 0.008 250)" text-anchor="end">Now</text>
+            </svg>
+          </div>
+          <div class="mockup-list">
+            <div class="mockup-list-item">
+              <span class="mockup-list-dot" style="background:oklch(0.458 0.305 268.13)"></span>
+              <span class="mockup-list-label">acme.co/launch</span>
+              <div class="mockup-list-bar"><div class="mockup-list-bar-fill" style="width:100%"></div></div>
+              <span class="mockup-list-value">3,204</span>
+            </div>
+            <div class="mockup-list-item">
+              <span class="mockup-list-dot" style="background:oklch(0.55 0.17 150)"></span>
+              <span class="mockup-list-label">acme.co/pricing</span>
+              <div class="mockup-list-bar"><div class="mockup-list-bar-fill" style="width:62%"></div></div>
+              <span class="mockup-list-value">1,986</span>
+            </div>
+            <div class="mockup-list-item">
+              <span class="mockup-list-dot" style="background:oklch(0.60 0.15 70)"></span>
+              <span class="mockup-list-label">acme.co/blog</span>
+              <div class="mockup-list-bar"><div class="mockup-list-bar-fill" style="width:38%"></div></div>
+              <span class="mockup-list-value">1,210</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="social-proof">
+    <div class="social-proof-inner">
+      <p class="social-proof-label">Trusted by 2,400+ marketing teams</p>
+      <div class="logos" aria-label="Customer logos">
+        <span class="logo-item" style="font-size:1.0625rem">Northwind</span>
+        <span class="logo-item" style="font-size:0.875rem">Contoso</span>
+        <span class="logo-item" style="font-size:1.125rem">Fabrikam</span>
+        <span class="logo-item" style="font-size:0.8125rem">Tailspin</span>
+        <span class="logo-item" style="font-size:1rem">Woodgrove</span>
+        <span class="logo-item" style="font-size:0.9375rem">Adatum</span>
+        <span class="logo-item" style="font-size:1.0625rem">Litware</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="scroll-hint" aria-hidden="true">
+  <div class="scroll-hint-line"></div>
+</div>
+
+</body>
+</html>

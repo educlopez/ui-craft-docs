@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acme - AI-Powered Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a0533 0%, #0d1b3e 40%, #0a0e2a 100%);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Floating orbs */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  animation: float 8s ease-in-out infinite;
+  z-index: 0;
+}
+.orb-1 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, #8b5cf6, #6d28d9);
+  top: -100px; left: -100px;
+  animation-delay: 0s;
+}
+.orb-2 {
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, #06b6d4, #0891b2);
+  bottom: -80px; right: -80px;
+  animation-delay: -3s;
+}
+.orb-3 {
+  width: 250px; height: 250px;
+  background: radial-gradient(circle, #a855f7, #7c3aed);
+  top: 40%; left: 60%;
+  animation-delay: -5s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+/* Glassmorphism nav */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #a855f7, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.nav-links a:hover { color: white; }
+.nav-cta {
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+  transition: all 0.3s ease;
+}
+.nav-cta:hover {
+  box-shadow: 0 0 50px rgba(139, 92, 246, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 40px 60px;
+}
+
+.hero-main {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.hero-text {
+  flex: 1;
+  text-align: left;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 50px;
+  font-size: 0.8rem;
+  color: #c084fc;
+  margin-bottom: 32px;
+  backdrop-filter: blur(10px);
+}
+.hero-badge span {
+  background: linear-gradient(135deg, #a855f7, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #ffffff 0%, #c084fc 50%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.btn-primary {
+  padding: 16px 36px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.5), 0 0 80px rgba(139, 92, 246, 0.2);
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  box-shadow: 0 0 60px rgba(139, 92, 246, 0.7), 0 0 120px rgba(139, 92, 246, 0.3);
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  padding: 16px 36px;
+  background: transparent;
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  border-radius: 50px;
+  color: #22d3ee;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.2);
+  transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+  box-shadow: 0 0 50px rgba(6, 182, 212, 0.4);
+  border-color: rgba(6, 182, 212, 0.7);
+  transform: translateY(-3px);
+}
+
+/* Product mockup */
+.hero-mockup {
+  flex: 1;
+  max-width: 520px;
+}
+.mockup-card {
+  background: rgba(10, 10, 30, 0.8);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(139, 92, 246, 0.15);
+  transform: perspective(800px) rotateY(-4deg) rotateX(2deg);
+}
+.mockup-topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.mockup-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.mockup-dot:nth-child(1) { background: #f87171; }
+.mockup-dot:nth-child(2) { background: #fbbf24; }
+.mockup-dot:nth-child(3) { background: #34d399; }
+.mockup-topbar-spacer { flex: 1; }
+.mockup-topbar-text {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.mockup-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.mockup-metric {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(6, 182, 212, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 14px;
+}
+.mockup-metric-label {
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.mockup-metric-value {
+  font-size: 1.3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.mockup-metric-change {
+  font-size: 0.6rem;
+  color: #34d399;
+  margin-top: 2px;
+}
+
+.mockup-chart {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.mockup-chart-title {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 12px;
+}
+.mockup-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 80px;
+}
+.mockup-bar {
+  flex: 1;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(to top, rgba(139, 92, 246, 0.4), rgba(6, 182, 212, 0.6));
+  transition: all 0.3s ease;
+}
+
+.mockup-table {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mockup-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+.mockup-row:last-child { border-bottom: none; }
+.mockup-row-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.mockup-row-label {
+  flex: 1;
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+.mockup-row-value {
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+.mockup-row-bar {
+  width: 60px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.mockup-row-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+}
+
+/* Stats */
+.hero-stats {
+  display: flex;
+  gap: 60px;
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+  max-width: 1200px;
+}
+.stat {
+  text-align: center;
+}
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #a855f7, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 4px;
+}
+
+/* Trusted logos */
+.trusted-section {
+  position: relative;
+  z-index: 1;
+  padding: 0 40px 80px;
+  text-align: center;
+}
+.trusted-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 28px;
+}
+.trusted-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.trusted-logo {
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<nav>
+  <div class="nav-logo">Acme</div>
+  <ul class="nav-links">
+    <li><a href="#">Features</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+  <button class="nav-cta">Get Started Free</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-main">
+    <div class="hero-text">
+      <div class="hero-badge">
+        &#x2728; <span>New: AI-Powered Insights are here</span>
+      </div>
+      <h1>Transform Your Business with AI-Powered Analytics</h1>
+      <p class="hero-subtitle">Leverage cutting-edge artificial intelligence to unlock powerful insights, drive growth, and revolutionize the way you make data-driven decisions.</p>
+      <div class="hero-buttons">
+        <button class="btn-primary">Get Started</button>
+        <button class="btn-secondary">Learn More</button>
+      </div>
+    </div>
+
+    <div class="hero-mockup">
+      <div class="mockup-card">
+        <div class="mockup-topbar">
+          <span class="mockup-dot"></span>
+          <span class="mockup-dot"></span>
+          <span class="mockup-dot"></span>
+          <span class="mockup-topbar-spacer"></span>
+          <span class="mockup-topbar-text">analytics.acme.io</span>
+        </div>
+        <div class="mockup-metrics">
+          <div class="mockup-metric">
+            <div class="mockup-metric-label">Revenue</div>
+            <div class="mockup-metric-value">$48.3K</div>
+            <div class="mockup-metric-change">&#x2191; +12.5%</div>
+          </div>
+          <div class="mockup-metric">
+            <div class="mockup-metric-label">Active Users</div>
+            <div class="mockup-metric-value">2,847</div>
+            <div class="mockup-metric-change">&#x2191; +8.2%</div>
+          </div>
+          <div class="mockup-metric">
+            <div class="mockup-metric-label">Conversion</div>
+            <div class="mockup-metric-value">3.2%</div>
+            <div class="mockup-metric-change">&#x2191; +0.4%</div>
+          </div>
+          <div class="mockup-metric">
+            <div class="mockup-metric-label">MRR Growth</div>
+            <div class="mockup-metric-value">$12.6K</div>
+            <div class="mockup-metric-change">&#x2191; +5.3%</div>
+          </div>
+        </div>
+        <div class="mockup-chart">
+          <div class="mockup-chart-title">Revenue Trend &mdash; Last 30 Days</div>
+          <div class="mockup-bars">
+            <div class="mockup-bar" style="height:35%"></div>
+            <div class="mockup-bar" style="height:45%"></div>
+            <div class="mockup-bar" style="height:40%"></div>
+            <div class="mockup-bar" style="height:55%"></div>
+            <div class="mockup-bar" style="height:50%"></div>
+            <div class="mockup-bar" style="height:65%"></div>
+            <div class="mockup-bar" style="height:60%"></div>
+            <div class="mockup-bar" style="height:70%"></div>
+            <div class="mockup-bar" style="height:68%"></div>
+            <div class="mockup-bar" style="height:75%"></div>
+            <div class="mockup-bar" style="height:72%"></div>
+            <div class="mockup-bar" style="height:85%"></div>
+            <div class="mockup-bar" style="height:80%"></div>
+            <div class="mockup-bar" style="height:90%"></div>
+            <div class="mockup-bar" style="height:95%"></div>
+          </div>
+        </div>
+        <div class="mockup-table">
+          <div class="mockup-row">
+            <span class="mockup-row-dot" style="background:#8b5cf6"></span>
+            <span class="mockup-row-label">Organic Search</span>
+            <span class="mockup-row-value">42%</span>
+            <div class="mockup-row-bar"><div class="mockup-row-bar-fill" style="width:42%"></div></div>
+          </div>
+          <div class="mockup-row">
+            <span class="mockup-row-dot" style="background:#06b6d4"></span>
+            <span class="mockup-row-label">Direct Traffic</span>
+            <span class="mockup-row-value">28%</span>
+            <div class="mockup-row-bar"><div class="mockup-row-bar-fill" style="width:28%"></div></div>
+          </div>
+          <div class="mockup-row">
+            <span class="mockup-row-dot" style="background:#a855f7"></span>
+            <span class="mockup-row-label">Social Media</span>
+            <span class="mockup-row-value">18%</span>
+            <div class="mockup-row-bar"><div class="mockup-row-bar-fill" style="width:18%"></div></div>
+          </div>
+          <div class="mockup-row">
+            <span class="mockup-row-dot" style="background:#34d399"></span>
+            <span class="mockup-row-label">Referrals</span>
+            <span class="mockup-row-value">12%</span>
+            <div class="mockup-row-bar"><div class="mockup-row-bar-fill" style="width:12%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-value">10K+</div>
+      <div class="stat-label">Active Users</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">99.9%</div>
+      <div class="stat-label">Uptime</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">500M+</div>
+      <div class="stat-label">Data Points</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">150+</div>
+      <div class="stat-label">Integrations</div>
+    </div>
+  </div>
+</section>
+
+<div class="trusted-section">
+  <p class="trusted-label">Trusted by 10,000+ teams worldwide</p>
+  <div class="trusted-logos">
+    <span class="trusted-logo" style="font-size:1.4rem">Northwind</span>
+    <span class="trusted-logo" style="font-size:1.1rem">Contoso</span>
+    <span class="trusted-logo" style="font-size:1.3rem">Fabrikam</span>
+    <span class="trusted-logo" style="font-size:1rem">Tailspin</span>
+    <span class="trusted-logo" style="font-size:1.2rem">Woodgrove</span>
+    <span class="trusted-logo" style="font-size:1.15rem">Adatum</span>
+    <span class="trusted-logo" style="font-size:1.35rem">Litware</span>
+  </div>
+</div>
+
+</body>
+</html>
