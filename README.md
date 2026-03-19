@@ -2,8 +2,6 @@
 
 Landing page for [UI Craft](https://github.com/educlopez/ui-craft), the design engineering skill for AI coding agents.
 
-**Live:** [ui-craft.dev](https://ui-craft.dev)
-
 ## Stack
 
 - [Astro](https://astro.build)
