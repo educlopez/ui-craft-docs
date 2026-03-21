@@ -1,8 +1,5 @@
 ---
 import '../styles/global.css';
-import { inject } from '@vercel/analytics';
-
-inject();
 ---
 
 <html lang="en">
@@ -292,6 +289,11 @@ inject();
         </div>
       </footer>
     </div>
+
+    <script>
+      import { inject } from '@vercel/analytics';
+      inject();
+    </script>
 
     <script>
       fetch('https://api.github.com/repos/educlopez/ui-craft')
