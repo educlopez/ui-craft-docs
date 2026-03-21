@@ -4,7 +4,7 @@ Landing page for [UI Craft](https://github.com/educlopez/ui-craft), the design e
 
 **Live:** [skills.smoothui.dev](https://skills.smoothui.dev)
 
-![UI Craft](screenshot.png)
+![UI Craft](public/og.png)
 
 ## Stack
 
