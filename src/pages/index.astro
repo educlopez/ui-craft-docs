@@ -38,7 +38,11 @@ inject();
     <div class="mx-auto max-w-2xl px-[clamp(1.25rem,4vw,2rem)] py-[clamp(4rem,10vw,8rem)]">
       <!-- Hero -->
       <header class="text-center mb-6">
-        <img src="/icon.png" alt="" width="80" height="80" class="mx-auto rounded-[18px] w-20 h-20 mb-2 shadow-[0_4px_20px_oklch(0.458_0.305_268.13/0.15)]" data-enter="1" />
+        <div class="aren-egg group relative inline-block mx-auto mb-2" data-enter="1">
+          <img src="/icon.png" alt="" width="80" height="80" class="rounded-[18px] w-20 h-20 shadow-[0_4px_20px_oklch(0.458_0.305_268.13/0.15)] transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-0" />
+          <img src="/aren.jpeg" alt="Aren the dog" width="80" height="80" class="absolute inset-0 rounded-[18px] w-20 h-20 object-cover shadow-[0_4px_20px_oklch(0.458_0.305_268.13/0.15)] opacity-0 transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-100" />
+          <span class="aren-bubble">This is Aren 🐕</span>
+        </div>
         <p class="text-[17px] font-semibold text-blue-600 mb-5" data-enter="1">UI&nbsp;Craft</p>
         <h1 class="text-[clamp(2rem,5vw,3rem)] font-bold tracking-tight leading-[1.1] [text-wrap:balance]" data-enter="2">Stop getting generic AI&nbsp;interfaces</h1>
         <p class="text-[var(--color-text-secondary)] text-base mt-3 leading-relaxed max-w-lg mx-auto" data-enter="3">A skill for AI coding agents that teaches them to build UIs with real design taste — not gradient cards and bounce&nbsp;animations.</p>
@@ -231,16 +235,30 @@ inject();
           <div class="flex flex-wrap justify-center gap-2" data-reveal>
             <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Purple-cyan gradients</span>
             <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Glassmorphism</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Gradient text on metrics</span>
             <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Identical card grids</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Bounce easing</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Generic fonts</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Bounce/elastic easing</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Gray text on color</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Nested cards</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Hero metric layouts</span>
             <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Glow effects</span>
             <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Colored accent borders</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Dashed/dotted borders</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Simple bar charts</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Minimal empty results</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Colored percentage pills</span>
+            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">ALL CAPS text</span>
           </div>
         </section>
 
         <!-- CTA Section -->
         <section class="py-32 text-center" aria-label="Install UI Craft">
-          <img src="/icon.png" alt="" width="80" height="80" class="mx-auto rounded-[18px] w-20 h-20 mb-4 shadow-[0_4px_20px_oklch(0.458_0.305_268.13/0.15)]" data-reveal />
+          <div class="aren-egg group relative inline-block mx-auto mb-4" data-reveal>
+            <img src="/icon.png" alt="" width="80" height="80" class="rounded-[18px] w-20 h-20 shadow-[0_4px_20px_oklch(0.458_0.305_268.13/0.15)] transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-0" />
+            <img src="/aren.jpeg" alt="Aren the dog" width="80" height="80" class="absolute inset-0 rounded-[18px] w-20 h-20 object-cover shadow-[0_4px_20px_oklch(0.458_0.305_268.13/0.15)] opacity-0 transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-100" />
+            <span class="aren-bubble">This is Aren 🐕</span>
+          </div>
           <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight leading-tight [text-wrap:balance]" data-reveal>One command. Better UI from the next&nbsp;prompt.</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed mt-3 mb-8 max-w-lg mx-auto" data-reveal>Install the skill, ask your agent to build something, and see the&nbsp;difference.</p>
           <div class="inline-flex items-center gap-3 bg-white border border-[var(--color-border)] rounded-xl px-4 py-3 mb-3 shadow-[0_1px_3px_oklch(0%_0_0/0.06),0_4px_12px_oklch(0%_0_0/0.04)]" data-reveal>
@@ -421,6 +439,50 @@ inject();
       }
 
       .copy-btn.copied { color: var(--color-blue-600); }
+
+      /* Aren easter egg — comic speech bubble */
+      .aren-bubble {
+        position: absolute;
+        top: 50%;
+        left: calc(100% + 14px);
+        transform: translateY(-50%) scale(0.85);
+        white-space: nowrap;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--color-text);
+        background: white;
+        border: 1.5px solid var(--color-border);
+        border-radius: 12px;
+        padding: 6px 12px;
+        box-shadow: 0 2px 8px oklch(0% 0 0 / 0.08);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+      }
+      /* Speech bubble tail */
+      .aren-bubble::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 100%;
+        transform: translateY(-50%);
+        border: 6px solid transparent;
+        border-right-color: var(--color-border);
+      }
+      .aren-bubble::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 100%;
+        transform: translateY(-50%);
+        border: 5px solid transparent;
+        border-right-color: white;
+        margin-right: -1px;
+      }
+      .aren-egg:hover .aren-bubble {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+      }
     </style>
   </body>
 </html>
