@@ -41,7 +41,7 @@ inject();
         <div class="aren-egg group relative inline-block mx-auto mb-2" data-enter="1">
           <img src="/icon.png" alt="" width="80" height="80" class="rounded-[18px] w-20 h-20 shadow-[0_4px_20px_oklch(0.458_0.305_268.13/0.15)] transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-0" />
           <img src="/aren.jpeg" alt="Aren the dog" width="80" height="80" class="absolute inset-0 rounded-[18px] w-20 h-20 object-cover shadow-[0_4px_20px_oklch(0.458_0.305_268.13/0.15)] opacity-0 transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-100" />
-          <span class="aren-bubble">This is Aren 🐕</span>
+          <span class="aren-bubble">Hi, I'm&nbsp;Aren!</span>
         </div>
         <p class="text-[17px] font-semibold text-blue-600 mb-5" data-enter="1">UI&nbsp;Craft</p>
         <h1 class="text-[clamp(2rem,5vw,3rem)] font-bold tracking-tight leading-[1.1] [text-wrap:balance]" data-enter="2">Stop getting generic AI&nbsp;interfaces</h1>
@@ -257,7 +257,7 @@ inject();
           <div class="aren-egg group relative inline-block mx-auto mb-4" data-reveal>
             <img src="/icon.png" alt="" width="80" height="80" class="rounded-[18px] w-20 h-20 shadow-[0_4px_20px_oklch(0.458_0.305_268.13/0.15)] transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-0" />
             <img src="/aren.jpeg" alt="Aren the dog" width="80" height="80" class="absolute inset-0 rounded-[18px] w-20 h-20 object-cover shadow-[0_4px_20px_oklch(0.458_0.305_268.13/0.15)] opacity-0 transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-100" />
-            <span class="aren-bubble">This is Aren 🐕</span>
+            <span class="aren-bubble">Hi, I'm&nbsp;Aren!</span>
           </div>
           <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight leading-tight [text-wrap:balance]" data-reveal>One command. Better UI from the next&nbsp;prompt.</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed mt-3 mb-8 max-w-lg mx-auto" data-reveal>Install the skill, ask your agent to build something, and see the&nbsp;difference.</p>
@@ -440,48 +440,50 @@ inject();
 
       .copy-btn.copied { color: var(--color-blue-600); }
 
-      /* Aren easter egg — comic speech bubble */
+      /* Aren easter egg — speech bubble */
       .aren-bubble {
         position: absolute;
         top: 50%;
-        left: calc(100% + 14px);
-        transform: translateY(-50%) scale(0.85);
+        left: calc(100% + 16px);
+        transform: translateY(-50%) translateX(-4px);
         white-space: nowrap;
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 500;
+        letter-spacing: -0.01em;
         color: var(--color-text);
         background: white;
-        border: 1.5px solid var(--color-border);
-        border-radius: 12px;
-        padding: 6px 12px;
-        box-shadow: 0 2px 8px oklch(0% 0 0 / 0.08);
+        border: 1px solid oklch(92% 0.005 250);
+        border-radius: 10px;
+        padding: 6px 11px;
+        box-shadow: 0 1px 2px oklch(0% 0 0 / 0.06), 0 4px 12px oklch(0% 0 0 / 0.05);
         opacity: 0;
         pointer-events: none;
-        transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+        transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
       }
-      /* Speech bubble tail */
+      /* Tail — border layer */
       .aren-bubble::before {
         content: '';
         position: absolute;
         top: 50%;
         right: 100%;
         transform: translateY(-50%);
-        border: 6px solid transparent;
-        border-right-color: var(--color-border);
+        border: 5px solid transparent;
+        border-right-color: oklch(92% 0.005 250);
       }
+      /* Tail — fill layer */
       .aren-bubble::after {
         content: '';
         position: absolute;
         top: 50%;
         right: 100%;
         transform: translateY(-50%);
-        border: 5px solid transparent;
+        border: 4px solid transparent;
         border-right-color: white;
         margin-right: -1px;
       }
       .aren-egg:hover .aren-bubble {
         opacity: 1;
-        transform: translateY(-50%) scale(1);
+        transform: translateY(-50%) translateX(0);
       }
     </style>
   </body>
