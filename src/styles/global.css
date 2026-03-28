@@ -33,14 +33,14 @@ html {
 [data-reveal].is-visible {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+  transition: opacity 350ms var(--ease-out), transform 350ms var(--ease-out);
 }
 
 /* Page load entrance (above fold) */
 [data-enter] {
   opacity: 0;
   transform: translateY(6px);
-  animation: enter 600ms var(--ease-out) forwards;
+  animation: enter 400ms var(--ease-out) forwards;
 }
 
 [data-enter="1"] { animation-delay: 0ms; }
