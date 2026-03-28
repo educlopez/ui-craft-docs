@@ -2,13 +2,14 @@
 
 @theme {
   --color-blue-600: oklch(0.458 0.305 268.13);
+  --color-bg: oklch(99% 0.002 250);
   --color-border: oklch(90% 0.005 250);
   --color-text: oklch(18% 0.005 250);
   --color-text-secondary: oklch(45% 0.005 250);
   --color-code-bg: oklch(96% 0.005 250);
 
-  --font-body: "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+  --font-body: "Geist", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", "Fira Code", monospace;
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -20,6 +21,168 @@ html {
   text-rendering: optimizeLegibility;
 }
 
+body {
+  background-color: oklch(99% 0.002 250);
+}
+
+/* Figma rulers */
+.ruler {
+  position: fixed;
+  background: oklch(99% 0.002 250 / 0.95);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.ruler--h {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  border-bottom: 1px solid oklch(90% 0.005 250);
+}
+
+.ruler--v {
+  top: 24px;
+  left: 0;
+  bottom: 0;
+  width: 24px;
+  border-right: 1px solid oklch(90% 0.005 250);
+}
+
+.ruler-tick {
+  position: absolute;
+  background: oklch(75% 0.005 250);
+}
+
+/* Horizontal ticks */
+.ruler--h .ruler-tick {
+  width: 1px;
+  top: auto;
+  bottom: 0;
+}
+.ruler--h .ruler-tick--minor { height: 8px; }
+.ruler--h .ruler-tick--major { height: 14px; }
+
+/* Vertical ticks */
+.ruler--v .ruler-tick {
+  height: 1px;
+  left: auto;
+  right: 0;
+}
+.ruler--v .ruler-tick--minor { width: 8px; }
+.ruler--v .ruler-tick--major { width: 14px; }
+
+.ruler-label {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: oklch(45% 0.005 250 / 0.7);
+  line-height: 1;
+  user-select: none;
+}
+
+.ruler--h .ruler-label {
+  bottom: 15px;
+  transform: translateX(3px);
+}
+
+.ruler--v .ruler-label {
+  right: 16px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg) translateY(3px);
+}
+
+/* Corner square where rulers meet */
+.ruler-corner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  background: oklch(99% 0.002 250 / 0.95);
+  backdrop-filter: blur(4px);
+  border-right: 1px solid oklch(90% 0.005 250);
+  border-bottom: 1px solid oklch(90% 0.005 250);
+  z-index: 51;
+  pointer-events: none;
+}
+
+/* Red alignment guides */
+.alignment-guides {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 auto;
+  max-width: 672px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.alignment-guide {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: oklch(0.458 0.305 268.13 / 0.15);
+}
+
+.alignment-guide--left { left: 0; }
+.alignment-guide--right { right: 0; }
+
+
+
+/* Frame label styling (Figma-style) */
+.frame-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: oklch(55% 0.005 250);
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+}
+
+/* Footer brand — outline text that fills on hover */
+@media (hover: hover) and (pointer: fine) {
+  .footer-brand:hover {
+    color: oklch(18% 0.005 250);
+    -webkit-text-stroke-color: transparent;
+  }
+
+  /* Footer link underline animation */
+  .footer-link:hover span::after {
+    width: 100%;
+  }
+}
+
+.footer-brand {
+  color: transparent;
+  -webkit-text-stroke: 1.5px oklch(18% 0.005 250);
+  transition: color 0.4s var(--ease-out), -webkit-text-stroke-color 0.4s var(--ease-out);
+}
+
+.footer-link span {
+  position: relative;
+}
+
+.footer-link span::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.25s var(--ease-out);
+}
+
+@media (max-width: 768px) {
+  .ruler, .ruler-corner, .alignment-guides { display: none; }
+}
+
 ::selection {
   background: oklch(0.458 0.305 268.13 / 0.15);
 }
@@ -28,18 +191,21 @@ html {
 [data-reveal] {
   opacity: 0;
   transform: translateY(8px);
+  filter: blur(4px);
 }
 
 [data-reveal].is-visible {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 350ms var(--ease-out), transform 350ms var(--ease-out);
+  filter: blur(0);
+  transition: opacity 350ms var(--ease-out), transform 350ms var(--ease-out), filter 350ms var(--ease-out);
 }
 
 /* Page load entrance (above fold) */
 [data-enter] {
   opacity: 0;
   transform: translateY(6px);
+  filter: blur(4px);
   animation: enter 400ms var(--ease-out) forwards;
 }
 
@@ -50,7 +216,13 @@ html {
 [data-enter="5"] { animation-delay: 320ms; }
 
 @keyframes enter {
+  from {
+    filter: blur(4px);
+    opacity: 0;
+    transform: translateY(8px);
+  }
   to {
+    filter: blur(0);
     opacity: 1;
     transform: translateY(0);
   }
@@ -61,7 +233,12 @@ html {
   [data-enter] {
     opacity: 1;
     transform: none;
+    filter: none;
     animation: none;
     transition: none;
+  }
+
+  .ruler, .ruler-corner, .alignment-guides {
+    display: none;
   }
 }

@@ -24,16 +24,33 @@ import '../styles/global.css';
     <link rel="icon" type="image/png" href="/icon.png" />
     <link rel="apple-touch-icon" href="/icon.png" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" /></noscript>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/geist-mono@latest/latin-400-normal.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
+    <style>
+      @font-face { font-family: 'Geist'; font-style: normal; font-weight: 400; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'Geist'; font-style: normal; font-weight: 500; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-500-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'Geist'; font-style: normal; font-weight: 600; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-600-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'Geist'; font-style: normal; font-weight: 700; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-700-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'Geist Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-mono@latest/latin-400-normal.woff2') format('woff2'); }
+    </style>
     <title>UI Craft — Design taste for AI coding agents</title>
   </head>
-  <body class="font-[family-name:var(--font-body)] text-[15px] leading-relaxed text-[var(--color-text)] bg-white">
+  <body class="font-[family-name:var(--font-body)] text-[15px] leading-relaxed text-[var(--color-text)] bg-[var(--color-bg)]">
+    <!-- Figma rulers -->
+    <div class="ruler ruler--h" id="ruler-h" aria-hidden="true"></div>
+    <div class="ruler ruler--v" id="ruler-v" aria-hidden="true"></div>
+    <div class="ruler-corner" aria-hidden="true"></div>
+
+    <!-- Content alignment guides -->
+    <div class="alignment-guides" aria-hidden="true">
+      <div class="alignment-guide alignment-guide--left"></div>
+      <div class="alignment-guide alignment-guide--right"></div>
+    </div>
+
     <a href="#main" class="absolute -top-full left-4 px-4 py-2 bg-blue-600 text-white font-medium text-sm rounded-b-md z-50 transition-[top] duration-200 ease-[var(--ease-out)] focus:top-0">Skip to content</a>
 
-    <div class="mx-auto max-w-2xl px-[clamp(1.25rem,4vw,2rem)] py-[clamp(4rem,10vw,8rem)]">
+    <div class="relative z-10 mx-auto max-w-2xl px-[clamp(1.25rem,4vw,2rem)] py-[clamp(5rem,12vw,10rem)]">
       <!-- Hero -->
       <header class="text-center mb-6">
         <div class="aren-egg group relative inline-block mx-auto mb-2" data-enter="1">
@@ -41,46 +58,48 @@ import '../styles/global.css';
           <img src="/aren.jpeg" alt="Aren the dog" width="80" height="80" class="absolute inset-0 rounded-[18px] w-20 h-20 object-cover shadow-[0_1px_3px_oklch(0%_0_0/0.08),0_4px_12px_oklch(0%_0_0/0.06)] opacity-0 transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-100" />
           <span class="aren-bubble">Hi, I'm&nbsp;Aren!</span>
         </div>
-        <h1 class="text-[clamp(2rem,5vw,3rem)] font-bold tracking-[-0.03em] leading-[1.1] [text-wrap:balance]" data-enter="2">Stop getting generic AI&nbsp;interfaces</h1>
-        <p class="text-[var(--color-text-secondary)] text-base mt-3 leading-relaxed max-w-lg mx-auto" data-enter="3">A skill for AI coding agents that teaches them to build UIs with real design taste — not gradient cards and bounce&nbsp;animations.</p>
+        <h1 class="text-[clamp(1.75rem,4vw,2.5rem)] font-semibold tracking-[-0.02em] leading-[1.15] [text-wrap:balance]" data-enter="2">Stop getting generic AI&nbsp;interfaces</h1>
+        <p class="text-[var(--color-text-secondary)] text-[14px] mt-3 leading-relaxed max-w-md mx-auto" data-enter="3">A skill for AI coding agents that teaches them to build UIs with real design taste — not gradient cards and bounce&nbsp;animations.</p>
       </header>
 
       <!-- Install -->
       <section class="text-center mb-24" aria-label="Installation">
         <div class="inline-flex flex-wrap items-stretch justify-center gap-2.5" data-enter="4">
-          <div class="inline-flex items-center gap-3 bg-white border border-[var(--color-border)] rounded-xl pl-4 pr-2.5 py-2.5 shadow-[0_1px_3px_oklch(0%_0_0/0.06),0_4px_12px_oklch(0%_0_0/0.04)]">
-            <code class="text-[13.5px] font-[family-name:var(--font-mono)] text-[var(--color-text)] whitespace-nowrap">npx skills add educlopez/ui-craft</code>
-            <button class="copy-btn flex items-center justify-center shrink-0 w-7 h-7 p-2 min-w-[44px] min-h-[44px] rounded text-[var(--color-text-secondary)] hover:text-blue-600 transition-colors duration-150 ease-[var(--ease-out)] touch-manipulation focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.92]" aria-label="Copy install command" data-command="npx skills add educlopez/ui-craft">
+          <div class="inline-flex items-center gap-2 bg-[oklch(96%_0.002_250)] rounded-md pl-3 pr-1 py-1">
+            <code class="text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text-secondary)] whitespace-nowrap leading-none">npx skills add educlopez/ui-craft</code>
+            <button class="copy-btn flex items-center justify-center shrink-0 w-5 h-5 p-1 rounded-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)] touch-manipulation focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.92]" aria-label="Copy install command" data-command="npx skills add educlopez/ui-craft">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
               </svg>
             </button>
           </div>
-          <a href="https://github.com/educlopez/ui-craft" target="_blank" rel="noopener noreferrer" class="github-stars group cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-[13.5px] font-medium text-white bg-blue-600 ring-1 ring-blue-700/20 shadow-sm shadow-blue-900/20 pl-3.5 pr-4 py-2.5 transition-[background-color,box-shadow] duration-200 ease-[var(--ease-out)] hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.98] [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0">
+          <a href="https://github.com/educlopez/ui-craft" target="_blank" rel="noopener noreferrer" class="github-stars group cursor-pointer inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-[11px] font-medium text-white bg-blue-600 pl-2.5 pr-3 py-1 transition-[background-color] duration-150 ease-[var(--ease-out)] hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.98] [&_svg]:pointer-events-none [&_svg]:size-3 [&_svg]:shrink-0">
             <svg class="transition-[fill] duration-200 ease-[var(--ease-out)] group-hover:fill-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             <span>Star</span>
-            <span class="stars-count tabular-nums rounded-full bg-white/20 px-1.5 py-0.5 text-[12px] leading-none" aria-label="star count"></span>
+            <span class="stars-count tabular-nums rounded-full bg-white/20 text-white px-1.5 py-0.5 text-[10px] leading-none" aria-label="star count"></span>
           </a>
         </div>
       </section>
 
       <main id="main">
         <!-- Comparison Section -->
-        <section class="py-24" aria-label="Before and after comparison">
-          <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Same prompt. Same model. Different&nbsp;result.</h2>
+        <section class="pt-24 pb-32" aria-label="Before and after comparison">
+          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Same prompt. Same model. Different&nbsp;result.</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-6 max-w-lg mx-auto" data-reveal>Left is an AI agent without the skill. Right is the same agent with UI&nbsp;Craft. Drag to&nbsp;compare.</p>
 
-          <nav class="flex flex-wrap gap-2 mb-5 justify-center" data-reveal aria-label="Comparison examples">
-            <button class="tab active text-sm font-medium px-4 py-2 min-h-[44px] rounded-full bg-blue-600 text-white cursor-pointer touch-manipulation transition-[background-color,color] duration-150 ease-[var(--ease-out)] focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.97]" data-tab="hero" type="button">Hero</button>
-            <button class="tab text-sm font-medium px-4 py-2 min-h-[44px] rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 cursor-pointer touch-manipulation transition-[background-color,color] duration-150 ease-[var(--ease-out)] focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.97]" data-tab="features" type="button">Features</button>
-            <button class="tab text-sm font-medium px-4 py-2 min-h-[44px] rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 cursor-pointer touch-manipulation transition-[background-color,color] duration-150 ease-[var(--ease-out)] focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.97]" data-tab="dashboard" type="button">Dashboard</button>
-            <button class="tab text-sm font-medium px-4 py-2 min-h-[44px] rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 cursor-pointer touch-manipulation transition-[background-color,color] duration-150 ease-[var(--ease-out)] focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.97]" data-tab="signin" type="button">Sign&nbsp;in</button>
+          <nav class="flex justify-center mb-6" data-reveal aria-label="Comparison examples">
+            <div class="comp-tabs inline-flex gap-0.5 bg-[oklch(96%_0.002_250)] rounded-lg p-[3px]">
+              <button class="tab active" data-tab="hero" type="button">Hero</button>
+              <button class="tab" data-tab="features" type="button">Features</button>
+              <button class="tab" data-tab="dashboard" type="button">Dashboard</button>
+              <button class="tab" data-tab="signin" type="button">Sign&nbsp;in</button>
+            </div>
           </nav>
 
-          <div class="flex justify-between mb-2" data-reveal>
-            <span class="text-[11px] font-semibold text-[var(--color-text-secondary)]">Without</span>
-            <span class="text-[11px] font-semibold text-blue-600">With UI&nbsp;Craft</span>
+          <div class="flex justify-between mb-3 px-1" data-reveal>
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-[var(--color-text-secondary)]"><span class="w-1.5 h-1.5 rounded-full bg-[oklch(70%_0.005_250)]"></span>Without</span>
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-blue-600"><span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>With UI&nbsp;Craft</span>
           </div>
 
           <div class="comparison active" data-comparison="hero">
@@ -138,135 +157,135 @@ import '../styles/global.css';
 
         <!-- Why Section -->
         <section class="py-24" aria-label="Why UI Craft exists">
-          <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>AI agents write code fast. They don't know what looks&nbsp;good.</h2>
-          <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-5 max-w-lg mx-auto" data-reveal>Without design knowledge, every AI-generated interface ends up with the same gradient cards, bounce animations, and glassmorphism. Functional — but instantly recognizable as AI&nbsp;output.</p>
-          <p class="text-[var(--color-text)] leading-relaxed text-center max-w-lg mx-auto" data-reveal>UI&nbsp;Craft is not a template library or a component kit. It's <strong class="font-semibold">design engineering knowledge</strong> — 12&nbsp;domains of opinionated rules about animation, layout, typography, color, accessibility, and more. The kind of knowledge that takes years to develop as a frontend&nbsp;engineer.</p>
+          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>AI agents write code fast. They don't know what looks&nbsp;good.</h2>
+          <p class="text-[14px] text-[oklch(40%_0.005_250)] leading-relaxed text-center mt-2 mb-5 max-w-[520px] mx-auto" data-reveal>Without design knowledge, every AI-generated interface ends up with the same gradient cards, bounce animations, and glassmorphism. Functional — but instantly recognizable as AI&nbsp;output.</p>
+          <p class="text-[14px] text-[oklch(40%_0.005_250)] leading-relaxed text-center max-w-[520px] mx-auto" data-reveal>UI&nbsp;Craft is not a template library or a component kit. It's <strong class="font-semibold text-[var(--color-text)]">design engineering knowledge</strong> — 12&nbsp;domains of opinionated rules about animation, layout, typography, color, accessibility, and more. The kind of knowledge that takes years to develop as a frontend&nbsp;engineer.</p>
         </section>
 
         <!-- Modes Section -->
         <section class="py-24" aria-label="How it works">
-          <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Say what you need. It picks the right&nbsp;mode.</h2>
+          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Say what you need. It picks the right&nbsp;mode.</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>No configuration. Just describe your task and the skill routes to the right approach.</p>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[var(--color-border)] rounded-xl overflow-hidden" data-reveal>
-            <div class="flex flex-col gap-1.5 p-5 bg-white">
-              <strong class="text-[15px] font-semibold text-blue-600 tracking-[-0.01em]" data-reveal>Build</strong>
-              <span class="text-[13px] font-[family-name:var(--font-mono)] text-[var(--color-text-secondary)] opacity-70 before:content-['>_']" data-reveal>"Build a pricing page"</span>
-              <span class="text-[13.5px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Layout, typography, color, spacing, accessibility, and responsive — all handled in a single pass. Not one concern at a time.</span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-x-10 sm:gap-y-8" data-reveal>
+            <div class="mode-card flex flex-col gap-1.5">
+              <span class="text-[11px] font-medium text-[var(--color-text)] tracking-wider" data-reveal><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)]">01</span>Build</span>
+              <span class="text-[13px] italic text-[var(--color-text-secondary)] opacity-70" data-reveal>"Build a pricing page"</span>
+              <span class="text-[13px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Layout, typography, color, spacing, accessibility, and responsive — all handled in a single pass. Not one concern at a time.</span>
             </div>
-            <div class="flex flex-col gap-1.5 p-5 bg-white">
-              <strong class="text-[15px] font-semibold text-blue-600 tracking-[-0.01em]" data-reveal>Animate</strong>
-              <span class="text-[13px] font-[family-name:var(--font-mono)] text-[var(--color-text-secondary)] opacity-70 before:content-['>_']" data-reveal>"Add an entrance to this modal"</span>
-              <span class="text-[13.5px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Picks the right easing, duration, and origin. Knows that modals need ease-out at 200ms, not bounce at 500ms.</span>
+            <div class="mode-card flex flex-col gap-1.5">
+              <span class="text-[11px] font-medium text-[var(--color-text)] tracking-wider" data-reveal><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)]">02</span>Animate</span>
+              <span class="text-[13px] italic text-[var(--color-text-secondary)] opacity-70" data-reveal>"Add an entrance to this modal"</span>
+              <span class="text-[13px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Picks the right easing, duration, and origin. Knows that modals need ease-out at 200ms, not bounce at 500ms.</span>
             </div>
-            <div class="flex flex-col gap-1.5 p-5 bg-white">
-              <strong class="text-[15px] font-semibold text-blue-600 tracking-[-0.01em]" data-reveal>Review</strong>
-              <span class="text-[13px] font-[family-name:var(--font-mono)] text-[var(--color-text-secondary)] opacity-70 before:content-['>_']" data-reveal>"Review this component"</span>
-              <span class="text-[13.5px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Audits for generic AI patterns, accessibility gaps, and missed details. Returns a structured table of issues with&nbsp;fixes.</span>
+            <div class="mode-card flex flex-col gap-1.5">
+              <span class="text-[11px] font-medium text-[var(--color-text)] tracking-wider" data-reveal><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)]">03</span>Review</span>
+              <span class="text-[13px] italic text-[var(--color-text-secondary)] opacity-70" data-reveal>"Review this component"</span>
+              <span class="text-[13px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Audits for generic AI patterns, accessibility gaps, and missed details. Returns a structured table of issues with&nbsp;fixes.</span>
             </div>
-            <div class="flex flex-col gap-1.5 p-5 bg-white">
-              <strong class="text-[15px] font-semibold text-blue-600 tracking-[-0.01em]" data-reveal>Polish</strong>
-              <span class="text-[13px] font-[family-name:var(--font-mono)] text-[var(--color-text-secondary)] opacity-70 before:content-['>_']" data-reveal>"Polish this dashboard"</span>
-              <span class="text-[13.5px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Finds the twenty small things — layered shadows, optical alignment, focus rings, monospace numbers — that turn "done" into&nbsp;"crafted."</span>
+            <div class="mode-card flex flex-col gap-1.5">
+              <span class="text-[11px] font-medium text-[var(--color-text)] tracking-wider" data-reveal><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)]">04</span>Polish</span>
+              <span class="text-[13px] italic text-[var(--color-text-secondary)] opacity-70" data-reveal>"Polish this dashboard"</span>
+              <span class="text-[13px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Finds the twenty small things — layered shadows, optical alignment, focus rings, monospace numbers — that turn "done" into&nbsp;"crafted."</span>
             </div>
           </div>
         </section>
 
         <!-- Domains Section -->
         <section class="py-24" aria-label="12 domains of design knowledge">
-          <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>12 domains. Opinionated rules for&nbsp;each.</h2>
+          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>12 domains. Opinionated rules for&nbsp;each.</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>Not generic best practices. Specific, opinionated rules derived from how Stripe, Linear, and Vercel actually build their&nbsp;interfaces.</p>
 
           <div data-reveal>
             <dl class="flex flex-col sm:grid sm:grid-cols-2 sm:gap-x-7">
               <div class="py-2.5 border-b border-[var(--color-border)] sm:first:border-t first:border-t">
-                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Animation</dt>
-                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Easing curves, spring physics, duration rules, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">prefers-reduced-motion</code>, and when not to animate at all</dd>
+                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Animation</dt>
+                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Easing curves, spring physics, duration rules, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">prefers-reduced-motion</code>, and when not to animate at all</dd>
               </div>
               <div class="py-2.5 border-b border-[var(--color-border)] sm:border-t">
-                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Layout</dt>
-                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Spacing systems, optical alignment, depth with layered shadows, visual hierarchy without decoration</dd>
+                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Layout</dt>
+                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Spacing systems, optical alignment, depth with layered shadows, visual hierarchy without decoration</dd>
               </div>
               <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Typography</dt>
-                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]"><code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">text-wrap: balance</code>, tabular-nums for data, font scale, measure, curly quotes, non-breaking spaces</dd>
+                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Typography</dt>
+                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]"><code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">text-wrap: balance</code>, tabular-nums for data, font scale, measure, curly quotes, non-breaking spaces</dd>
               </div>
               <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Color</dt>
-                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">OKLCH for perceptual uniformity, design tokens, dark mode with <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">color-scheme</code>, APCA contrast</dd>
+                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Color</dt>
+                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">OKLCH for perceptual uniformity, design tokens, dark mode with <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">color-scheme</code>, APCA contrast</dd>
               </div>
               <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Accessibility</dt>
-                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">WAI-ARIA patterns, keyboard navigation, focus management, touch targets, screen reader semantics</dd>
+                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Accessibility</dt>
+                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">WAI-ARIA patterns, keyboard navigation, focus management, touch targets, screen reader semantics</dd>
               </div>
               <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Performance</dt>
-                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Compositor-only animations, FLIP technique, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">will-change</code> discipline, virtualization, CLS prevention</dd>
+                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Performance</dt>
+                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Compositor-only animations, FLIP technique, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">will-change</code> discipline, virtualization, CLS prevention</dd>
               </div>
               <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Modern&nbsp;CSS</dt>
-                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">View Transitions API, scroll-driven animations, container queries, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">:has()</code>, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">@starting-style</code></dd>
+                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Modern&nbsp;CSS</dt>
+                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">View Transitions API, scroll-driven animations, container queries, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">:has()</code>, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">@starting-style</code></dd>
               </div>
               <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Responsive</dt>
-                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Fluid sizing with clamp, mobile-first, touch zones, safe areas, adaptive not just responsive</dd>
+                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Responsive</dt>
+                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Fluid sizing with clamp, mobile-first, touch zones, safe areas, adaptive not just responsive</dd>
               </div>
               <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Sound</dt>
-                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Web Audio API, feedback sounds, appropriateness matrix — when sound helps and when it annoys</dd>
+                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Sound</dt>
+                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Web Audio API, feedback sounds, appropriateness matrix — when sound helps and when it annoys</dd>
               </div>
               <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">UX&nbsp;Copy</dt>
-                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Error messages that help, empty states that guide, CTAs that are specific, microcopy that respects</dd>
+                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">UX&nbsp;Copy</dt>
+                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Error messages that help, empty states that guide, CTAs that are specific, microcopy that respects</dd>
               </div>
               <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">UI&nbsp;Review</dt>
-                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Systematic critique methodology — visual audit, interaction audit, accessibility audit, anti-slop check</dd>
+                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">UI&nbsp;Review</dt>
+                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Systematic critique methodology — visual audit, interaction audit, accessibility audit, anti-slop check</dd>
               </div>
               <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-sm font-semibold text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Orchestration</dt>
-                <dd class="text-[13.5px] leading-snug text-[var(--color-text-secondary)]">Multi-stage animation sequences, stagger timing, readable choreography code, entrance/exit coordination</dd>
+                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Orchestration</dt>
+                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Multi-stage animation sequences, stagger timing, readable choreography code, entrance/exit coordination</dd>
               </div>
             </dl>
           </div>
         </section>
 
         <!-- Anti-slop Section -->
-        <section class="py-24" aria-label="What the skill rejects">
-          <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Anti-slop built in</h2>
+        <section class="pt-32 pb-24" aria-label="What the skill rejects">
+          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Anti-slop built in</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-8 max-w-lg mx-auto" data-reveal>Every UI gets tested against a single question: <em class="italic">"Would someone believe AI&nbsp;made this?"</em> If yes, it starts over. The skill actively rejects:</p>
           <div class="flex flex-wrap justify-center gap-2" data-reveal>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Purple-cyan gradients</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Glassmorphism</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Gradient text on metrics</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Identical card grids</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Generic fonts</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Bounce/elastic easing</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Gray text on color</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Nested cards</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Hero metric layouts</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Glow effects</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Colored accent borders</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Dashed/dotted borders</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Simple bar charts</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Minimal empty results</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Colored percentage pills</span>
-            <span class="text-sm text-[var(--color-text-secondary)] line-through decoration-[oklch(65%_0_0_/_0.4)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">ALL CAPS text</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Purple-cyan gradients</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Glassmorphism</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Gradient text on metrics</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Identical card grids</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Generic fonts</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Bounce/elastic easing</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Gray text on color</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Nested cards</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Hero metric layouts</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Glow effects</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Colored accent borders</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Dashed/dotted borders</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Simple bar charts</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Minimal empty results</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Colored percentage pills</span>
+            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">ALL CAPS text</span>
           </div>
         </section>
 
         <!-- CTA Section -->
-        <section class="py-32 text-center" aria-label="Install UI Craft">
+        <section class="pt-32 pb-32 text-center" aria-label="Install UI Craft">
           <div class="aren-egg group relative inline-block mx-auto mb-4" data-reveal>
             <img src="/icon.png" alt="" width="80" height="80" class="rounded-[18px] w-20 h-20 shadow-[0_1px_3px_oklch(0%_0_0/0.08),0_4px_12px_oklch(0%_0_0/0.06)] transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-0" />
             <img src="/aren.jpeg" alt="Aren the dog" width="80" height="80" class="absolute inset-0 rounded-[18px] w-20 h-20 object-cover shadow-[0_1px_3px_oklch(0%_0_0/0.08),0_4px_12px_oklch(0%_0_0/0.06)] opacity-0 transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-100" />
             <span class="aren-bubble">Hi, I'm&nbsp;Aren!</span>
           </div>
-          <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight leading-tight [text-wrap:balance]" data-reveal>One command. Better UI from the next&nbsp;prompt.</h2>
+          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance]" data-reveal>One command. Better UI from the next&nbsp;prompt.</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed mt-3 mb-8 max-w-lg mx-auto" data-reveal>Install the skill, ask your agent to build something, and see the&nbsp;difference.</p>
-          <div class="inline-flex items-center gap-3 bg-white border border-[var(--color-border)] rounded-xl px-4 py-2.5 mb-3 shadow-[0_1px_3px_oklch(0%_0_0/0.06),0_4px_12px_oklch(0%_0_0/0.04)]" data-reveal>
-            <code class="text-[13.5px] font-[family-name:var(--font-mono)] text-[var(--color-text)] whitespace-nowrap">npx skills add educlopez/ui-craft</code>
-            <button class="copy-btn flex items-center justify-center shrink-0 w-7 h-7 p-2 min-w-[44px] min-h-[44px] rounded text-[var(--color-text-secondary)] hover:text-blue-600 transition-colors duration-150 ease-[var(--ease-out)] touch-manipulation focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.92]" aria-label="Copy install command" data-command="npx skills add educlopez/ui-craft">
+          <div class="inline-flex items-center gap-2 bg-[oklch(96%_0.002_250)] rounded-md pl-3 pr-1 py-1 mb-3" data-reveal>
+            <code class="text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text-secondary)] whitespace-nowrap leading-none">npx skills add educlopez/ui-craft</code>
+            <button class="copy-btn flex items-center justify-center shrink-0 w-5 h-5 p-1 rounded-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)] touch-manipulation focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.92]" aria-label="Copy install command" data-command="npx skills add educlopez/ui-craft">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -278,15 +297,38 @@ import '../styles/global.css';
       </main>
 
       <!-- Footer -->
-      <footer class="mt-12 pt-5 border-t border-[var(--color-border)] flex items-center justify-between">
-        <p class="text-[13px] text-[var(--color-text-secondary)]">UI&nbsp;Craft by <a href="https://x.com/educalvolpz" class="text-[var(--color-text)] font-medium transition-colors duration-150 ease-[var(--ease-out)] hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">Eduardo&nbsp;Calvo</a></p>
-        <div class="flex items-center gap-3">
-          <a href="https://github.com/educlopez/ui-craft" class="p-2 -m-2 text-[var(--color-text-secondary)] transition-colors duration-150 ease-[var(--ease-out)] hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" aria-label="GitHub">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      <footer class="mt-32 pb-16 pt-20">
+        <!-- Large typographic brand -->
+        <div class="text-center mb-12">
+          <h2 class="footer-brand text-[clamp(3rem,10vw,7rem)] font-bold tracking-[-0.04em] leading-none select-none">
+            UI&nbsp;Craft
+          </h2>
+          <p class="text-[var(--color-text-secondary)] text-[13px] mt-3">Design taste for AI coding agents</p>
+        </div>
+
+        <!-- Interactive links row -->
+        <div class="flex items-center justify-center gap-6 mb-12">
+          <a href="https://github.com/educlopez/ui-craft" target="_blank" rel="noopener noreferrer" class="footer-link group flex items-center gap-2 text-[13px] text-[var(--color-text-secondary)] transition-colors duration-200 ease-[var(--ease-out)] hover:text-[var(--color-text)] focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="transition-transform duration-200 ease-[var(--ease-out)] group-hover:scale-110" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>GitHub</span>
           </a>
-          <a href="https://x.com/educalvolpz" class="p-2 -m-2 text-[var(--color-text-secondary)] transition-colors duration-150 ease-[var(--ease-out)] hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" aria-label="X (Twitter)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          <span class="text-[var(--color-border)]">|</span>
+          <a href="https://x.com/educalvolpz" target="_blank" rel="noopener noreferrer" class="footer-link group flex items-center gap-2 text-[13px] text-[var(--color-text-secondary)] transition-colors duration-200 ease-[var(--ease-out)] hover:text-[var(--color-text)] focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="transition-transform duration-200 ease-[var(--ease-out)] group-hover:scale-110" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <span>@educalvolpz</span>
           </a>
+          <span class="text-[var(--color-border)]">|</span>
+          <a href="https://smoothui.dev" target="_blank" rel="noopener noreferrer" class="footer-link group flex items-center gap-2 text-[13px] text-[var(--color-text-secondary)] transition-colors duration-200 ease-[var(--ease-out)] hover:text-[var(--color-text)] focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-200 ease-[var(--ease-out)] group-hover:scale-110" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            <span>Smooth&nbsp;UI</span>
+          </a>
+        </div>
+
+        <!-- Bottom line with year -->
+        <div class="text-center">
+          <p class="text-[11px] text-[oklch(65%_0.005_250)]">
+            Built by <a href="https://x.com/educalvolpz" class="hover:text-[var(--color-text)] transition-colors duration-150">Eduardo&nbsp;Calvo</a> &mdash; <span class="footer-year tabular-nums font-[family-name:var(--font-mono)]"></span>
+          </p>
         </div>
       </footer>
     </div>
@@ -326,12 +368,8 @@ import '../styles/global.css';
       tabs.forEach(tab => {
         tab.addEventListener('click', function () {
           const target = this.getAttribute('data-tab');
-          tabs.forEach(t => {
-            t.classList.remove('active', 'bg-blue-600', 'text-white');
-            t.classList.add('bg-gray-100', 'text-gray-600');
-          });
-          this.classList.add('active', 'bg-blue-600', 'text-white');
-          this.classList.remove('bg-gray-100', 'text-gray-600');
+          tabs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
           comparisons.forEach(c => {
             if (c.getAttribute('data-comparison') === target) {
               c.classList.add('active');
@@ -381,22 +419,106 @@ import '../styles/global.css';
       } else {
         document.querySelectorAll('[data-reveal]').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
       }
+
+      // Figma rulers
+      function buildRulers() {
+        const rulerH = document.getElementById('ruler-h');
+        const rulerV = document.getElementById('ruler-v');
+        if (!rulerH || !rulerV) return;
+        if (window.innerWidth < 768) return;
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) return;
+
+        // Horizontal
+        const hWidth = Math.max(window.innerWidth, 1920);
+        let hHTML = '';
+        for (let x = 0; x <= hWidth; x += 50) {
+          const isMajor = x % 250 === 0;
+          hHTML += '<div class="ruler-tick ' + (isMajor ? 'ruler-tick--major' : 'ruler-tick--minor') + '" style="left:' + x + 'px"></div>';
+          if (isMajor) {
+            hHTML += '<span class="ruler-label" style="left:' + x + 'px">' + x + '</span>';
+          }
+        }
+        rulerH.innerHTML = hHTML;
+
+        // Vertical — inner container that we translate on scroll
+        const pageHeight = document.documentElement.scrollHeight + 500;
+        let vHTML = '<div class="ruler-v-inner" style="position:absolute;top:0;left:0;right:0;">';
+        for (let y = 0; y <= pageHeight; y += 50) {
+          const isMajor = y % 250 === 0;
+          vHTML += '<div class="ruler-tick ' + (isMajor ? 'ruler-tick--major' : 'ruler-tick--minor') + '" style="top:' + y + 'px"></div>';
+          if (isMajor) {
+            vHTML += '<span class="ruler-label" style="top:' + y + 'px">' + y + '</span>';
+          }
+        }
+        vHTML += '</div>';
+        rulerV.innerHTML = vHTML;
+        onRulerScroll();
+      }
+
+      function onRulerScroll() {
+        const inner = document.querySelector('.ruler-v-inner');
+        if (inner) {
+          inner.style.transform = 'translateY(' + (-window.scrollY) + 'px)';
+        }
+      }
+
+      buildRulers();
+      window.addEventListener('scroll', onRulerScroll, { passive: true });
+      window.addEventListener('resize', buildRulers, { passive: true });
+
+      // Footer year
+      const yearEl = document.querySelector('.footer-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
     </script>
 
     <!-- Minimal slider CSS that can't be expressed with Tailwind utilities -->
     <style>
+      /* Comparison tabs */
+      .comp-tabs .tab {
+        font-size: 12px;
+        font-weight: 500;
+        padding: 6px 14px;
+        border-radius: 6px;
+        background: transparent;
+        color: var(--color-text-secondary);
+        cursor: pointer;
+        touch-action: manipulation;
+        transition: background-color 0.2s var(--ease-out), color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+      }
+      .comp-tabs .tab:focus-visible {
+        outline: 2px solid var(--color-blue-600);
+        outline-offset: 2px;
+      }
+      .comp-tabs .tab.active {
+        background: var(--color-blue-600);
+        color: white;
+        box-shadow: 0 1px 3px oklch(0.458 0.305 268.13 / 0.3);
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .comp-tabs .tab:not(.active):hover {
+          background: oklch(93% 0.002 250);
+          color: var(--color-text);
+        }
+        .comp-tabs .tab.active:hover {
+          background: oklch(0.4 0.28 268.13);
+        }
+      }
+
       .comparison { display: none; }
       .comparison.active { display: block; }
 
       .comparison-slider {
         position: relative;
         overflow: hidden;
-        border-radius: 0.5rem;
+        border-radius: 0.75rem;
         border: 1px solid var(--color-border);
         cursor: ew-resize;
         touch-action: none;
         user-select: none;
         -webkit-user-select: none;
+        box-shadow: 0 1px 3px oklch(0% 0 0 / 0.06), 0 8px 24px oklch(0% 0 0 / 0.06);
       }
       .comparison-slider:focus-visible {
         outline: 2px solid var(--color-blue-600);
@@ -438,25 +560,30 @@ import '../styles/global.css';
         left: 0;
         width: 2px;
         margin-left: -1px;
-        background: white;
-        box-shadow: 0 0 4px oklch(0% 0 0 / 0.3);
+        background: oklch(0.458 0.305 268.13);
+        box-shadow: 0 0 8px oklch(0.458 0.305 268.13 / 0.3);
       }
       .slider-handle-grip {
         position: relative;
-        width: 32px;
-        height: 32px;
+        width: 36px;
+        height: 36px;
         flex-shrink: 0;
         border-radius: 50%;
-        background: white;
-        border: 2px solid oklch(0.458 0.305 268.13 / 0.2);
-        box-shadow: 0 1px 3px oklch(0% 0 0 / 0.12), 0 6px 16px oklch(0% 0 0 / 0.08);
+        background: oklch(0.458 0.305 268.13);
+        border: 2px solid white;
+        box-shadow: 0 2px 8px oklch(0.458 0.305 268.13 / 0.3), 0 0 0 4px oklch(0.458 0.305 268.13 / 0.1);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: oklch(0.458 0.305 268.13);
+        color: white;
+        transition: transform 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+      }
+      .comparison-slider:active .slider-handle-grip {
+        transform: scale(1.1);
+        box-shadow: 0 2px 12px oklch(0.458 0.305 268.13 / 0.4), 0 0 0 6px oklch(0.458 0.305 268.13 / 0.12);
       }
 
-      .copy-btn.copied { color: var(--color-blue-600); }
+      .copy-btn.copied { color: oklch(70% 0.15 268.13); }
 
       /* Aren easter egg — speech bubble */
       .aren-bubble {
@@ -503,6 +630,23 @@ import '../styles/global.css';
         .aren-egg:hover .aren-bubble {
           opacity: 1;
           transform: translateY(-50%) translateX(0);
+        }
+
+        /* Mode cards hover */
+        .mode-card {
+          transition: transform 200ms var(--ease-out);
+        }
+        .mode-card:hover {
+          transform: translateY(-1px);
+        }
+
+        /* Anti-slop badges hover */
+        .slop-badge {
+          transition: background-color 200ms var(--ease-out), transform 200ms var(--ease-out);
+        }
+        .slop-badge:hover {
+          background-color: oklch(97% 0.003 250);
+          transform: scale(1.03);
         }
       }
     </style>
