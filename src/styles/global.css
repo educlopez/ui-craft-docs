@@ -204,7 +204,37 @@ body.guide-dragging--v * {
 .alignment-guide--left { left: 0; }
 .alignment-guide--right { right: 0; }
 
+/* Guide poof animation on removal */
+@keyframes poof-particle {
+  0% {
+    opacity: 1;
+    transform: translate(var(--px), var(--py)) scale(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--ex), var(--ey)) scale(0);
+  }
+}
 
+.poof-cloud {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.poof-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: oklch(0.458 0.305 268.13 / 0.45);
+  box-shadow: 0 0 6px oklch(0.458 0.305 268.13 / 0.3);
+  animation: poof-particle 450ms cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
 
 /* Frame label styling (Figma-style) */
 .frame-label {
