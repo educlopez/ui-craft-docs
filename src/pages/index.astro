@@ -298,11 +298,21 @@ import '../styles/global.css';
 
       <!-- Footer -->
       <footer class="mt-32 pb-16 pt-20">
-        <!-- Large typographic brand -->
+        <!-- Large typographic brand with inspect overlay -->
         <div class="text-center mb-12">
-          <h2 class="footer-brand text-[clamp(3rem,10vw,7rem)] font-bold tracking-[-0.04em] leading-none select-none">
-            UI&nbsp;Craft
-          </h2>
+          <div class="brand-inspect" id="brand-inspect">
+            <svg class="footer-brand select-none" id="footer-brand" viewBox="0 0 480 100" aria-label="UI Craft" role="img" style="width: clamp(320px, 65vw, 640px); height: auto;">
+              <text x="240" y="82" text-anchor="middle" class="footer-brand-text">UI Craft</text>
+            </svg>
+            <div class="inspect-overlay" id="inspect-overlay" aria-hidden="true">
+              <div class="inspect-box"></div>
+              <div class="inspect-ruler inspect-ruler--top"><span class="inspect-dim" id="inspect-w"></span></div>
+              <div class="inspect-ruler inspect-ruler--left"><span class="inspect-dim" id="inspect-h"></span></div>
+              <div class="inspect-crosshair-h" id="inspect-ch"></div>
+              <div class="inspect-crosshair-v" id="inspect-cv"></div>
+              <div class="inspect-cursor" id="inspect-cursor"></div>
+            </div>
+          </div>
           <p class="text-[var(--color-text-secondary)] text-[13px] mt-3">Design taste for AI coding agents</p>
         </div>
 
@@ -628,6 +638,43 @@ import '../styles/global.css';
 
         document.addEventListener('pointerup', endDrag);
         document.addEventListener('pointercancel', endDrag);
+      })();
+
+      // Footer brand inspect effect
+      (function () {
+        const wrap = document.getElementById('brand-inspect');
+        const brand = document.getElementById('footer-brand');
+        const overlay = document.getElementById('inspect-overlay');
+        const cursorEl = document.getElementById('inspect-cursor');
+        const crossH = document.getElementById('inspect-ch');
+        const crossV = document.getElementById('inspect-cv');
+        const wLabel = document.getElementById('inspect-w');
+        const hLabel = document.getElementById('inspect-h');
+        if (!wrap || !brand || !overlay || window.innerWidth < 768) return;
+
+        wrap.addEventListener('mouseenter', function () {
+          const r = brand.getBoundingClientRect();
+          wLabel.textContent = Math.round(r.width) + 'px';
+          hLabel.textContent = Math.round(r.height) + 'px';
+          overlay.classList.add('is-visible');
+        });
+
+        wrap.addEventListener('mousemove', function (e) {
+          const r = brand.getBoundingClientRect();
+          const localX = e.clientX - r.left;
+          const localY = e.clientY - r.top;
+          const x = Math.round(localX);
+          const y = Math.round(localY);
+          cursorEl.style.left = localX + 'px';
+          cursorEl.style.top = localY + 'px';
+          cursorEl.textContent = x + ', ' + y;
+          crossH.style.top = (localY + 8) + 'px';
+          crossV.style.left = (localX + 8) + 'px';
+        });
+
+        wrap.addEventListener('mouseleave', function () {
+          overlay.classList.remove('is-visible');
+        });
       })();
 
       // Footer year
