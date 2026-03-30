@@ -308,10 +308,10 @@ import '../styles/global.css';
               <div class="inspect-box"></div>
               <div class="inspect-ruler inspect-ruler--top"><span class="inspect-dim" id="inspect-w"></span></div>
               <div class="inspect-ruler inspect-ruler--left"><span class="inspect-dim" id="inspect-h"></span></div>
-              <div class="inspect-crosshair-h" id="inspect-ch"></div>
-              <div class="inspect-crosshair-v" id="inspect-cv"></div>
               <div class="inspect-cursor" id="inspect-cursor"></div>
             </div>
+            <div class="inspect-crosshair-h" id="inspect-ch"></div>
+            <div class="inspect-crosshair-v" id="inspect-cv"></div>
           </div>
           <p class="text-[var(--color-text-secondary)] text-[13px] mt-3">Design taste for AI coding agents</p>
         </div>
@@ -657,6 +657,8 @@ import '../styles/global.css';
           wLabel.textContent = Math.round(r.width) + 'px';
           hLabel.textContent = Math.round(r.height) + 'px';
           overlay.classList.add('is-visible');
+          crossH.classList.add('is-visible');
+          crossV.classList.add('is-visible');
         });
 
         wrap.addEventListener('mousemove', function (e) {
@@ -668,12 +670,14 @@ import '../styles/global.css';
           cursorEl.style.left = localX + 'px';
           cursorEl.style.top = localY + 'px';
           cursorEl.textContent = x + ', ' + y;
-          crossH.style.top = (localY + 8) + 'px';
-          crossV.style.left = (localX + 8) + 'px';
+          crossH.style.top = e.clientY + 'px';
+          crossV.style.left = e.clientX + 'px';
         });
 
         wrap.addEventListener('mouseleave', function () {
           overlay.classList.remove('is-visible');
+          crossH.classList.remove('is-visible');
+          crossV.classList.remove('is-visible');
         });
       })();
 

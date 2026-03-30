@@ -370,21 +370,28 @@ body.guide-dragging--v * {
 
 .inspect-crosshair-h,
 .inspect-crosshair-v {
-  position: absolute;
+  position: fixed;
   pointer-events: none;
   background: oklch(0.458 0.305 268.13 / 0.35);
+  opacity: 0;
+  transition: opacity 0.2s var(--ease-out);
+}
+
+.inspect-crosshair-h.is-visible,
+.inspect-crosshair-v.is-visible {
+  opacity: 1;
 }
 
 .inspect-crosshair-h {
-  left: -9999px;
-  right: -9999px;
+  left: 0;
+  right: 0;
   height: 1px;
   top: 0;
 }
 
 .inspect-crosshair-v {
-  top: -9999px;
-  bottom: -9999px;
+  top: 0;
+  bottom: 0;
   width: 1px;
   left: 0;
 }
