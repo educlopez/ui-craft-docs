@@ -30,10 +30,13 @@ body {
   position: fixed;
   background: oklch(99% 0.002 250 / 0.95);
   backdrop-filter: blur(4px);
-  pointer-events: none;
+  pointer-events: auto;
   z-index: 50;
   overflow: hidden;
 }
+
+.ruler--h { cursor: row-resize; }
+.ruler--v { cursor: col-resize; }
 
 .ruler--h {
   top: 0;
@@ -106,7 +109,75 @@ body {
   border-right: 1px solid oklch(90% 0.005 250);
   border-bottom: 1px solid oklch(90% 0.005 250);
   z-index: 51;
+}
+
+/* Draggable guides */
+.dragged-guide {
+  position: fixed;
+  z-index: 40;
+  pointer-events: auto;
+}
+
+.dragged-guide--h {
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: oklch(0.458 0.305 268.13 / 0.3);
+  cursor: row-resize;
+}
+
+.dragged-guide--v {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: oklch(0.458 0.305 268.13 / 0.3);
+  cursor: col-resize;
+}
+
+.dragged-guide--h::before,
+.dragged-guide--v::before {
+  content: '';
+  position: absolute;
+}
+
+.dragged-guide--h::before {
+  left: 0;
+  right: 0;
+  top: -3px;
+  height: 7px;
+  cursor: row-resize;
+}
+
+.dragged-guide--v::before {
+  top: 0;
+  bottom: 0;
+  left: -3px;
+  width: 7px;
+  cursor: col-resize;
+}
+
+.guide-label {
+  position: fixed;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  line-height: 1;
+  color: white;
+  background: oklch(0.458 0.305 268.13 / 0.85);
+  padding: 2px 5px;
+  border-radius: 3px;
   pointer-events: none;
+  z-index: 52;
+  white-space: nowrap;
+}
+
+body.guide-dragging--h,
+body.guide-dragging--h * {
+  cursor: row-resize !important;
+}
+
+body.guide-dragging--v,
+body.guide-dragging--v * {
+  cursor: col-resize !important;
 }
 
 /* Red alignment guides */
@@ -180,7 +251,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  .ruler, .ruler-corner, .alignment-guides { display: none; }
+  .ruler, .ruler-corner, .alignment-guides, .dragged-guide, .guide-label { display: none; }
 }
 
 ::selection {
@@ -238,7 +309,7 @@ body {
     transition: none;
   }
 
-  .ruler, .ruler-corner, .alignment-guides {
+  .ruler, .ruler-corner, .alignment-guides, .dragged-guide, .guide-label {
     display: none;
   }
 }

@@ -468,6 +468,130 @@ import '../styles/global.css';
       window.addEventListener('scroll', onRulerScroll, { passive: true });
       window.addEventListener('resize', buildRulers, { passive: true });
 
+      // Draggable guides
+      (function () {
+        if (window.innerWidth < 768) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        const rulerH = document.getElementById('ruler-h');
+        const rulerV = document.getElementById('ruler-v');
+        if (!rulerH || !rulerV) return;
+
+        const guides = [];
+        let dragState = null;
+        let label = null;
+        let raf = 0;
+
+        function createLabel() {
+          const el = document.createElement('div');
+          el.className = 'guide-label';
+          document.body.appendChild(el);
+          return el;
+        }
+
+        function showLabel(x, y, text, type) {
+          if (!label) label = createLabel();
+          label.textContent = text;
+          label.style.display = '';
+          if (type === 'h') {
+            label.style.left = (x + 10) + 'px';
+            label.style.top = (y - 18) + 'px';
+          } else {
+            label.style.left = (x + 10) + 'px';
+            label.style.top = (y - 18) + 'px';
+          }
+        }
+
+        function hideLabel() {
+          if (label) label.style.display = 'none';
+        }
+
+        function createGuide(type, pos) {
+          const el = document.createElement('div');
+          el.className = 'dragged-guide dragged-guide--' + type;
+          if (type === 'h') {
+            el.style.top = pos + 'px';
+          } else {
+            el.style.left = pos + 'px';
+          }
+          document.body.appendChild(el);
+
+          const guide = { el, type, pos };
+          guides.push(guide);
+
+          el.addEventListener('pointerdown', function (e) {
+            e.preventDefault();
+            startGuideDrag(guide, e);
+          });
+
+          return guide;
+        }
+
+        function removeGuide(guide) {
+          guide.el.remove();
+          const idx = guides.indexOf(guide);
+          if (idx > -1) guides.splice(idx, 1);
+        }
+
+        function startGuideDrag(guide, e) {
+          dragState = { guide, isNew: false };
+          document.body.classList.add('guide-dragging--' + guide.type);
+          updateDrag(e.clientX, e.clientY);
+        }
+
+        function updateDrag(clientX, clientY) {
+          cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(function () {
+            if (!dragState) return;
+            const g = dragState.guide;
+            if (g.type === 'h') {
+              g.pos = clientY;
+              g.el.style.top = clientY + 'px';
+              showLabel(clientX, clientY, Math.round(clientY + window.scrollY) + 'px', 'h');
+            } else {
+              g.pos = clientX;
+              g.el.style.left = clientX + 'px';
+              showLabel(clientX, clientY, Math.round(clientX) + 'px', 'v');
+            }
+          });
+        }
+
+        function endDrag() {
+          if (!dragState) return;
+          const g = dragState.guide;
+          const onRuler = (g.type === 'h' && g.pos <= 24) || (g.type === 'v' && g.pos <= 24);
+          if (onRuler) removeGuide(g);
+          document.body.classList.remove('guide-dragging--h', 'guide-dragging--v');
+          hideLabel();
+          dragState = null;
+        }
+
+        rulerH.addEventListener('pointerdown', function (e) {
+          if (e.button !== 0) return;
+          e.preventDefault();
+          const guide = createGuide('h', e.clientY);
+          dragState = { guide, isNew: true };
+          document.body.classList.add('guide-dragging--h');
+          updateDrag(e.clientX, e.clientY);
+        });
+
+        rulerV.addEventListener('pointerdown', function (e) {
+          if (e.button !== 0) return;
+          e.preventDefault();
+          const guide = createGuide('v', e.clientX);
+          dragState = { guide, isNew: true };
+          document.body.classList.add('guide-dragging--v');
+          updateDrag(e.clientX, e.clientY);
+        });
+
+        document.addEventListener('pointermove', function (e) {
+          if (dragState) updateDrag(e.clientX, e.clientY);
+        });
+
+        document.addEventListener('pointerup', endDrag);
+        document.addEventListener('pointercancel', endDrag);
+      })();
+
       // Footer year
       const yearEl = document.querySelector('.footer-year');
       if (yearEl) yearEl.textContent = new Date().getFullYear();
