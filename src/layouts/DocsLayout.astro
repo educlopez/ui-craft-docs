@@ -1,0 +1,266 @@
+---
+import '../styles/global.css';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  title: string;
+  description: string;
+  currentSlug?: string;
+  updated?: Date;
+}
+
+const { title, description, currentSlug, updated } = Astro.props;
+
+const all = await getCollection('docs');
+const pages = all
+  .map((p) => ({
+    slug: p.id,
+    title: p.data.title,
+    order: p.data.order ?? 100,
+    section: p.data.section ?? 'reference',
+  }))
+  .sort((a, b) => a.order - b.order);
+
+const sectionLabels: Record<string, string> = {
+  skill: 'Skill',
+  cli: 'CLI',
+  reference: 'Reference',
+};
+
+const grouped: Record<string, typeof pages> = {};
+for (const p of pages) {
+  (grouped[p.section] ||= []).push(p);
+}
+const sectionOrder = ['skill', 'cli', 'reference'];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href={`https://skills.smoothui.dev${Astro.url.pathname}`} />
+    <meta property="og:title" content={`${title} — UI Craft docs`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={`https://skills.smoothui.dev${Astro.url.pathname}`} />
+    <meta property="og:site_name" content="UI Craft" />
+    <meta property="og:image" content="https://skills.smoothui.dev/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} — UI Craft docs`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://skills.smoothui.dev/og.png" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="apple-touch-icon" href="/icon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/geist-mono@latest/latin-400-normal.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
+    <style>
+      @font-face { font-family: 'Geist'; font-style: normal; font-weight: 400; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'Geist'; font-style: normal; font-weight: 500; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-500-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'Geist'; font-style: normal; font-weight: 600; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-600-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'Geist'; font-style: normal; font-weight: 700; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-700-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'Geist Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-mono@latest/latin-400-normal.woff2') format('woff2'); }
+    </style>
+    <title>{title} — UI Craft docs</title>
+  </head>
+  <body class="font-[family-name:var(--font-body)] text-[15px] leading-relaxed text-[var(--color-text)] bg-[var(--color-bg)]">
+    <a href="#doc-main" class="absolute -top-full left-4 px-4 py-2 bg-blue-600 text-white font-medium text-sm rounded-b-md z-50 transition-[top] duration-200 ease-[var(--ease-out)] focus:top-0">Skip to content</a>
+
+    <!-- Top bar -->
+    <header class="sticky top-0 z-30 border-b border-[var(--color-border)] bg-[var(--color-bg)]/85 backdrop-blur">
+      <div class="mx-auto max-w-[1200px] px-[clamp(1rem,3vw,2rem)] h-12 flex items-center justify-between gap-4">
+        <a href="/" class="inline-flex items-center gap-2 text-[13px] font-medium tracking-tight">
+          <img src="/icon.png" alt="" width="22" height="22" class="rounded-[6px]" />
+          <span>UI&nbsp;Craft</span>
+          <span class="text-[var(--color-text-secondary)] font-normal">/ docs</span>
+        </a>
+        <div class="flex items-center gap-5 text-[12px]">
+          <a href="/" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)]">Home</a>
+          <a href="/docs" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)]">Docs</a>
+          <a href="https://github.com/educlopez/ui-craft" target="_blank" rel="noopener noreferrer" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)]">GitHub&nbsp;&rarr;</a>
+          <button type="button" class="doc-nav-toggle md:hidden text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors" aria-label="Open navigation" aria-expanded="false" aria-controls="doc-nav">Menu</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="mx-auto max-w-[1200px] px-[clamp(1rem,3vw,2rem)] grid md:grid-cols-[14rem_minmax(0,1fr)] md:gap-10 lg:gap-14 py-10 md:py-14">
+      <!-- Sidebar -->
+      <aside id="doc-nav" class="doc-nav hidden md:block md:sticky md:top-20 md:self-start md:max-h-[calc(100vh-6rem)] md:overflow-y-auto" aria-label="Documentation navigation">
+        <nav class="text-[13px] flex flex-col gap-6 pb-10">
+          {sectionOrder.filter((s) => grouped[s]?.length).map((section) => (
+            <div>
+              <div class="text-[10px] font-medium uppercase tracking-[0.12em] text-[oklch(55%_0.005_250)] mb-2 font-[family-name:var(--font-mono)]">{sectionLabels[section] ?? section}</div>
+              <ul class="flex flex-col">
+                {grouped[section].map((p) => (
+                  <li>
+                    <a
+                      href={`/docs/${p.slug}`}
+                      class:list={[
+                        'block py-1.5 -ml-2 pl-2 pr-2 rounded-md transition-colors duration-150 ease-[var(--ease-out)]',
+                        p.slug === currentSlug
+                          ? 'text-[var(--color-text)] bg-[var(--color-code-bg)]'
+                          : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text)]',
+                      ]}
+                      aria-current={p.slug === currentSlug ? 'page' : undefined}
+                    >{p.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </nav>
+      </aside>
+
+      <!-- Main content -->
+      <main id="doc-main" class="min-w-0">
+        <article class="doc-prose max-w-[68ch]">
+          <header class="mb-10">
+            <h1 class="text-[clamp(1.5rem,3vw,2.25rem)] font-semibold tracking-[-0.02em] leading-[1.15] [text-wrap:balance]">{title}</h1>
+            <p class="text-[var(--color-text-secondary)] mt-3 leading-relaxed">{description}</p>
+            {updated && (
+              <p class="text-[11px] text-[oklch(60%_0.005_250)] font-[family-name:var(--font-mono)] tabular-nums mt-3">Updated {updated.toISOString().slice(0, 10)}</p>
+            )}
+          </header>
+          <slot />
+
+          <hr class="mt-16 mb-8 border-t border-[var(--color-border)]" />
+          <p class="text-[12px] text-[var(--color-text-secondary)]">
+            Spotted something out of date? <a href="https://github.com/educlopez/ui-craft" target="_blank" rel="noopener noreferrer" class="underline decoration-[var(--color-border)] underline-offset-4 hover:decoration-[var(--color-text-secondary)] transition-colors">Open an issue on GitHub &rarr;</a>
+          </p>
+        </article>
+      </main>
+    </div>
+
+    <style is:global>
+      .doc-nav.is-open { display: block; }
+      @media (max-width: 767px) {
+        .doc-nav.is-open {
+          position: fixed;
+          inset: 3rem 0 0 0;
+          z-index: 20;
+          background: var(--color-bg);
+          padding: 1.5rem clamp(1rem, 3vw, 2rem);
+          overflow-y: auto;
+          border-top: 1px solid var(--color-border);
+        }
+      }
+
+      .doc-prose { color: var(--color-text); }
+      .doc-prose h2 {
+        font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        line-height: 1.15;
+        text-wrap: balance;
+        margin-top: 3rem;
+        margin-bottom: 0.75rem;
+        scroll-margin-top: 5rem;
+      }
+      .doc-prose h3 {
+        font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+        font-weight: 500;
+        letter-spacing: -0.005em;
+        line-height: 1.25;
+        text-wrap: balance;
+        margin-top: 2.25rem;
+        margin-bottom: 0.5rem;
+        scroll-margin-top: 5rem;
+      }
+      .doc-prose p,
+      .doc-prose ul,
+      .doc-prose ol,
+      .doc-prose blockquote {
+        margin-top: 0.75rem;
+        margin-bottom: 0.75rem;
+        color: var(--color-text-secondary);
+        line-height: 1.65;
+      }
+      .doc-prose strong { color: var(--color-text); font-weight: 600; }
+      .doc-prose a {
+        color: var(--color-text);
+        text-decoration: underline;
+        text-decoration-color: var(--color-border);
+        text-underline-offset: 4px;
+        transition: text-decoration-color 0.15s var(--ease-out);
+      }
+      .doc-prose a:hover { text-decoration-color: var(--color-text-secondary); }
+      .doc-prose ul,
+      .doc-prose ol { padding-left: 1.25rem; }
+      .doc-prose li { margin-top: 0.25rem; }
+      .doc-prose li::marker { color: oklch(65% 0.005 250); }
+      .doc-prose code:not(pre code) {
+        font-family: var(--font-mono);
+        font-size: 0.85em;
+        padding: 0.1em 0.35em;
+        background: var(--color-code-bg);
+        border-radius: 4px;
+        color: var(--color-text);
+      }
+      .doc-prose pre {
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        line-height: 1.55;
+        background: var(--color-code-bg);
+        color: var(--color-text);
+        padding: 0.9rem 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 1.25rem 0;
+        border: 1px solid var(--color-border);
+      }
+      .doc-prose pre code { background: transparent; padding: 0; font-size: inherit; }
+      .doc-prose blockquote {
+        border-left: 2px solid var(--color-border);
+        padding-left: 1rem;
+        color: var(--color-text-secondary);
+        font-style: normal;
+      }
+      .doc-prose table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        margin: 1.25rem 0;
+        font-variant-numeric: tabular-nums;
+      }
+      .doc-prose th,
+      .doc-prose td {
+        text-align: left;
+        padding: 0.55rem 0.75rem;
+        border-bottom: 1px solid var(--color-border);
+        vertical-align: top;
+      }
+      .doc-prose th {
+        font-weight: 500;
+        color: var(--color-text);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-family: var(--font-mono);
+        border-bottom-color: oklch(82% 0.005 250);
+      }
+      .doc-prose td { color: var(--color-text-secondary); }
+      .doc-prose td code { white-space: nowrap; }
+      .doc-prose hr { border: 0; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+    </style>
+
+    <script>
+      const btn = document.querySelector('.doc-nav-toggle');
+      const nav = document.getElementById('doc-nav');
+      if (btn && nav) {
+        btn.addEventListener('click', () => {
+          const open = nav.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          btn.textContent = open ? 'Close' : 'Menu';
+        });
+      }
+    </script>
+
+    <script>
+      import { inject } from '@vercel/analytics';
+      inject();
+    </script>
+  </body>
+</html>

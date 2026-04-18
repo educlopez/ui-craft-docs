@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content';
+import DocsLayout from '../../layouts/DocsLayout.astro';
+
+const all = await getCollection('docs');
+const pages = all
+  .map((p) => ({
+    slug: p.id,
+    title: p.data.title,
+    description: p.data.description,
+    order: p.data.order ?? 100,
+    section: p.data.section ?? 'reference',
+  }))
+  .sort((a, b) => a.order - b.order);
+
+const sectionLabels: Record<string, string> = {
+  skill: 'Skill',
+  cli: 'CLI',
+  reference: 'Reference',
+};
+
+const grouped: Record<string, typeof pages> = {};
+for (const p of pages) {
+  (grouped[p.section] ||= []).push(p);
+}
+const sectionOrder = ['skill', 'cli', 'reference'];
+---
+
+<DocsLayout
+  title="Documentation"
+  description="Reference for UI Craft — the skill, its knobs, variants, commands, and the detect CLI."
+>
+  <p>Everything here is derived from the source of truth in the <a href="https://github.com/educlopez/ui-craft" target="_blank" rel="noopener noreferrer">ui-craft repo</a>. Start with <a href="/docs/getting-started">Getting started</a> if you haven't installed the skill yet.</p>
+
+  {sectionOrder.filter((s) => grouped[s]?.length).map((section) => (
+    <section class="mt-10">
+      <h2>{sectionLabels[section] ?? section}</h2>
+      <ul class="not-prose list-none pl-0 mt-4 flex flex-col divide-y divide-[var(--color-border)] border-t border-b border-[var(--color-border)]">
+        {grouped[section].map((p) => (
+          <li class="py-3">
+            <a href={`/docs/${p.slug}`} class="group flex items-baseline justify-between gap-6 no-underline">
+              <span class="flex items-baseline gap-3 min-w-0">
+                <span class="text-[11px] font-[family-name:var(--font-mono)] tabular-nums text-[oklch(65%_0.005_250)] shrink-0">{String(p.order).padStart(2, '0')}</span>
+                <span class="min-w-0">
+                  <span class="block text-[14px] font-medium text-[var(--color-text)] group-hover:text-blue-600 transition-colors duration-150 ease-[var(--ease-out)]">{p.title}</span>
+                  <span class="block text-[12.5px] text-[var(--color-text-secondary)] leading-snug mt-0.5">{p.description}</span>
+                </span>
+              </span>
+              <span class="text-[var(--color-text-secondary)] group-hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)] text-[13px] shrink-0">&rarr;</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</DocsLayout>
