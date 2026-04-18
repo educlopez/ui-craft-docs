@@ -6,11 +6,11 @@ import '../styles/global.css';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="UI Craft is an AI coding agent skill that teaches your agent to build interfaces with real design taste. 12 domains, 4 modes, anti-slop detection. Better UI from every prompt." />
+    <meta name="description" content="UI Craft is an AI coding agent skill that teaches your agent to build interfaces with real design taste. 15 domains, 4 modes, 7 focused commands, anti-slop detection. Works in Claude Code, Codex, Cursor, Gemini, OpenCode." />
     <meta name="theme-color" content="#ffffff" />
     <link rel="canonical" href="https://skills.smoothui.dev/" />
     <meta property="og:title" content="UI Craft — Design taste for AI coding agents" />
-    <meta property="og:description" content="Stop getting generic AI interfaces. UI Craft teaches your coding agent real design engineering — animation, layout, typography, color, accessibility, and 7 more domains." />
+    <meta property="og:description" content="Stop getting generic AI interfaces. UI Craft teaches your coding agent real design engineering across 15 domains — with 4 modes, 7 focused commands, and anti-slop detection. Works in Claude Code, Codex, Cursor, Gemini, OpenCode." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://skills.smoothui.dev/" />
     <meta property="og:site_name" content="UI Craft" />
@@ -19,7 +19,7 @@ import '../styles/global.css';
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="UI Craft — Design taste for AI coding agents" />
-    <meta name="twitter:description" content="Stop getting generic AI interfaces. UI Craft teaches your coding agent real design engineering across 12 domains." />
+    <meta name="twitter:description" content="Stop getting generic AI interfaces. UI Craft teaches your coding agent real design engineering — 15 domains, 4 modes, 7 focused commands. Works in Claude Code, Codex, Cursor, Gemini, OpenCode." />
     <meta name="twitter:image" content="https://skills.smoothui.dev/og.png" />
     <link rel="icon" type="image/png" href="/icon.png" />
     <link rel="apple-touch-icon" href="/icon.png" />
@@ -159,7 +159,7 @@ import '../styles/global.css';
         <section class="py-24" aria-label="Why UI Craft exists">
           <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>AI agents write code fast. They don't know what looks&nbsp;good.</h2>
           <p class="text-[14px] text-[oklch(40%_0.005_250)] leading-relaxed text-center mt-2 mb-5 max-w-[520px] mx-auto" data-reveal>Without design knowledge, every AI-generated interface ends up with the same gradient cards, bounce animations, and glassmorphism. Functional — but instantly recognizable as AI&nbsp;output.</p>
-          <p class="text-[14px] text-[oklch(40%_0.005_250)] leading-relaxed text-center max-w-[520px] mx-auto" data-reveal>UI&nbsp;Craft is not a template library or a component kit. It's <strong class="font-semibold text-[var(--color-text)]">design engineering knowledge</strong> — 12&nbsp;domains of opinionated rules about animation, layout, typography, color, accessibility, and more. The kind of knowledge that takes years to develop as a frontend&nbsp;engineer.</p>
+          <p class="text-[14px] text-[oklch(40%_0.005_250)] leading-relaxed text-center max-w-[520px] mx-auto" data-reveal>UI&nbsp;Craft is not a template library or a component kit. It's <strong class="font-semibold text-[var(--color-text)]">design engineering knowledge</strong> — 15&nbsp;domains of opinionated rules about animation, layout, typography, color, accessibility, dashboards, real-world SaaS patterns, and stack integration (Motion&nbsp;/ GSAP&nbsp;/ Three.js). The kind of knowledge that takes years to develop as a frontend&nbsp;engineer.</p>
         </section>
 
         <!-- Modes Section -->
@@ -189,11 +189,78 @@ import '../styles/global.css';
               <span class="text-[13px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Finds the twenty small things — layered shadows, optical alignment, focus rings, monospace numbers — that turn "done" into&nbsp;"crafted."</span>
             </div>
           </div>
+
+          <div class="mt-20">
+            <h3 class="text-[clamp(1.1rem,2vw,1.35rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Or call a specific&nbsp;lens.</h3>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>Seven slash commands, each a focused pass from one angle. Skip routing when you know what you&nbsp;want.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-x-10 sm:gap-y-8" data-reveal>
+              <div class="mode-card flex flex-col gap-1.5">
+                <span class="text-[11px] font-medium text-[var(--color-text)] tracking-wider" data-reveal><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)] tabular-nums">01</span><code class="font-[family-name:var(--font-mono)] text-[11px]">/ui-craft:audit</code></span>
+                <span class="text-[13px] italic text-[var(--color-text-secondary)] opacity-70" data-reveal>"audit this component"</span>
+                <span class="text-[13px] text-[var(--color-text-secondary)] leading-snug" data-reveal>a11y, performance, responsive — prioritized findings&nbsp;table.</span>
+              </div>
+              <div class="mode-card flex flex-col gap-1.5">
+                <span class="text-[11px] font-medium text-[var(--color-text)] tracking-wider" data-reveal><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)] tabular-nums">02</span><code class="font-[family-name:var(--font-mono)] text-[11px]">/ui-craft:critique</code></span>
+                <span class="text-[13px] italic text-[var(--color-text-secondary)] opacity-70" data-reveal>"critique this page"</span>
+                <span class="text-[13px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Hierarchy, clarity, anti-slop. No code&nbsp;changes.</span>
+              </div>
+              <div class="mode-card flex flex-col gap-1.5">
+                <span class="text-[11px] font-medium text-[var(--color-text)] tracking-wider" data-reveal><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)] tabular-nums">03</span><code class="font-[family-name:var(--font-mono)] text-[11px]">/ui-craft:polish</code></span>
+                <span class="text-[13px] italic text-[var(--color-text-secondary)] opacity-70" data-reveal>"polish this dashboard"</span>
+                <span class="text-[13px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Compound details — tabular-nums, layered shadows, signature&nbsp;detail.</span>
+              </div>
+              <div class="mode-card flex flex-col gap-1.5">
+                <span class="text-[11px] font-medium text-[var(--color-text)] tracking-wider" data-reveal><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)] tabular-nums">04</span><code class="font-[family-name:var(--font-mono)] text-[11px]">/ui-craft:animate</code></span>
+                <span class="text-[13px] italic text-[var(--color-text-secondary)] opacity-70" data-reveal>"animate this modal"</span>
+                <span class="text-[13px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Motion budget, decision ladder,&nbsp;reduced-motion.</span>
+              </div>
+              <div class="mode-card flex flex-col gap-1.5">
+                <span class="text-[11px] font-medium text-[var(--color-text)] tracking-wider" data-reveal><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)] tabular-nums">05</span><code class="font-[family-name:var(--font-mono)] text-[11px]">/ui-craft:distill</code></span>
+                <span class="text-[13px] italic text-[var(--color-text-secondary)] opacity-70" data-reveal>"distill this hero"</span>
+                <span class="text-[13px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Cut every section that doesn't earn its&nbsp;space.</span>
+              </div>
+              <div class="mode-card flex flex-col gap-1.5">
+                <span class="text-[11px] font-medium text-[var(--color-text)] tracking-wider" data-reveal><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)] tabular-nums">06</span><code class="font-[family-name:var(--font-mono)] text-[11px]">/ui-craft:adapt</code></span>
+                <span class="text-[13px] italic text-[var(--color-text-secondary)] opacity-70" data-reveal>"adapt this for mobile"</span>
+                <span class="text-[13px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Touch targets, safe areas, container&nbsp;queries.</span>
+              </div>
+              <div class="mode-card flex flex-col gap-1.5 sm:col-span-2">
+                <span class="text-[11px] font-medium text-[var(--color-text)] tracking-wider" data-reveal><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)] tabular-nums">07</span><code class="font-[family-name:var(--font-mono)] text-[11px]">/ui-craft:typeset</code></span>
+                <span class="text-[13px] italic text-[var(--color-text-secondary)] opacity-70" data-reveal>"typeset this page"</span>
+                <span class="text-[13px] text-[var(--color-text-secondary)] leading-snug" data-reveal>Fonts, scale, tracking,&nbsp;micro-typography.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Knobs Section -->
+        <section class="py-24" aria-label="Three behavioral knobs">
+          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Three dials. Agent adapts to your&nbsp;project.</h2>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>UI&nbsp;Craft asks about these during Discovery. The answers change behavior, not just&nbsp;tone.</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-x-7 sm:gap-y-8" data-reveal>
+            <div class="mode-card flex flex-col gap-1.5">
+              <span class="text-[11px] font-medium text-[var(--color-text)] tracking-wider" data-reveal><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)] tabular-nums">01</span><code class="font-[family-name:var(--font-mono)] text-[11px]">CRAFT_LEVEL</code></span>
+              <span class="text-[13px] italic text-[var(--color-text-secondary)] opacity-70" data-reveal>default <span class="tabular-nums font-[family-name:var(--font-mono)] not-italic">7</span>&nbsp;/&nbsp;<span class="tabular-nums font-[family-name:var(--font-mono)] not-italic">10</span></span>
+              <span class="text-[13px] text-[var(--color-text-secondary)] leading-snug" data-reveal><span class="tabular-nums font-[family-name:var(--font-mono)]">3</span> ships fast. <span class="tabular-nums font-[family-name:var(--font-mono)]">9</span> is pixel-perfect. Gates the Polish&nbsp;Pass.</span>
+            </div>
+            <div class="mode-card flex flex-col gap-1.5">
+              <span class="text-[11px] font-medium text-[var(--color-text)] tracking-wider" data-reveal><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)] tabular-nums">02</span><code class="font-[family-name:var(--font-mono)] text-[11px]">MOTION_INTENSITY</code></span>
+              <span class="text-[13px] italic text-[var(--color-text-secondary)] opacity-70" data-reveal>default <span class="tabular-nums font-[family-name:var(--font-mono)] not-italic">5</span>&nbsp;/&nbsp;<span class="tabular-nums font-[family-name:var(--font-mono)] not-italic">10</span></span>
+              <span class="text-[13px] text-[var(--color-text-secondary)] leading-snug" data-reveal><span class="tabular-nums font-[family-name:var(--font-mono)]">1</span> is hover-only. <span class="tabular-nums font-[family-name:var(--font-mono)]">10</span> is scroll-linked with page&nbsp;transitions.</span>
+            </div>
+            <div class="mode-card flex flex-col gap-1.5">
+              <span class="text-[11px] font-medium text-[var(--color-text)] tracking-wider" data-reveal><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)] tabular-nums">03</span><code class="font-[family-name:var(--font-mono)] text-[11px]">VISUAL_DENSITY</code></span>
+              <span class="text-[13px] italic text-[var(--color-text-secondary)] opacity-70" data-reveal>default <span class="tabular-nums font-[family-name:var(--font-mono)] not-italic">5</span>&nbsp;/&nbsp;<span class="tabular-nums font-[family-name:var(--font-mono)] not-italic">10</span></span>
+              <span class="text-[13px] text-[var(--color-text-secondary)] leading-snug" data-reveal><span class="tabular-nums font-[family-name:var(--font-mono)]">1</span> is whitespace-heavy editorial. <span class="tabular-nums font-[family-name:var(--font-mono)]">10</span> is&nbsp;dashboard-dense.</span>
+            </div>
+          </div>
         </section>
 
         <!-- Domains Section -->
-        <section class="py-24" aria-label="12 domains of design knowledge">
-          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>12 domains. Opinionated rules for&nbsp;each.</h2>
+        <section class="py-24" aria-label="15 domains of design knowledge">
+          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>15 domains. Opinionated rules for&nbsp;each.</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>Not generic best practices. Specific, opinionated rules derived from how Stripe, Linear, and Vercel actually build their&nbsp;interfaces.</p>
 
           <div data-reveal>
@@ -246,7 +313,32 @@ import '../styles/global.css';
                 <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Orchestration</dt>
                 <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Multi-stage animation sequences, stagger timing, readable choreography code, entrance/exit coordination</dd>
               </div>
+              <div class="py-2.5 border-b border-[var(--color-border)]">
+                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Dashboard</dt>
+                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Sidebar nav, metric cards, chart types, data tables, filters — patterns that scale past the marketing page</dd>
+              </div>
+              <div class="py-2.5 border-b border-[var(--color-border)]">
+                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Inspiration</dt>
+                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Real patterns from dub, linear, vercel, stripe, cursor — documented, not&nbsp;imagined</dd>
+              </div>
+              <div class="py-2.5 border-b border-[var(--color-border)]">
+                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Stack</dt>
+                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Motion, GSAP, Three.js — decision tree, patterns, perf gotchas, anti-patterns. Opt-in during&nbsp;Discovery</dd>
+              </div>
             </dl>
+          </div>
+        </section>
+
+        <!-- Works everywhere Section -->
+        <section class="py-24" aria-label="Supported agents">
+          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Works in every&nbsp;agent.</h2>
+          <p class="text-[14px] text-[oklch(40%_0.005_250)] leading-relaxed text-center mt-2 mb-8 max-w-[520px] mx-auto" data-reveal>Claude&nbsp;Code reads the skill + commands directly. Codex, Cursor, Gemini, OpenCode, and the generic agent-skills spec each get a pre-built mirror — with every slash command materialized as its own invokable skill. Install once, run&nbsp;anywhere.</p>
+          <div class="flex flex-wrap justify-center gap-2" data-reveal>
+            <span class="text-[12px] font-medium text-[var(--color-text-secondary)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Claude&nbsp;Code</span>
+            <span class="text-[12px] font-medium text-[var(--color-text-secondary)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Codex</span>
+            <span class="text-[12px] font-medium text-[var(--color-text-secondary)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Cursor</span>
+            <span class="text-[12px] font-medium text-[var(--color-text-secondary)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">Gemini</span>
+            <span class="text-[12px] font-medium text-[var(--color-text-secondary)] px-3 py-1.5 rounded-full border border-[var(--color-border)]">OpenCode</span>
           </div>
         </section>
 
@@ -292,7 +384,7 @@ import '../styles/global.css';
               </svg>
             </button>
           </div>
-          <p class="text-[13px] text-[var(--color-text-secondary)]" data-reveal>Free and open source. Works with any agent that supports&nbsp;skills.</p>
+          <p class="text-[13px] text-[var(--color-text-secondary)]" data-reveal>Free and open source. Works across 5 agent&nbsp;harnesses.</p>
         </section>
       </main>
 
