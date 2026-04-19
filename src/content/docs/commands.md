@@ -1,6 +1,6 @@
 ---
 title: Commands
-description: The 14 slash commands — each a focused pass that applies a single lens from the skill.
+description: The 15 slash commands — each a focused pass that applies a single lens from the skill.
 order: 4
 section: skill
 updated: 2026-04-18
@@ -16,21 +16,24 @@ Commands honor the knobs set during Discovery. `/ui-craft:polish` with `CRAFT_LE
 
 | Command | One-liner | Example prompt | Relevant knobs |
 |---|---|---|---|
+| `/ui-craft:heuristic` | Signature move — scored critique using Nielsen's 10 + 6 design laws + persona walkthroughs. Markdown scorecard, no code. | "run a heuristic on this checkout" | knob-agnostic |
 | `/ui-craft:audit` | Technical UI audit — a11y, performance, responsive. Prioritized findings table. | "audit this checkout form" | knob-agnostic |
 | `/ui-craft:critique` | UX critique — hierarchy, clarity, anti-slop. No code changes unless asked. | "critique this pricing page" | `CRAFT_LEVEL` sets severity floor |
 | `/ui-craft:polish` | Final polish pass — the compound details that separate "done" from "crafted". | "polish this dashboard" | `CRAFT_LEVEL` gates skip/full/signature |
-| `/ui-craft:harden` | Audit and fill in the UX that works when things go wrong — the stuff AI skips. | "harden this signup flow" | knob-agnostic |
+| `/ui-craft:harden` | Production readiness — loading / empty / error states, i18n, offline, edge cases. | "harden this signup flow" | knob-agnostic |
+| `/ui-craft:unhappy` | State-first pass — design every non-happy state (idle / loading / empty / error / partial / conflict / offline) before the happy path. | "design the unhappy paths for this form" | knob-agnostic |
 
 ### Gating detail
 
 - `/ui-craft:polish` — `CRAFT_LEVEL ≤ 4` skips entirely; 5–7 is a full pass; 8+ adds a signature detail (the compound moment: a page-level motif or micro-interaction earned by the rest of the craft).
 - `/ui-craft:critique` — `CRAFT_LEVEL=3` flags only critical issues; `CRAFT_LEVEL=9+` flags minor polish.
-- `/ui-craft:audit` and `/ui-craft:harden` are explicitly knob-agnostic. They run the same pass regardless of dial.
+- `/ui-craft:audit`, `/ui-craft:harden`, `/ui-craft:heuristic`, and `/ui-craft:unhappy` are explicitly knob-agnostic. They run the same pass regardless of dial.
 
-## Transform
+## Plan & transform
 
 | Command | One-liner | Example prompt | Relevant knobs |
 |---|---|---|---|
+| `/ui-craft:shape` | Wireframe-first. ASCII layout + content inventory + state list + open questions before any JSX. | "shape a settings page for API keys" | knob-agnostic |
 | `/ui-craft:animate` | Add or fix motion. Honors `MOTION_INTENSITY` and loads the stack reference if opted in. | "animate this modal entrance" | `MOTION_INTENSITY` tiers ≤3 / 4–7 / 8+ |
 | `/ui-craft:adapt` | Responsive pass — mobile, tablet, desktop, touch, safe areas. | "adapt this table for mobile" | `VISUAL_DENSITY` sets column count per breakpoint |
 | `/ui-craft:typeset` | Typography pass — fonts, scale, hierarchy, micro-typography. | "typeset this long-form page" | knob-agnostic |
@@ -50,14 +53,8 @@ Commands honor the knobs set during Discovery. `/ui-craft:polish` with `CRAFT_LE
 
 | Command | One-liner | Example prompt | Relevant knobs |
 |---|---|---|---|
-| `/ui-craft:distill` | Strip to essence. Cut every section that doesn't earn its space. | "distill this hero" | `CRAFT_LEVEL` drives cut aggression + signature preservation |
-| `/ui-craft:bolder` | Amplify an under-designed UI that's technically correct but forgettable. | "make this landing page bolder" | `CRAFT_LEVEL` scales signature moves |
-| `/ui-craft:quieter` | Tone down visual weight — fewer accents, softer type, less motion. | "make this UI quieter" | inversely tracks `CRAFT_LEVEL` |
-| `/ui-craft:delight` | Add purposeful moments of joy — micro-interactions, not decorative animation. | "add a delight moment to the success screen" | gated by `MOTION_INTENSITY ≥ 4` |
-
-### Opposites
-
-`bolder` and `quieter` are opposites by design. If a UI is shouty, `quieter` removes accents, softens type weight, cuts motion. If a UI is forgettable, `bolder` introduces a type weapon (oversized display, bespoke weight pairing) and one signature motif. Running them in sequence does not cancel — it composes.
+| `/ui-craft:distill` | Strip to essence. Cut every section that doesn't earn its space. Absorbs visual-weight reduction (softer type, less motion). | "distill this hero" | `CRAFT_LEVEL` drives cut aggression + signature preservation |
+| `/ui-craft:delight` | Add purposeful moments of joy — micro-interactions, not decorative animation. Copy first, animation last. | "add a delight moment to the success screen" | gated by `MOTION_INTENSITY ≥ 4` |
 
 ## Invocation surfaces
 
@@ -77,10 +74,13 @@ The materialization is done by `scripts/sync-harnesses.mjs`. Every command in `c
 
 Every command ships as a single markdown file with YAML frontmatter. Read the source to see exactly what context each command loads and how it routes.
 
+- [`commands/heuristic.md`](https://github.com/educlopez/ui-craft/blob/main/commands/heuristic.md)
 - [`commands/audit.md`](https://github.com/educlopez/ui-craft/blob/main/commands/audit.md)
 - [`commands/critique.md`](https://github.com/educlopez/ui-craft/blob/main/commands/critique.md)
 - [`commands/polish.md`](https://github.com/educlopez/ui-craft/blob/main/commands/polish.md)
 - [`commands/harden.md`](https://github.com/educlopez/ui-craft/blob/main/commands/harden.md)
+- [`commands/unhappy.md`](https://github.com/educlopez/ui-craft/blob/main/commands/unhappy.md)
+- [`commands/shape.md`](https://github.com/educlopez/ui-craft/blob/main/commands/shape.md)
 - [`commands/animate.md`](https://github.com/educlopez/ui-craft/blob/main/commands/animate.md)
 - [`commands/adapt.md`](https://github.com/educlopez/ui-craft/blob/main/commands/adapt.md)
 - [`commands/typeset.md`](https://github.com/educlopez/ui-craft/blob/main/commands/typeset.md)
@@ -88,6 +88,4 @@ Every command ships as a single markdown file with YAML frontmatter. Read the so
 - [`commands/clarify.md`](https://github.com/educlopez/ui-craft/blob/main/commands/clarify.md)
 - [`commands/extract.md`](https://github.com/educlopez/ui-craft/blob/main/commands/extract.md)
 - [`commands/distill.md`](https://github.com/educlopez/ui-craft/blob/main/commands/distill.md)
-- [`commands/bolder.md`](https://github.com/educlopez/ui-craft/blob/main/commands/bolder.md)
-- [`commands/quieter.md`](https://github.com/educlopez/ui-craft/blob/main/commands/quieter.md)
 - [`commands/delight.md`](https://github.com/educlopez/ui-craft/blob/main/commands/delight.md)

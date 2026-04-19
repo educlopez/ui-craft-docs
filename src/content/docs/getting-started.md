@@ -14,7 +14,7 @@ UI Craft is an Agent Skill. It does not install into your project — it install
 npx skills add educlopez/ui-craft
 ```
 
-The installer detects your harness and drops the right mirror into the right folder. Main `ui-craft` skill + 5 style variants + 14 slash commands get copied in a single step.
+The installer detects your harness and drops the right mirror into the right folder. Main `ui-craft` skill + 3 style variants + 15 slash commands get copied in a single step.
 
 ### Per-agent folders
 
@@ -47,7 +47,7 @@ Before writing a single line of code, the skill analyzes your project for existi
 
 If the project has no design system yet, the skill asks four quick questions:
 
-1. **Style** — minimal, editorial, dense-dashboard, playful, brutalist, or "I'll describe it"
+1. **Style** — minimal, editorial, dense-dashboard (full variants), playful or brutalist (presets), or "I'll describe it"
 2. **Accent color** — never defaults to blue; asks or derives from context
 3. **Font** — Geist, Inter, DM Sans, Plus Jakarta Sans, serif pairing, or custom
 4. **Animation stack** (optional) — Motion, GSAP, Three.js, or none. Gates whether `references/stack.md` gets loaded.
@@ -95,6 +95,6 @@ The full command list lives in [Commands](/docs/commands).
 
 ## What to read next
 
-- [Skill anatomy](/docs/skill-anatomy) — how the skill is structured across 15 references and 14 commands.
-- [Variants](/docs/variants) — the 5 opt-in siblings that lock in a style (minimal, editorial, dense-dashboard, playful, brutalist).
+- [Skill anatomy](/docs/skill-anatomy) — how the skill is structured across 20 references and 15 commands.
+- [Style variants](/docs/variants) — the 3 opt-in siblings that lock in a style (minimal, editorial, dense-dashboard), plus playful and brutalist presets.
 - [ui-craft-detect](/docs/ui-craft-detect) — the standalone CLI that scans a codebase for AI-generated UI anti-patterns.

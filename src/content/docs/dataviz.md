@@ -143,7 +143,7 @@ Rules:
 - Respect `prefers-reduced-motion` — collapse to instant transitions.
 - Never animate on mount just for the entrance. A dashboard loading is not a moment for choreography.
 
-See [Motion system](/docs/motion-system) for duration and easing tokens.
+See [Motion](/docs/motion) for duration and easing tokens.
 
 ## Anti-slop checklist
 

@@ -6,7 +6,7 @@ section: reference
 updated: 2026-04-18
 ---
 
-For any form longer than 2 fields, any multi-step flow, any form with conditional logic. Covers timing, placement, progressive disclosure, wizards, autosave, optimistic submit, keyboard contract, and the field-specific patterns AI-generated forms routinely botch. Label and ARIA requirements live in accessibility docs; error tone lives in [ux-writing](/docs/ux-writing). This page is the system that ties those tactical pieces together.
+For any form longer than 2 fields, any multi-step flow, any form with conditional logic. Covers timing, placement, progressive disclosure, wizards, autosave, optimistic submit, keyboard contract, and the field-specific patterns AI-generated forms routinely botch. Label and ARIA requirements live in accessibility docs; error tone lives in [UX copy](/docs/copy). This page is the system that ties those tactical pieces together.
 
 ## Validation timing
 
@@ -28,7 +28,7 @@ Rules:
 
 ## Error placement
 
-Where error messages live on the page. Tone details live in [ux-writing](/docs/ux-writing).
+Where error messages live on the page. Tone details live in [UX copy](/docs/copy).
 
 - **Below the input, not above.** Users read top-to-bottom; the error follows the field it describes.
 - **Red border on the input itself**, plus message, plus icon (`⚠` or field-specific). Color alone fails WCAG and color-blind users — pair color with shape/text.
@@ -132,6 +132,6 @@ Form sins that invalidate the rest of the work:
 
 ## Related
 
-- [UX writing](/docs/ux-writing) — error message tone, CTAs that respect users, voice/tone across form states.
+- [UX copy](/docs/copy) — error message tone, CTAs that respect users, voice/tone across form states.
 - [State-first design](/docs/state-design) — form states (idle / submitting / success / error / partial / offline); autosave conflict state.
 - [Heuristic critique](/docs/heuristics) — the Error Prevention heuristic, Miller's Law for step counts, Tesler's Law for progressive disclosure.

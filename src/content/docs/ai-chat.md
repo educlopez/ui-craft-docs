@@ -65,7 +65,7 @@ Every AI response gets feedback controls. Optional, never required.
 
 - **Thumb up / thumb down.** Pick up/down OR agree/disagree wording — never mix. Persist choice; allow undo.
 - **On thumb down: inline quick chips** — "factually incorrect", "harmful", "refused reasonable request", "bad format", "other". User can skip chips and just send the thumb.
-- **Acknowledgement copy** — "Thanks — this helps us improve." Not "Your feedback has been recorded successfully!" Match the restraint from [ux-writing](/docs/ux-writing).
+- **Acknowledgement copy** — "Thanks — this helps us improve." Not "Your feedback has been recorded successfully!" Match the restraint from [UX copy](/docs/copy).
 - **Never block the UI on feedback.** No "you must rate before continuing" modals. Ever.
 
 ## Retry vs regenerate vs continue
@@ -131,5 +131,5 @@ Ten sins that immediately read as "AI UI built in a weekend":
 ## Related
 
 - [State-first design](/docs/state-design) — base state lattice; AI surfaces extend it with thinking / streaming / tool-calling.
-- [Motion system](/docs/motion-system) — caret animation tokens, streaming shimmer, tool-trace expand/collapse. Use the existing duration scale; never bespoke.
+- [Motion](/docs/motion) — caret animation tokens, streaming shimmer, tool-trace expand/collapse. Use the existing duration scale; never bespoke.
 - [Heuristic critique](/docs/heuristics) — visibility-of-system-status applied to AI; the stream is the system, and it needs to be visible at every moment.

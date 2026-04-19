@@ -1,12 +1,12 @@
 ---
-title: UX writing
-description: Voice, tone, reading level, terminology, inclusive language, locale-aware strings.
+title: UX copy
+description: Voice, tone, reading level, terminology, inclusive language, locale-aware strings, error anatomy, CTAs, empty states.
 order: 24
 section: reference
 updated: 2026-04-18
 ---
 
-System-level writing guidance. Sits above tactical copy rules (error messages, CTAs, empty states) and defines the consistent voice, the context-dependent tone, reading level, terminology, locale handling, and the patterns that make a product sound like itself.
+The canonical reference for interface writing. System-level guidance (voice, tone, reading level, terminology, inclusive language, locale handling) sits alongside tactical microcopy (error messages, empty states, CTAs, form labels) in one file — agent-generated copy goes through every layer before it ships.
 
 Used by `/ui-craft:clarify` and anywhere agent-generated copy touches a user-facing surface.
 
@@ -16,7 +16,7 @@ Used by `/ui-craft:clarify` and anywhere agent-generated copy touches a user-fac
 
 Voice is the product's personality — how it sounds whether you're reading onboarding, an error, or a paywall. Tone is how that voice adjusts to context: warmer in onboarding, restrained in success, explicit in destructive confirms. A product with consistent voice but responsive tone reads as designed; a product with shifting voice reads as written by 12 people.
 
-## Voice matrix
+### Voice matrix
 
 Pick three axes. Lock a position on each. Deviations are deliberate (brand campaigns, April Fools), never accidental.
 
@@ -28,7 +28,7 @@ Pick three axes. Lock a position on each. Deviations are deliberate (brand campa
 
 Document the positions. "Casual-but-respectful, beginner-friendly, mildly irreverent" is a brief a writer can execute against. "Friendly" is not.
 
-## Tone by context
+### Tone by context
 
 Voice is fixed; tone moves along these contexts. Each row assumes a default voice of "casual-professional, beginner-friendly, restrained."
 
@@ -50,8 +50,8 @@ Never: exclamation points on errors, emoji in enterprise contexts, celebratory c
 
 Target ~8th-grade (Flesch-Kincaid ~70+, grade ~8).
 
-- Sentences <=20 words
-- Paragraphs <=3 sentences
+- Sentences <= 20 words
+- Paragraphs <= 3 sentences
 - Concrete nouns over abstractions ("invoice" beats "billing artifact")
 - Active voice ("You signed in" beats "Sign-in was completed")
 - One idea per sentence
@@ -64,7 +64,7 @@ Example rewrites:
 | "In the event that the operation is unsuccessful, please re-attempt the transmission." | "If it fails, try again." |
 | "Configuration modifications will be persisted upon form submission." | "Your changes save when you click Save." |
 
-Automate with [hemingwayapp.com](https://hemingwayapp.com/) for spot checks; the [`flesch` npm package](https://www.npmjs.com/package/flesch) for build-time linting.
+Automate with [hemingwayapp.com](https://hemingwayapp.com/) for spot checks; the [`flesch` npm package](https://www.npmjs.com/package/flesch) for build-time linting. `write-good` (npm) flags weasel words and passive voice; `alex` (npm) is an inclusive-language linter.
 
 ## Terminology consistency
 
@@ -110,17 +110,18 @@ Rules agents routinely ignore. Every one is shippable to production the day the 
 - **Time zones.** Store UTC, display in the user's zone. Never assume server time is user time. Use `Intl.DateTimeFormat(locale, { timeZone })`.
 - **Sorting.** `Intl.Collator(locale)` — alphabetical order is locale-dependent (Swedish sorts `a-ring` after `z`, German doesn't).
 
-## Error copy anatomy
+## Core principles
 
-Three parts, in order: **what happened** + **why** + **what to do**.
+Six principles that apply to every string:
 
-- "Upload failed. The file is 62MB; the limit is 50MB. Try compressing it or splitting into parts."
-- "We couldn't reach the server. Your internet looks offline. We'll retry automatically when you're back online."
-- "Can't create the project. The name `beta` is already taken in this workspace. Try another name."
+1. **Be specific** — "Enter email" not "Enter value"
+2. **Be concise** — cut unnecessary words (don't sacrifice clarity)
+3. **Be active** — "Save changes" not "Changes will be saved"
+4. **Be human** — "Something went wrong" not "System error encountered"
+5. **Be helpful** — tell users what to do, not just what happened
+6. **Be consistent** — same terms throughout; don't vary for variety
 
-Missing pieces = bad error. "Something went wrong" has none of the three. "Invalid input" has only the first.
-
-## CTAs
+## CTAs & buttons
 
 **Verb + noun.** Never `Submit`, `OK`, `Click here`, `Continue`.
 
@@ -132,11 +133,95 @@ Missing pieces = bad error. "Something went wrong" has none of the three. "Inval
 | Click here | Download invoice (PDF, 84KB) |
 | Delete | Delete workspace |
 
-Destructive actions include the object: "Delete `project-alpha`" — the user confirms the thing, not a generic verb. Typing the name for irreversible operations is the gold standard.
+- Describe the action specifically (verb + noun). Active voice.
+- **Destructive actions include the object.** "Delete `project-alpha`" — the user confirms the thing, not a generic verb. Typing the name for irreversible operations is the gold standard.
+- **Action reveals consequence.** "Send invite" tells the user exactly what happens. "Submit form" does not.
+- **One primary per view section** — solid for primary, outline/ghost for secondary.
+- **Disabled states explain why** — not just grayed out, never rely on color alone.
 
-Action reveals consequence. "Send invite" tells the user exactly what happens. "Submit form" does not.
+## Error messages
 
-## Banned patterns
+Three parts, in order: **what happened** + **why** + **what to do**.
+
+- "Upload failed. The file is 62MB; the limit is 50MB. Try compressing it or splitting into parts."
+- "We couldn't reach the server. Your internet looks offline. We'll retry automatically when you're back online."
+- "Can't create the project. The name `beta` is already taken in this workspace. Try another name."
+
+Missing pieces = bad error. "Something went wrong" has none of the three. "Invalid input" has only the first.
+
+Rules:
+
+- Explain what went wrong in plain language
+- Suggest how to fix it
+- Don't blame the user
+- Include examples when helpful
+- Link to help/support if applicable
+
+**Bad:** "Error 403: Forbidden" — **Good:** "You don't have permission to view this page. Contact your admin for access."
+**Bad:** "Invalid input" — **Good:** "Email addresses need an @ symbol. Try: name@example.com"
+
+## Empty states
+
+**Bad:** "No items" — **Good:** "No projects yet. Create your first project to get started."
+
+- Explain why it's empty (if not obvious)
+- Show next action clearly
+- Make it welcoming, not a dead-end
+
+## Loading & success states
+
+**Loading.** Bad: "Loading..." (for 30+ seconds). Good: "Analyzing your data... this usually takes 30-60 seconds."
+
+- Set expectations, explain what's happening, show progress, offer "Cancel"
+
+**Success.** Bad: "Success". Good: "Settings saved! Your changes will take effect immediately."
+
+- Confirm what happened, explain what's next, be brief but complete
+
+## Confirmation dialogs
+
+**Bad:** "Are you sure?" — **Good:** "Delete 'Project Alpha'? This can't be undone."
+
+- State the specific action
+- Explain consequences (especially destructive)
+- Clear button labels ("Delete project" not "Yes")
+- Only for risky actions
+
+## Form labels & microcopy
+
+- Clear, specific labels (not generic placeholders)
+- Placeholders are examples, not labels — labels exist separately; placeholders end with `…`
+- Explain why you're asking (when not obvious)
+- Instructions before the field, not after
+- Never use placeholders as the only labels
+
+**Tooltips.** Bad: "This is the username field". Good: "Choose a username. You can change this later in Settings."
+
+- Add value (don't repeat the label), answer "What is this?" or "Why?", inline help first, tooltips as last resort
+
+## Formatting rules
+
+- **Ellipsis for loading / follow-ups:** "Loading…", "Rename…"
+- **Use `…` character** not three dots `...`
+- **Curly quotes:** " " not " "
+- **Non-breaking spaces:** `10&nbsp;MB`, `⌘&nbsp;K`
+- **Numerals for counts:** "8 deployments" not "eight deployments"
+- **Active voice:** "Install the CLI" not "The CLI will be installed"
+- **Default to positive language:** encourage, don't blame
+- **`<title>` reflects current context**
+
+## Content & states
+
+Every UI must design for the full range of content and states, not just the happy path:
+
+- **Design all states:** empty, sparse, dense, error, loading, success
+- **Skeletons mirror final content** exactly — prevent layout shift
+- **No dead ends** — always offer next step or recovery
+- **Empty states** guide toward action, not just "nothing here"
+- **Accessible names** exist even when visuals omit labels
+- **Resilient to user-generated content:** short, average, very long
+
+## Banned patterns (dark UX)
 
 UX sins, not style choices.
 
@@ -147,14 +232,19 @@ UX sins, not style choices.
 - **Dark toggles.** Opt-in checkboxes pre-checked for marketing emails. Ship: unchecked by default, unambiguous label.
 - **Bait-and-switch pricing.** "$9/mo" that's actually "$9/mo, billed $108 annually, with a $29 setup fee." Ship: the total visible at decision time.
 
-## Automation
+## Never
 
-Wire any of these to PR checks so copy regressions fail the build.
-
-- **hemingwayapp.com** — manual spot check, grade-level scoring, passive-voice highlighter
-- **`flesch` (npm)** — build-time check on user-facing strings
-- **`write-good` (npm)** — flags weasel words, passive voice, lexical illusions
-- **`alex` (npm)** — inclusive-language linter (catches the swap list above automatically)
+- Use jargon without explanation
+- Blame users
+- Be vague without specifics
+- Use passive voice unnecessarily
+- Use humor for errors (be empathetic)
+- Assume technical knowledge
+- Vary terminology (pick one term, stick with it)
+- Repeat information (headers restating intros)
+- Use placeholders as the only labels
+- Exclamation points on errors
+- Celebratory copy on routine saves
 
 ## Sources
 

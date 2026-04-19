@@ -1,6 +1,6 @@
 ---
-title: Variants
-description: Five opt-in sibling skills that pre-commit UI Craft to a style and lock the knobs to matching values.
+title: Style variants
+description: Three opt-in sibling skills that pre-commit to a style and lock the knobs. Plus two style presets (playful, brutalist) as examples, not full skills.
 order: 3
 section: skill
 updated: 2026-04-18
@@ -12,19 +12,17 @@ Each variant defers to the main skill for base rules and references. It only ove
 
 ## Knobs locked
 
-| Variant | `CRAFT_LEVEL` | `MOTION_INTENSITY` | `VISUAL_DENSITY` | Style anchors |
-|---|---|---|---|---|
-| `ui-craft-minimal` | 8 | 3 | 2 | Monochrome + one accent, Inter/Geist, hairline borders |
-| `ui-craft-editorial` | 9 | 4 | 3 | Serif display + humanist body, wide reading column, OpenType |
-| `ui-craft-dense-dashboard` | 7 | 3 | 9 | IBM Plex + mono numbers, semantic palette, 4/8px grid |
-| `ui-craft-playful` | 8 | 7 | 4 | Rounded corners, spring motion, multi-accent (≤3), colored soft shadows |
-| `ui-craft-brutalist` | 7 | 2 | 6 | Mono or geometric sans, hard 2–4px borders, pure B/W, type-as-hero |
+| Variant | Triggers on | Knobs locked | Style anchors |
+|---|---|---|---|
+| `ui-craft-minimal` | "minimal", "Linear-like", "Notion-like", "whitespace-heavy" | CRAFT=8 / MOTION=3 / DENSITY=2 | Monochrome + one accent, Inter/Geist, hairline borders |
+| `ui-craft-editorial` | "editorial", "magazine", "Medium-like", "Substack-like", "long-form" | CRAFT=9 / MOTION=4 / DENSITY=3 | Serif display + humanist body, wide reading column, OpenType |
+| `ui-craft-dense-dashboard` | "dashboard", "admin panel", "Bloomberg-like", "Retool-like" | CRAFT=7 / MOTION=3 / DENSITY=9 | IBM Plex + mono numbers, semantic palette, 4/8px grid |
 
 ## When to invoke each
 
 ### `ui-craft-minimal`
 
-Triggers on "minimal", "clean", "editorial", "whitespace-heavy", "Linear-like", "Notion-like", "Vercel-like".
+Triggers on "minimal", "clean", "whitespace-heavy", "Linear-like", "Notion-like", "Vercel-like".
 
 Minimal aesthetics only work when executed precisely. Polish Pass is mandatory. One accent. Hairline borders. Almost no motion. Whitespace is the composition.
 
@@ -46,22 +44,6 @@ Data-first, keyboard-first, operator tools. Every pixel earns its place. Tight 4
 
 Product references: **Bloomberg, Retool, Linear issues view.**
 
-### `ui-craft-playful`
-
-Triggers on "playful", "friendly", "fun", "approachable", "casual", "Clay-like", "Gumroad-like", "Duolingo-like", "Arc Browser".
-
-Playful without craft reads as childish. Spring-heavy motion carries the personality. Generous radii. Saturated-but-tuned multi-accents (≤3). Colored soft shadows. Moderate density — cards breathe, but layout has rhythm and variety.
-
-Product references: **Clay, Gumroad, Duolingo, Arc Browser.**
-
-### `ui-craft-brutalist`
-
-Triggers on "brutalist", "raw", "deliberately ugly", "Swiss print", "Nothing-like", "terminal aesthetic", "editorial brutalism", "web 1.0 revival".
-
-Type-as-hero, hard contrast, visible grids, raw chrome. Mono or geometric sans. Solid 2–4px borders. Sharp corners. Pure B/W allowed. Instant state changes — no entrance animation, no scroll reveal. ALL CAPS mono labels are permitted here (not in other variants).
-
-Product references: **Nothing UI, Swiss print revival, yugonostalgia sites (Yung Lean era), terminal aesthetic.**
-
 ## Variants defer
 
 A variant is not a rewrite of the skill. It is a thin overlay:
@@ -81,10 +63,21 @@ The agent picks a variant in one of two ways:
 
 If nothing matches, the base `ui-craft` skill is used with default knobs. You can always override with explicit knob values in your prompt: "build this with `VISUAL_DENSITY=9` and `MOTION_INTENSITY=2`".
 
+## Style presets
+
+Not every aesthetic earns a full sibling skill. Playful and brutalist ship as style presets — reference material the main `ui-craft` skill reads when the user asks for those aesthetics. Presets define the same kind of lock (knob values + style overrides) without adding siblings that compete with the main skill's triggers.
+
+| Preset | Style anchors | Knobs locked | Source |
+|---|---|---|---|
+| `playful` | Clay / Gumroad / Duolingo / Arc aesthetic — spring motion, generous radii, saturated-but-tuned multi-accents (<=3), colored soft shadows | CRAFT=8 / MOTION=7 / DENSITY=4 | [`examples/presets/playful.md`](https://github.com/educlopez/ui-craft/blob/main/examples/presets/playful.md) |
+| `brutalist` | Swiss print / Nothing / terminal aesthetic — type-as-hero, hard 2–4px borders, pure B/W, instant state changes | CRAFT=7 / MOTION=2 / DENSITY=6 | [`examples/presets/brutalist.md`](https://github.com/educlopez/ui-craft/blob/main/examples/presets/brutalist.md) |
+
+When the user says "build this playful" or "Clay-like", the main skill applies the preset's knob values + style overrides on top of the base rules. No separate sibling skill loads.
+
 ## Source files
 
 - [`skills/ui-craft-minimal/SKILL.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft-minimal/SKILL.md)
 - [`skills/ui-craft-editorial/SKILL.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft-editorial/SKILL.md)
 - [`skills/ui-craft-dense-dashboard/SKILL.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft-dense-dashboard/SKILL.md)
-- [`skills/ui-craft-playful/SKILL.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft-playful/SKILL.md)
-- [`skills/ui-craft-brutalist/SKILL.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft-brutalist/SKILL.md)
+- [`examples/presets/playful.md`](https://github.com/educlopez/ui-craft/blob/main/examples/presets/playful.md)
+- [`examples/presets/brutalist.md`](https://github.com/educlopez/ui-craft/blob/main/examples/presets/brutalist.md)

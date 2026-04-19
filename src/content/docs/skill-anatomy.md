@@ -1,6 +1,6 @@
 ---
 title: Skill anatomy
-description: How UI Craft is structured — the main skill, its 23 domain references, the 14 slash commands, and the 5 style variants.
+description: How UI Craft is structured — the main skill, its 20 domain references, the 15 slash commands, and the 3 style variants.
 order: 2
 section: skill
 updated: 2026-04-18
@@ -11,10 +11,10 @@ UI Craft is not one long file. It is a slim entry point plus a routing table poi
 ## Three layers
 
 1. **Main skill** — `skills/ui-craft/SKILL.md`. ~13 KB. Knobs, Discovery phase, anti-slop rules, the routing table, and the few always-needed rules.
-2. **References** — `skills/ui-craft/references/*.md`. 23 domain files. Loaded on demand based on intent.
-3. **Commands** — `commands/*.md`. 14 focused passes that apply a single lens from the skill.
+2. **References** — `skills/ui-craft/references/*.md`. 20 domain files. Loaded on demand based on intent.
+3. **Commands** — `commands/*.md`. 15 focused passes that apply a single lens from the skill.
 
-Plus 5 sibling **variants** — pre-committed styles that lock the knobs. See [Variants](/docs/variants).
+Plus 3 sibling **variants** — pre-committed styles that lock the knobs. See [Style variants](/docs/variants). Playful and brutalist ship as style presets under `examples/presets/`, not full siblings.
 
 ## The main skill
 
@@ -28,29 +28,32 @@ Plus 5 sibling **variants** — pre-committed styles that lock the knobs. See [V
 
 [Read on GitHub &rarr;](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/SKILL.md)
 
-## The 23 domains
+## The 20 domains
 
 Each domain is one file. Agents load them based on intent.
 
 | Domain | File | Covers |
 |---|---|---|
-| Animation | [`animation.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/animation.md) | Easing curves, spring physics, duration rules, `prefers-reduced-motion` |
+| Motion | [`motion.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/motion.md) | Decision ladder, duration + easing token scales, interaction rules, choreography, motion budget, reduced-motion contract |
 | Layout | [`layout.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/layout.md) | Spacing systems, optical alignment, layered shadows, visual hierarchy |
 | Typography | [`typography.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/typography.md) | `text-wrap: balance`, tabular-nums, font scale, curly quotes |
 | Color | [`color.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/color.md) | OKLCH, design tokens, dark mode, APCA contrast |
 | Accessibility | [`accessibility.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/accessibility.md) | WAI-ARIA, keyboard nav, focus management, touch targets |
 | Performance | [`performance.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/performance.md) | Compositor-only animations, FLIP, `will-change`, CLS prevention |
-| Modern CSS | [`modern-css.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/modern-css.md) | View Transitions, scroll-driven animations, container queries, `:has()` |
+| Modern CSS | [`modern-css.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/modern-css.md) | View Transitions, Anchor Positioning, Popover, `<dialog>`, `interpolate-size`, `color-mix()`, scroll-driven, container queries |
 | Responsive | [`responsive.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/responsive.md) | Fluid sizing, mobile-first, touch zones, safe areas |
 | Sound | [`sound.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/sound.md) | Web Audio API, feedback sounds, appropriateness matrix |
-| UX Copy | [`copy.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/copy.md) | Error messages, empty states, CTAs, microcopy |
-| UI Review | [`review.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/review.md) | Critique methodology, anti-slop detection, Polish Pass |
-| Orchestration | [`animation-orchestration.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/animation-orchestration.md) | Multi-stage sequences, stagger timing, entrance/exit coordination |
-| Dashboard | [`dashboard.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/dashboard.md) | Sidebar nav, metric cards, chart types, data tables, filters |
-| Inspiration | [`inspiration.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/inspiration.md) | Real patterns from dub, linear, vercel, stripe, cursor |
-| Stack | [`stack.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/stack.md) | Motion, GSAP, Three.js — opt-in only |
-| AI / chat | [`ai-chat.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/ai-chat.md) | Streaming UIs, tool traces, citations, generative UI |
-| Forms | [`forms.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/forms.md) | Validation timing, wizards, autosave, optimistic submit, field patterns |
+| UX Copy | [`copy.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/copy.md) | Voice / tone matrix, reading level, terminology, locale-aware strings, inclusive language, error / empty / CTA tactics |
+| UI Review | [`review.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/review.md) | Systematic critique methodology, anti-slop detection, Polish Pass |
+| Dashboard | [`dashboard.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/dashboard.md) | Signal-to-noise hierarchy (hero / supporting / context / deep-dive), sidebar, metric cards, data tables |
+| Inspiration | [`inspiration.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/inspiration.md) | Real patterns from dub.co, cursor, linear, vercel, stripe |
+| Stack | [`stack.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/stack.md) | Motion, GSAP, Three.js — decision tree, patterns, perf gotchas, anti-patterns (opt-in) |
+| Heuristics | [`heuristics.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/heuristics.md) | Nielsen's 10 + Fitts / Hick / Doherty / Cleveland-McGill / Miller / Tesler with 1–5 scoring rubric and impact framing |
+| Personas | [`personas.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/personas.md) | 5 archetypes (first-timer, power user, low-bandwidth, screen-reader, one-thumb) with walkthrough checklists |
+| State design | [`state-design.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/state-design.md) | Idle / loading / empty / error / partial / conflict / offline — design the unhappy path first |
+| Data viz | [`dataviz.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/dataviz.md) | Cleveland-McGill perceptual hierarchy, chart selection matrix, ColorBrewer + Okabe-Ito palettes, direct labeling, Tufte |
+| AI / chat surfaces | [`ai-chat.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/ai-chat.md) | Streaming contract, 7-state model, tool traces, citations, feedback affordances, generative UI, conversation layout |
+| Forms | [`forms.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/forms.md) | Validation timing, progressive disclosure, multi-step wizards, autosave, optimistic submit, field-specific patterns |
 
 ### Stack is opt-in
 
@@ -59,7 +62,7 @@ Each domain is one file. Agents load them based on intent.
 - `MOTION_INTENSITY ≥ 8`, **and**
 - The user opted into Motion / GSAP / Three.js during Discovery
 
-This is deliberate. The file is 442 lines. Loading it for a static button animation would be noise.
+This is deliberate. The file is large. Loading it for a static button animation would be noise.
 
 ## The routing table
 
@@ -69,19 +72,19 @@ This is deliberate. The file is 442 lines. Loading it for a static button animat
 |---|---|
 | "Build a pricing page" | `layout.md`, `typography.md`, `color.md`, `responsive.md`, `copy.md` |
 | "Audit this component" | `accessibility.md`, `performance.md`, `responsive.md`, `review.md` |
-| "Animate this modal" | `animation.md`, `performance.md`, `accessibility.md` |
-| "Build a dashboard" | `layout.md`, `dashboard.md`, `typography.md`, `responsive.md` |
-| "Polish this page" | `review.md`, `typography.md`, `layout.md`, `animation.md` |
+| "Animate this modal" | `motion.md`, `performance.md`, `accessibility.md` |
+| "Build a dashboard" | `layout.md`, `dashboard.md`, `typography.md`, `responsive.md`, `state-design.md` |
+| "Polish this page" | `review.md`, `typography.md`, `layout.md`, `motion.md` |
 
-Agents never load all 15 references at once. That defeats the point of progressive disclosure.
+Agents never load all 20 references at once. That defeats the point of progressive disclosure.
 
-## The 14 commands
+## The 15 commands
 
 Focused passes. Each command loads a single lens. See [Commands](/docs/commands) for the full reference. They are grouped by intent:
 
-- **Review & ship** — `audit`, `critique`, `polish`, `harden`
-- **Transform** — `animate`, `adapt`, `typeset`, `colorize`, `clarify`, `extract`
-- **Taste dial** — `distill`, `bolder`, `quieter`, `delight`
+- **Review & ship** — `heuristic`, `audit`, `critique`, `polish`, `harden`, `unhappy`
+- **Plan & transform** — `shape`, `animate`, `adapt`, `typeset`, `colorize`, `clarify`, `extract`
+- **Taste dial** — `distill`, `delight`
 
 Only Claude Code understands slash commands natively. In other harnesses they are materialized as peer sub-skills with their own `name` + `description` frontmatter. Same content, different invocation surface.
 
@@ -106,33 +109,38 @@ ui-craft/
   skills/
     ui-craft/
       SKILL.md                     # slim entry point (~13 KB)
-      references/
+      references/                  # 20 domain files
         accessibility.md
-        animation.md
-        animation-orchestration.md
+        ai-chat.md
         color.md
-        copy.md
+        copy.md                    # voice/tone + microcopy (unified)
         dashboard.md
+        dataviz.md
+        forms.md
+        heuristics.md
         inspiration.md
         layout.md
         modern-css.md
+        motion.md                  # unified motion reference
         performance.md
+        personas.md
         responsive.md
         review.md
         sound.md
         stack.md
+        state-design.md
         typography.md
     ui-craft-minimal/SKILL.md
     ui-craft-editorial/SKILL.md
     ui-craft-dense-dashboard/SKILL.md
-    ui-craft-playful/SKILL.md
-    ui-craft-brutalist/SKILL.md
-  commands/
-    adapt.md  animate.md  audit.md    bolder.md  clarify.md
-    colorize.md critique.md delight.md distill.md extract.md
-    harden.md polish.md   quieter.md typeset.md
+  commands/                        # 15 source-of-truth slash commands
+  examples/
+    animation-storyboard.md        # multi-stage animation pattern
+    presets/
+      playful.md                   # Clay / Gumroad / Duolingo / Arc preset
+      brutalist.md                 # Swiss print / Nothing / terminal preset
   scripts/
-    detect.mjs           # anti-slop detector
-    sync-harnesses.mjs   # mirror generator
-    validate.mjs         # manifest + frontmatter validator
+    detect.mjs                     # anti-slop detector
+    sync-harnesses.mjs             # mirror generator
+    validate.mjs                   # manifest + frontmatter validator
 ```
