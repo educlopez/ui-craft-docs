@@ -36,7 +36,7 @@ node scripts/detect.mjs ./src
 
 ## Rules
 
-19 rules grouped by severity. Rules fire per line (per-line) or per file (file-level).
+29 rules grouped by severity (v0.4.0). Rules fire per line (per-line) or per file (file-level).
 
 ### Critical
 
@@ -49,6 +49,9 @@ node scripts/detect.mjs ./src
 | `uppercase-heading` | ALL CAPS h1/h2/h3 — hard to read, aggressive by default |
 | `left-top-animation` | Animating `left` / `top` / `width` / `height` — layout thrash, never compositor |
 | `glassmorphism-stack` (file) | `backdrop-filter` + `rgba(white, low)` + `border-white` together |
+| `a11y/modal-without-dialog` | Custom div modals when native `<dialog>` or `[popover]` fits — skips files importing Radix / HeadlessUI / Ariakit / etc. |
+| `forms/placeholder-as-label` | Inputs with a placeholder but no associated `<label>` |
+| `a11y/outline-none-no-replacement` | `outline: none` without a `:focus-visible` replacement |
 
 ### Major
 
@@ -64,6 +67,7 @@ node scripts/detect.mjs ./src
 | `no-focus-visible` | Hover state defined without `:focus-visible` counterpart |
 | `pixel-radius-inconsistency` | Token-based `border-radius` mixed with raw pixel values in one file |
 | `uniform-border-radius` (file) | Identical radius on every component — no hierarchy |
+| `tables/no-overflow-handling` | Tables without horizontal overflow or sticky thead (up to 2 findings per file) |
 
 ### Warn
 

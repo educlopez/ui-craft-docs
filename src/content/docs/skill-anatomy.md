@@ -1,6 +1,6 @@
 ---
 title: Skill anatomy
-description: How UI Craft is structured — the main skill, its 15 domain references, the 14 slash commands, and the 5 style variants.
+description: How UI Craft is structured — the main skill, its 23 domain references, the 14 slash commands, and the 5 style variants.
 order: 2
 section: skill
 updated: 2026-04-18
@@ -11,7 +11,7 @@ UI Craft is not one long file. It is a slim entry point plus a routing table poi
 ## Three layers
 
 1. **Main skill** — `skills/ui-craft/SKILL.md`. ~13 KB. Knobs, Discovery phase, anti-slop rules, the routing table, and the few always-needed rules.
-2. **References** — `skills/ui-craft/references/*.md`. 15 domain files. Loaded on demand based on intent.
+2. **References** — `skills/ui-craft/references/*.md`. 23 domain files. Loaded on demand based on intent.
 3. **Commands** — `commands/*.md`. 14 focused passes that apply a single lens from the skill.
 
 Plus 5 sibling **variants** — pre-committed styles that lock the knobs. See [Variants](/docs/variants).
@@ -28,7 +28,7 @@ Plus 5 sibling **variants** — pre-committed styles that lock the knobs. See [V
 
 [Read on GitHub &rarr;](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/SKILL.md)
 
-## The 15 domains
+## The 23 domains
 
 Each domain is one file. Agents load them based on intent.
 
@@ -49,6 +49,8 @@ Each domain is one file. Agents load them based on intent.
 | Dashboard | [`dashboard.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/dashboard.md) | Sidebar nav, metric cards, chart types, data tables, filters |
 | Inspiration | [`inspiration.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/inspiration.md) | Real patterns from dub, linear, vercel, stripe, cursor |
 | Stack | [`stack.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/stack.md) | Motion, GSAP, Three.js — opt-in only |
+| AI / chat | [`ai-chat.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/ai-chat.md) | Streaming UIs, tool traces, citations, generative UI |
+| Forms | [`forms.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/forms.md) | Validation timing, wizards, autosave, optimistic submit, field patterns |
 
 ### Stack is opt-in
 
