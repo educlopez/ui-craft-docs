@@ -1,0 +1,280 @@
+---
+/**
+ * FloatNav — centered floating pill nav, Figma-toolbar style.
+ * Server-rendered HTML + a single inline <script> for scroll hide/reveal.
+ * Active state is computed from Astro.url.pathname (no client directives).
+ */
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+
+function isActive(href: string): boolean {
+  if (href === '/') return path === '/' || path === '';
+  // For /docs, match /docs and any /docs/* route
+  if (href === '/docs') return path === '/docs' || path.startsWith('/docs/');
+  return path === href;
+}
+
+const items = [
+  { type: 'link',    href: '/',          label: 'Home',    key: 'home'    },
+  { type: 'link',    href: '/docs',      label: 'Docs',    key: 'docs'    },
+  { type: 'link',    href: '/anti-slop', label: 'Gallery', key: 'gallery' },
+  { type: 'divider', key: 'div1' },
+  { type: 'ext', href: 'https://github.com/educlopez/ui-craft',         label: 'GitHub', key: 'github' },
+  { type: 'ext', href: 'https://www.npmjs.com/package/ui-craft-detect', label: 'npm',    key: 'npm'    },
+] as const;
+---
+
+<nav class="float-nav" aria-label="Quick navigation" data-float-nav>
+  <ul class="float-nav-list" role="menubar">
+    {items.map((item) => {
+      if (item.type === 'divider') {
+        return (
+          <li class="float-nav-divider" aria-hidden="true" role="separator"></li>
+        );
+      }
+
+      const active = item.type === 'link' && isActive(item.href);
+      const commonClass = ['float-nav-item', active ? 'is-active' : null]
+        .filter(Boolean)
+        .join(' ');
+
+      if (item.type === 'ext') {
+        return (
+          <li role="none">
+            <a
+              class={commonClass}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={item.label}
+              role="menuitem"
+              tabindex="0"
+            >
+              {item.key === 'github' && (
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                  <path fill="currentColor" d="M12 .5C5.73.5.77 5.46.77 11.73c0 4.96 3.22 9.16 7.69 10.65.56.1.77-.24.77-.54v-1.88c-3.13.68-3.8-1.51-3.8-1.51-.51-1.31-1.25-1.66-1.25-1.66-1.03-.7.08-.68.08-.68 1.13.08 1.73 1.17 1.73 1.17 1 1.72 2.64 1.22 3.28.93.1-.73.39-1.22.71-1.5-2.5-.28-5.14-1.25-5.14-5.56 0-1.23.44-2.24 1.16-3.03-.12-.29-.5-1.44.11-3 0 0 .95-.3 3.11 1.16a10.8 10.8 0 0 1 5.66 0c2.16-1.46 3.11-1.16 3.11-1.16.61 1.56.23 2.71.11 3 .72.79 1.16 1.8 1.16 3.03 0 4.32-2.65 5.28-5.17 5.55.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.78.54 4.46-1.49 7.68-5.69 7.68-10.65C23.23 5.46 18.27.5 12 .5z"/>
+                </svg>
+              )}
+              {item.key === 'npm' && (
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+                  <path fill="currentColor" d="M2 7h20v10H12v-8H8v8H2V7zm4 8h2V9h-2v6zm10-6h4v6h-2v-4h-2V9z"/>
+                </svg>
+              )}
+            </a>
+          </li>
+        );
+      }
+
+      // Internal link
+      return (
+        <li role="none">
+          <a
+            class={commonClass}
+            href={item.href}
+            aria-label={item.label}
+            aria-current={active ? 'page' : undefined}
+            role="menuitem"
+            tabindex="0"
+          >
+            {item.key === 'home' && (
+              <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false">
+                <path d="M10 2.4 2.2 9.2a1 1 0 0 0-.35.76V17a1 1 0 0 0 1 1h3.9a.6.6 0 0 0 .6-.6V13a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1v4.4a.6.6 0 0 0 .6.6h3.9a1 1 0 0 0 1-1V9.96a1 1 0 0 0-.35-.76L10 2.4Z"/>
+              </svg>
+            )}
+            {item.key === 'docs' && (
+              <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M5 2.5h7l3 3v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-13a1 1 0 0 1 1-1z"/>
+                <path d="M12 2.5v3h3"/>
+                <line x1="7" y1="10" x2="13" y2="10"/>
+                <line x1="7" y1="13" x2="13" y2="13"/>
+                <line x1="7" y1="7.5" x2="10" y2="7.5"/>
+              </svg>
+            )}
+            {item.key === 'gallery' && (
+              <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false">
+                <path d="M8 2l1.2 3.3 3.3 1.2-3.3 1.2L8 11l-1.2-3.3-3.3-1.2 3.3-1.2z"/>
+                <path d="M14.5 10.5l.7 1.9 1.9.7-1.9.7-.7 1.9-.7-1.9-1.9-.7 1.9-.7z"/>
+              </svg>
+            )}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>
+
+<style is:global>
+  .float-nav {
+    position: fixed;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    z-index: 60;
+    background: oklch(100% 0 0);
+    border: 1px solid oklch(92% 0.005 250 / 0.6);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow:
+      0 2px 6px oklch(15% 0.03 260 / 0.04),
+      0 8px 24px oklch(15% 0.03 260 / 0.08),
+      0 24px 56px -12px oklch(15% 0.03 260 / 0.12);
+    transition:
+      transform 200ms var(--ease-out),
+      opacity 280ms var(--ease-out);
+    will-change: transform;
+  }
+
+  /* Hidden state for scroll-hide behavior */
+  .float-nav[data-hidden="true"] {
+    transform: translateX(-50%) translateY(calc(100% + 32px));
+  }
+
+  .float-nav-list {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .float-nav-divider {
+    width: 1px;
+    height: 22px;
+    background: oklch(92% 0.005 250);
+    margin: 0 6px;
+    flex-shrink: 0;
+  }
+
+  .float-nav-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    color: oklch(15% 0 0);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+      background-color 150ms var(--ease-out),
+      color 150ms var(--ease-out),
+      transform 120ms var(--ease-out);
+  }
+  .float-nav-item svg {
+    display: block;
+  }
+  .float-nav-item:hover {
+    background: oklch(96% 0.003 250);
+    color: oklch(15% 0 0);
+  }
+  .float-nav-item:active {
+    transform: scale(0.94);
+  }
+  .float-nav-item:focus-visible {
+    outline: 2px solid var(--color-blue-600);
+    outline-offset: 2px;
+  }
+  .float-nav-item.is-active {
+    background: var(--color-blue-600);
+    color: oklch(100% 0 0);
+    border-radius: 8px;
+  }
+  .float-nav-item.is-active:hover {
+    background: var(--color-blue-600);
+    color: oklch(100% 0 0);
+  }
+
+  /* Mobile tweaks */
+  @media (max-width: 480px) {
+    .float-nav {
+      bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+      padding: 6px;
+    }
+    .float-nav-list {
+      gap: 1px;
+    }
+    .float-nav-item {
+      width: 36px;
+      height: 36px;
+    }
+    .float-nav-divider {
+      height: 20px;
+      margin: 0 4px;
+    }
+  }
+
+  /* Reduced motion: always visible, no transforms */
+  @media (prefers-reduced-motion: reduce) {
+    .float-nav,
+    .float-nav-item {
+      transition: none;
+    }
+    .float-nav[data-hidden="true"] {
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const nav = document.querySelector('[data-float-nav]') as HTMLElement | null;
+    if (!nav) return;
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return; // Leave it always-visible, no listeners.
+
+    // Scroll hide / reveal with rAF throttling.
+    let lastY = window.scrollY;
+    let ticking = false;
+    const THRESHOLD = 6; // ignore tiny deltas
+
+    const update = () => {
+      const y = window.scrollY;
+      const dy = y - lastY;
+      if (Math.abs(dy) > THRESHOLD) {
+        if (dy > 0 && y > 120) {
+          // scrolling down — hide
+          nav.setAttribute('data-hidden', 'true');
+        } else {
+          nav.setAttribute('data-hidden', 'false');
+        }
+        lastY = y;
+      }
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Keyboard: arrow-key navigation between items, Escape defocuses.
+    const items = Array.from(nav.querySelectorAll<HTMLAnchorElement>('.float-nav-item'));
+    nav.addEventListener('keydown', (e) => {
+      const ke = e as KeyboardEvent;
+      const target = document.activeElement as HTMLElement | null;
+      if (!target || !items.includes(target as HTMLAnchorElement)) return;
+      const idx = items.indexOf(target as HTMLAnchorElement);
+      if (ke.key === 'ArrowRight' || ke.key === 'ArrowDown') {
+        ke.preventDefault();
+        items[(idx + 1) % items.length].focus();
+      } else if (ke.key === 'ArrowLeft' || ke.key === 'ArrowUp') {
+        ke.preventDefault();
+        items[(idx - 1 + items.length) % items.length].focus();
+      } else if (ke.key === 'Home') {
+        ke.preventDefault();
+        items[0].focus();
+      } else if (ke.key === 'End') {
+        ke.preventDefault();
+        items[items.length - 1].focus();
+      } else if (ke.key === 'Escape') {
+        (target as HTMLElement).blur();
+      }
+    });
+  })();
+</script>

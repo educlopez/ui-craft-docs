@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import FloatNav from '../components/FloatNav.astro';
 ---
 
 <html lang="en">
@@ -363,7 +364,7 @@ import '../styles/global.css';
             </div>
             <figcaption class="mt-4 text-[13px] leading-snug text-[var(--color-text-secondary)] text-center">
               <span class="block text-[var(--color-text)] font-medium">Purple-cyan gradient. Glow. Bounce on&nbsp;hover.</span>
-              <span class="block mt-1">The skill rejects this on sight — along with 15 more patterns that make interfaces look&nbsp;AI-generated. <a href="/docs" class="footer-link"><span>See the full list&nbsp;&rarr;</span></a></span>
+              <span class="block mt-1">The skill rejects this on sight — and 15 more patterns — see them all in action <a href="/anti-slop" class="footer-link"><span>&rarr; /anti-slop</span></a></span>
             </figcaption>
           </figure>
         </section>
@@ -1086,5 +1087,7 @@ import '../styles/global.css';
         .slop-demo-btn { box-shadow: 0 0 18px oklch(0.6 0.25 280 / 0.4), 0 4px 10px oklch(0% 0 0 / 0.15); }
       }
     </style>
+
+    <FloatNav />
   </body>
 </html>

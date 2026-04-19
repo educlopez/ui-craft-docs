@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
+import FloatNav from '../components/FloatNav.astro';
 
 interface Props {
   title: string;
@@ -262,5 +263,7 @@ const sectionOrder = ['skill', 'cli', 'reference'];
       import { inject } from '@vercel/analytics';
       inject();
     </script>
+
+    <FloatNav />
   </body>
 </html>

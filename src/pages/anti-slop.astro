@@ -1,0 +1,1470 @@
+---
+/* ui-craft-detect-ignore-file — this page intentionally demonstrates anti-patterns for educational purposes. The "slop" states use the anti-patterns the skill is designed to reject (gradients, glow, bounce, ALL CAPS, etc). Only the "craft" states represent canonical output. */
+import '../styles/global.css';
+import FloatNav from '../components/FloatNav.astro';
+
+const title = 'Anti-slop, demonstrated';
+const description = 'Eight patterns that make interfaces look AI-generated. Toggle Craft it to watch ui-craft rewrite each one in place.';
+
+const patterns = [
+  { id: 'gradient-button',  num: '01', name: 'Gradient button + bounce',   rules: 'no-purple-cyan-gradient · no-bounce-easing · generic-cta' },
+  { id: 'uniform-cards',    num: '02', name: 'Uniform 3-card feature grid', rules: 'uniform-card-grid · emoji-as-icons · colored-top-borders' },
+  { id: 'allcaps-heading',  num: '03', name: 'ALL CAPS heading',            rules: 'all-caps-headings · wide-tracking-display' },
+  { id: 'gradient-metric',  num: '04', name: 'Gradient text on a metric',   rules: 'gradient-text-on-hero-metrics · no-tabular-nums' },
+  { id: 'glass-neon',       num: '05', name: 'Glassmorphism + neon',        rules: 'glassmorphism-decoration · decorative-glow · neon-box-shadow' },
+  { id: 'gradient-blob',    num: '06', name: 'Decorative gradient blob',    rules: 'gradient-blobs · decorative-orbs · bouncing-decor' },
+  { id: 'trend-pill',       num: '07', name: 'Colored pill on trend %',     rules: 'colored-pills-on-trend · stat-as-decoration' },
+  { id: 'spinner-loading',  num: '08', name: 'Loading spinner + caps',      rules: 'generic-loading-spinners · skeleton-shape-mismatch' },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href={`https://skills.smoothui.dev${Astro.url.pathname}`} />
+    <meta property="og:title" content={`${title} — UI Craft`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={`https://skills.smoothui.dev${Astro.url.pathname}`} />
+    <meta property="og:site_name" content="UI Craft" />
+    <meta property="og:image" content="https://skills.smoothui.dev/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} — UI Craft`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://skills.smoothui.dev/og.png" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="apple-touch-icon" href="/icon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/geist-mono@latest/latin-400-normal.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
+    <style>
+      @font-face { font-family: 'Geist'; font-style: normal; font-weight: 400; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'Geist'; font-style: normal; font-weight: 500; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-500-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'Geist'; font-style: normal; font-weight: 600; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-600-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'Geist'; font-style: normal; font-weight: 700; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-700-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'Geist Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-mono@latest/latin-400-normal.woff2') format('woff2'); }
+    </style>
+    <title>{title} — UI Craft</title>
+  </head>
+  <body
+    data-craft="off"
+    class="font-[family-name:var(--font-body)] text-[15px] leading-relaxed text-[var(--color-text)] bg-[var(--color-bg)]"
+  >
+    <a href="#gallery" class="absolute top-0 left-4 px-4 py-2 bg-blue-600 text-white font-medium text-sm rounded-b-md z-50 -translate-y-full focus:translate-y-0 transition-transform duration-200 ease-[var(--ease-out)]">Skip to gallery</a>
+
+    <!-- Top bar -->
+    <header class="sticky top-0 z-30 border-b border-[var(--color-border)] bg-[var(--color-bg)]/85 backdrop-blur">
+      <div class="mx-auto max-w-[1200px] px-[clamp(1rem,3vw,2rem)] h-12 flex items-center justify-between gap-4">
+        <a href="/" class="inline-flex items-center gap-2 text-[13px] font-medium tracking-tight">
+          <img src="/icon.png" alt="" width="22" height="22" class="rounded-[6px]" />
+          <span>UI&nbsp;Craft</span>
+          <span class="text-[var(--color-text-secondary)] font-normal">/ anti-slop</span>
+        </a>
+        <div class="flex items-center gap-5 text-[12px]">
+          <a href="/" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text)] focus-visible:text-[var(--color-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-sm transition-colors duration-150 ease-[var(--ease-out)]">Home</a>
+          <a href="/docs" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text)] focus-visible:text-[var(--color-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-sm transition-colors duration-150 ease-[var(--ease-out)]">Docs</a>
+          <a href="https://github.com/educlopez/ui-craft" target="_blank" rel="noopener noreferrer" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text)] focus-visible:text-[var(--color-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-sm transition-colors duration-150 ease-[var(--ease-out)]">GitHub&nbsp;&rarr;</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="mx-auto max-w-[960px] px-[clamp(1rem,3vw,2rem)] py-12 md:py-16">
+
+      <!-- Hero -->
+      <header class="max-w-[60ch]">
+        <p class="text-[11px] font-[family-name:var(--font-mono)] uppercase tracking-[0.12em] text-[oklch(55%_0.005_250)] mb-3">Interactive · 8 patterns</p>
+        <h1 class="text-[clamp(1.75rem,3.5vw,2.5rem)] font-semibold tracking-[-0.02em] leading-[1.1] [text-wrap:balance]">Anti-slop, demonstrated.</h1>
+        <p class="text-[var(--color-text-secondary)] mt-3 leading-relaxed max-w-[54ch]">
+          Eight patterns that make interfaces look AI-generated.
+          Flip the toggle to watch each one transform into the crafted version ui-craft writes instead.
+        </p>
+      </header>
+
+      <!-- Sticky toggle bar -->
+      <div class="toggle-wrap mt-10 mb-12 md:mb-16 md:sticky md:top-12 z-20 bg-[var(--color-bg)]/92 backdrop-blur border-b border-[var(--color-border)] py-4 -mx-[clamp(1rem,3vw,2rem)] px-[clamp(1rem,3vw,2rem)]">
+        <div class="flex items-center justify-between gap-6 flex-wrap">
+          <button
+            type="button"
+            class="craft-toggle"
+            aria-pressed="false"
+            aria-label="Toggle between slop and crafted states"
+          >
+            <span class="craft-toggle-track" aria-hidden="true">
+              <span class="craft-toggle-thumb"></span>
+            </span>
+            <span class="craft-toggle-labels" aria-hidden="true">
+              <span class="state-off">Slop</span>
+              <span class="state-on">Crafted</span>
+            </span>
+          </button>
+          <p class="stats text-[12px] text-[var(--color-text-secondary)] font-[family-name:var(--font-mono)] tabular-nums">
+            <span>8 patterns</span>
+            <span class="stats-sep">·</span>
+            <span data-detected>8</span> <span>detected</span>
+            <span class="stats-sep">·</span>
+            <span data-fixed>0</span> <span>fixed</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Gallery -->
+      <div id="gallery" class="grid md:grid-cols-2 gap-12 md:gap-10">
+
+        <!-- 01 · Gradient button + bounce -->
+        <section class="pattern" data-pattern="gradient-button" style="--stagger:0ms">
+          <header class="pattern-head">
+            <span class="pattern-num">01</span>
+            <h2 class="pattern-title">Gradient button + bounce</h2>
+          </header>
+          <div class="demo-area demo-area--center">
+            <button type="button" class="demo-btn-01" tabindex="0">
+              <span class="btn-text">See pricing details</span>
+              <svg class="btn-arrow" viewBox="0 0 12 12" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2.5 6h7" />
+                <path d="M6.5 3l3 3-3 3" />
+              </svg>
+            </button>
+          </div>
+          <footer class="pattern-meta">
+            <code class="rule">no-purple-cyan-gradient · no-bounce-easing · generic-cta</code>
+            <p class="caption">Three rules fire. <a href="/docs/ui-craft-detect">See all 33 in the detector →</a></p>
+          </footer>
+        </section>
+
+        <!-- 02 · Uniform 3-card grid -->
+        <section class="pattern" data-pattern="uniform-cards" style="--stagger:40ms">
+          <header class="pattern-head">
+            <span class="pattern-num">02</span>
+            <h2 class="pattern-title">Uniform 3-card grid</h2>
+          </header>
+          <div class="demo-area">
+            <div class="cards-grid">
+              <!-- Card A: Revenue — same feature, slop uses emoji+lorem treatment, craft uses sparkline+metric -->
+              <div class="mini-card mini-card--a">
+                <!-- SLOP view -->
+                <div class="mini-slop label-off">
+                  <span class="emoji-icon">🚀</span>
+                  <h3 class="mini-card-title">Revenue</h3>
+                  <p class="mini-card-body">Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+                </div>
+                <!-- CRAFT view -->
+                <div class="mini-craft label-on">
+                  <svg class="mini-spark" viewBox="0 0 120 32" width="120" height="32" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="spark-fill-a" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="oklch(62% 0.15 250)" stop-opacity="0.28" />
+                        <stop offset="100%" stop-color="oklch(62% 0.15 250)" stop-opacity="0" />
+                      </linearGradient>
+                      <linearGradient id="spark-stroke-a" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="oklch(62% 0.15 250)" stop-opacity="0.55" />
+                        <stop offset="100%" stop-color="oklch(62% 0.15 250)" stop-opacity="1" />
+                      </linearGradient>
+                    </defs>
+                    <line x1="0" y1="30" x2="120" y2="30" stroke="oklch(92% 0.005 250)" stroke-width="1" stroke-dasharray="2 3" />
+                    <path d="M0,26 Q8,24 14,25 T28,21 Q34,23 40,19 T52,14 Q60,17 68,12 T82,9 Q90,11 96,6 T106,6 L106,32 L0,32 Z" fill="url(#spark-fill-a)" />
+                    <path d="M0,26 Q8,24 14,25 T28,21 Q34,23 40,19 T52,14 Q60,17 68,12 T82,9 Q90,11 96,6 T106,6" fill="none" stroke="url(#spark-stroke-a)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="106" cy="6" r="2.5" fill="oklch(62% 0.15 250)" />
+                    <circle cx="106" cy="6" r="4.5" fill="oklch(62% 0.15 250)" fill-opacity="0.18" />
+                  </svg>
+                  <p class="mini-metric-big"><span class="tnum">$12,480</span></p>
+                  <p class="mini-metric-label">Revenue · last 7 days</p>
+                  <p class="mini-metric-trend"><span class="tnum">+12.5%</span> from last week</p>
+                </div>
+              </div>
+
+              <!-- Card C: Customer feedback — same feature, slop uses emoji+lorem treatment, craft uses pullquote+avatar -->
+              <div class="mini-card mini-card--c">
+                <!-- SLOP view -->
+                <div class="mini-slop label-off">
+                  <span class="emoji-icon">⚡</span>
+                  <h3 class="mini-card-title">Customer feedback</h3>
+                  <p class="mini-card-body">Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+                </div>
+                <!-- CRAFT view -->
+                <div class="mini-craft label-on">
+                  <blockquote class="mini-pullquote">
+                    <p>It stopped looking like an AI wrote it — even my designer asked who made it.</p>
+                  </blockquote>
+                  <div class="mini-avatar-row">
+                    <img
+                      src="/avatars/avatar-alex.jpg"
+                      alt="Alex Chen"
+                      width="28"
+                      height="28"
+                      class="avatar-img avatar-img--sm"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="mini-avatar-meta">
+                      <span class="mini-avatar-name">Alex Chen</span>
+                      <span class="mini-avatar-role">Frontend lead</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="pattern-meta">
+            <code class="rule">uniform-card-grid · emoji-as-icons · colored-top-borders</code>
+            <p class="caption">Identical cards become distinct shapes.</p>
+          </footer>
+        </section>
+
+        <!-- 03 · ALL CAPS heading -->
+        <section class="pattern" data-pattern="allcaps-heading" style="--stagger:80ms">
+          <header class="pattern-head">
+            <span class="pattern-num">03</span>
+            <h2 class="pattern-title">ALL CAPS heading</h2>
+          </header>
+          <div class="demo-area demo-area--left">
+            <div class="heading-demo">
+              <p class="demo-eyebrow label-on"><span class="demo-eyebrow-label">Features</span><span class="demo-eyebrow-sep">·</span><span class="demo-eyebrow-count tnum">04</span></p>
+              <h3 class="demo-h2">Features</h3>
+              <p class="demo-sub">What you get.</p>
+            </div>
+          </div>
+          <footer class="pattern-meta">
+            <code class="rule">all-caps-headings · wide-tracking-display</code>
+            <p class="caption">Uppercase tracking reads as a label, not a section heading.</p>
+          </footer>
+        </section>
+
+        <!-- 04 · Gradient metric -->
+        <section class="pattern" data-pattern="gradient-metric" style="--stagger:120ms">
+          <header class="pattern-head">
+            <span class="pattern-num">04</span>
+            <h2 class="pattern-title">Gradient metric text</h2>
+          </header>
+          <div class="demo-area demo-area--left">
+            <div class="metric-demo">
+              <div class="metric-row">
+                <svg class="metric-spark label-on" viewBox="0 0 80 40" width="80" height="40" preserveAspectRatio="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="spark-fill-b" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="oklch(62% 0.15 250)" stop-opacity="0.30" />
+                      <stop offset="100%" stop-color="oklch(62% 0.15 250)" stop-opacity="0" />
+                    </linearGradient>
+                    <linearGradient id="spark-stroke-b" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stop-color="oklch(62% 0.15 250)" stop-opacity="0.45" />
+                      <stop offset="100%" stop-color="oklch(62% 0.15 250)" stop-opacity="1" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,34 Q8,33 14,34 T24,33 Q30,31 34,28 T46,20 Q52,14 58,10 T66,7 L66,40 L0,40 Z" fill="url(#spark-fill-b)" />
+                  <path d="M0,34 Q8,33 14,34 T24,33 Q30,31 34,28 T46,20 Q52,14 58,10 T66,7" fill="none" stroke="url(#spark-stroke-b)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                  <circle cx="66" cy="7" r="2.75" fill="oklch(62% 0.15 250)" />
+                  <circle cx="66" cy="7" r="5" fill="oklch(62% 0.15 250)" fill-opacity="0.16" />
+                </svg>
+                <div class="metric-big tnum">+324%</div>
+              </div>
+              <p class="metric-sub label-on">
+                <span class="metric-sub-main">vs last quarter</span>
+                <span class="metric-sub-sep">·</span>
+                <span class="tnum metric-sub-range">Q3 &rarr; Q4</span>
+              </p>
+              <p class="metric-context label-on">Driven by retention cohort changes in enterprise.</p>
+            </div>
+          </div>
+          <footer class="pattern-meta">
+            <code class="rule">gradient-text-on-hero-metrics · no-tabular-nums</code>
+            <p class="caption">Gradient fill makes numbers harder to read, not more impressive.</p>
+          </footer>
+        </section>
+
+        <!-- 05 · Glass + neon -->
+        <section class="pattern" data-pattern="glass-neon" style="--stagger:160ms">
+          <header class="pattern-head">
+            <span class="pattern-num">05</span>
+            <h2 class="pattern-title">Glassmorphism + neon</h2>
+          </header>
+          <div class="demo-area demo-area--center glass-stage">
+            <div class="glass-bg" aria-hidden="true"></div>
+            <div class="glass-card">
+              <!-- SAME content in both states — slop/craft differ only in treatment -->
+              <div class="glass-inner">
+                <div class="glass-craft-head">
+                  <img
+                    src="/avatars/avatar-jordan.jpg"
+                    alt="Jordan Rivera"
+                    width="40"
+                    height="40"
+                    class="avatar-img avatar-img--md"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="glass-craft-id">
+                    <p class="glass-craft-name">Jordan Rivera</p>
+                    <p class="glass-craft-role">Design Engineer</p>
+                    <p class="glass-craft-meta"><span class="glass-dot" aria-hidden="true"></span>Online<span class="glass-craft-sep">·</span>active <span class="tnum">2m</span> ago</p>
+                  </div>
+                </div>
+                <p class="glass-craft-body">Reviewed the new pricing page.</p>
+                <p class="glass-craft-stats"><span class="tnum">3</span> comments<span class="glass-craft-sep">·</span><span class="tnum">2</span> mentions<span class="glass-craft-sep">·</span><span class="tnum">15</span> min read</p>
+                <div class="glass-craft-divider" aria-hidden="true"></div>
+                <p class="glass-craft-foot">updated <span class="tnum">4:15 PM</span><span class="glass-craft-sep">·</span>Project Aurora</p>
+              </div>
+            </div>
+          </div>
+          <footer class="pattern-meta">
+            <code class="rule">glassmorphism-decoration · decorative-glow · neon-box-shadow</code>
+            <p class="caption">Backdrop blur and cyan glow read as decoration, not depth.</p>
+          </footer>
+        </section>
+
+        <!-- 06 · Decorative blob -->
+        <section class="pattern" data-pattern="gradient-blob" style="--stagger:200ms">
+          <header class="pattern-head">
+            <span class="pattern-num">06</span>
+            <h2 class="pattern-title">Decorative gradient blobs</h2>
+          </header>
+          <div class="demo-area demo-area--center blob-stage">
+            <div class="blob blob--pink" aria-hidden="true"></div>
+            <div class="blob blob--blue" aria-hidden="true"></div>
+            <div class="blob-content">
+              <span class="blob-rule" aria-hidden="true"></span>
+              <p class="blob-eyebrow">Essay · 02</p>
+              <p class="blob-title">Typography, given the room it needs.</p>
+              <p class="blob-sub blob-quote">Restraint is not the absence of style — it is the evidence that a designer made every call on purpose, and none of them were decoration.</p>
+            </div>
+          </div>
+          <footer class="pattern-meta">
+            <code class="rule">gradient-blobs · decorative-orbs · bouncing-decor</code>
+            <p class="caption">Blobs exist because the layout wasn't good enough without them.</p>
+          </footer>
+        </section>
+
+        <!-- 07 · Trend pill -->
+        <section class="pattern" data-pattern="trend-pill" style="--stagger:240ms">
+          <header class="pattern-head">
+            <span class="pattern-num">07</span>
+            <h2 class="pattern-title">Colored trend pill</h2>
+          </header>
+          <div class="demo-area demo-area--left">
+            <!-- SLOP: same Revenue $12,480 + 12.5% trend — rendered with gradient text + colored pill + glow -->
+            <div class="kpi-slop label-off" aria-hidden="true">
+              <div class="kpi-slop-head">
+                <span class="kpi-slop-label">Revenue</span>
+                <span class="kpi-slop-badge">+12.5%</span>
+              </div>
+              <p class="kpi-slop-value"><span class="tnum">$12,480</span></p>
+              <p class="kpi-slop-context">from last month</p>
+            </div>
+            <!-- CRAFT: dub-style KPI card with embedded sparkline -->
+            <div class="kpi-card label-on">
+              <div class="kpi-head">
+                <span class="kpi-label">Revenue</span>
+                <button type="button" class="kpi-filter" tabindex="-1" aria-hidden="true">
+                  Last 7 days
+                  <svg viewBox="0 0 10 6" width="8" height="5" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4" /></svg>
+                </button>
+              </div>
+              <div class="kpi-body">
+                <p class="kpi-value"><span class="tnum">$12,480</span></p>
+                <svg class="kpi-spark" viewBox="0 0 140 48" width="140" height="48" preserveAspectRatio="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="spark-fill-d" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="oklch(62% 0.15 250)" stop-opacity="0.32" />
+                      <stop offset="100%" stop-color="oklch(62% 0.15 250)" stop-opacity="0" />
+                    </linearGradient>
+                    <linearGradient id="spark-stroke-d" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stop-color="oklch(62% 0.15 250)" stop-opacity="0.55" />
+                      <stop offset="100%" stop-color="oklch(62% 0.15 250)" stop-opacity="1" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,34 Q10,31 20,29 T38,27 Q46,30 54,32 T72,28 Q82,23 92,19 T108,14 Q114,11 118,10 T122,9 L122,48 L0,48 Z" fill="url(#spark-fill-d)" />
+                  <path d="M0,34 Q10,31 20,29 T38,27 Q46,30 54,32 T72,28 Q82,23 92,19 T108,14 Q114,11 118,10 T122,9" fill="none" stroke="url(#spark-stroke-d)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                  <circle cx="122" cy="9" r="3" fill="oklch(62% 0.15 250)" />
+                  <circle cx="122" cy="9" r="5.5" fill="oklch(62% 0.15 250)" fill-opacity="0.18" />
+                </svg>
+              </div>
+              <p class="kpi-trend">
+                <svg class="trend-triangle" viewBox="0 0 8 8" width="8" height="8" aria-hidden="true">
+                  <path d="M4 1 L7.5 6.5 L0.5 6.5 Z" fill="currentColor" />
+                </svg>
+                <span class="kpi-trend-pct tnum">12.5%</span>
+                <span class="kpi-trend-context">from last month</span>
+              </p>
+              <div class="kpi-divider" aria-hidden="true"></div>
+              <p class="kpi-foot">Last updated <span class="tnum">2</span> minutes ago</p>
+            </div>
+          </div>
+          <footer class="pattern-meta">
+            <code class="rule">colored-pills-on-trend · stat-as-decoration</code>
+            <p class="caption">A green pill adds color, not information. Typography carries it.</p>
+          </footer>
+        </section>
+
+        <!-- 08 · Loading spinner -->
+        <section class="pattern" data-pattern="spinner-loading" style="--stagger:280ms">
+          <header class="pattern-head">
+            <span class="pattern-num">08</span>
+            <h2 class="pattern-title">Generic loading state</h2>
+          </header>
+          <div class="demo-area demo-area--center loader-stage">
+            <div class="loader-wrap">
+              <p class="loading-for">Loading post…</p>
+              <!-- SLOP: generic spinner, gives no preview of the content shape -->
+              <div class="slop-loader label-off-inline">
+                <div class="spinner-ring"></div>
+                <p class="loader-caps">LOADING<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+                <p class="slop-subtext">This won't take long...</p>
+              </div>
+              <!-- CRAFT: skeleton matches the shape of the post card coming in -->
+              <div class="craft-skeleton label-on-inline" aria-hidden="true">
+                <div class="sk-row sk-row-head">
+                  <div class="sk sk-avatar"></div>
+                  <div class="sk-stack">
+                    <div class="sk sk-line sk-name"></div>
+                    <div class="sk sk-line sk-meta"></div>
+                  </div>
+                </div>
+                <div class="sk sk-line sk-title-bar"></div>
+                <div class="sk-body">
+                  <div class="sk sk-line sk-body-line"></div>
+                  <div class="sk sk-line sk-body-line"></div>
+                </div>
+                <div class="sk-actions">
+                  <div class="sk sk-pill"></div>
+                  <div class="sk sk-pill"></div>
+                  <div class="sk sk-pill"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="pattern-meta">
+            <code class="rule">generic-loading-spinners · skeleton-shape-mismatch</code>
+            <p class="caption">A skeleton that matches the final layout tells the user what's coming.</p>
+          </footer>
+        </section>
+
+      </div>
+
+      <!-- Footer CTA -->
+      <footer class="page-cta mt-24 md:mt-32 pt-10 border-t border-[var(--color-border)]">
+        <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight [text-wrap:balance]">This page was dogfooded.</h2>
+        <p class="text-[var(--color-text-secondary)] mt-3 max-w-[56ch] leading-relaxed">
+          The landing you're on runs through <code class="inline-code">ui-craft-detect</code> on every push. Zero findings.
+          Your next project could too.
+        </p>
+        <div class="mt-6 flex items-center gap-5 flex-wrap text-[13px]">
+          <code class="cmd-chip">npx ui-craft-detect ./src</code>
+          <a href="/" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text)] underline decoration-[var(--color-border)] underline-offset-4 transition-colors">&larr; Back to home</a>
+        </div>
+        <p class="text-[12px] text-[oklch(60%_0.005_250)] mt-8 font-[family-name:var(--font-mono)]">
+          Rules link to <a class="underline decoration-[var(--color-border)] underline-offset-4 hover:decoration-[var(--color-text-secondary)]" href="/docs/ui-craft-detect">ui-craft-detect</a> documentation.
+        </p>
+      </footer>
+    </div>
+
+    <style is:global>
+      /* ============================================================
+         ANTI-SLOP GALLERY — STATE SWITCH
+         Base transitions live on the elements.
+         Slop / Craft properties live on [data-craft="off"] / ="on"
+         ============================================================ */
+
+      body[data-craft] { overflow-x: hidden; }
+
+      /* Label show/hide — both states live in DOM, visibility per toggle */
+      [data-craft="off"] .label-on, [data-craft="off"] .label-on-inline { display: none; }
+      [data-craft="on"]  .label-off, [data-craft="on"]  .label-off-inline { display: none; }
+
+      /* ---------- Craft Toggle ---------- */
+      .craft-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        font: inherit;
+        color: var(--color-text);
+      }
+      .craft-toggle:focus-visible { outline: 2px solid oklch(0.458 0.305 268.13); outline-offset: 4px; border-radius: 8px; }
+      .craft-toggle-track {
+        position: relative;
+        width: 56px;
+        height: 30px;
+        border-radius: 999px;
+        background: oklch(92% 0.005 250);
+        border: 1px solid var(--color-border);
+        transition: background 300ms var(--ease-out);
+        flex-shrink: 0;
+      }
+      .craft-toggle-thumb {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 24px;
+        height: 24px;
+        border-radius: 999px;
+        background: var(--color-bg);
+        box-shadow: 0 1px 2px oklch(20% 0.02 250 / 0.12), 0 2px 6px oklch(20% 0.02 250 / 0.06);
+        transition: transform 300ms var(--ease-out);
+      }
+      [data-craft="on"] .craft-toggle-track { background: oklch(0.458 0.305 268.13); }
+      [data-craft="on"] .craft-toggle-thumb { transform: translateX(26px); }
+
+      .craft-toggle-labels {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 6px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .craft-toggle-labels .state-off { color: var(--color-text); }
+      .craft-toggle-labels .state-on { color: var(--color-text-secondary); }
+      [data-craft="on"] .craft-toggle-labels .state-off { color: var(--color-text-secondary); }
+      [data-craft="on"] .craft-toggle-labels .state-on  { color: var(--color-text); }
+
+      .stats-sep { color: oklch(75% 0.005 250); padding: 0 4px; }
+
+      /* ---------- Pattern chrome ---------- */
+      .pattern {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        height: 100%;
+      }
+      .pattern-head {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+      }
+      .pattern-num {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: oklch(60% 0.005 250);
+        letter-spacing: 0.04em;
+      }
+      .pattern-title {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--color-text);
+        letter-spacing: -0.005em;
+      }
+      .demo-area {
+        position: relative;
+        flex: 1;
+        min-height: 440px;
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        background: var(--color-bg);
+        padding: 36px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        overflow: hidden;
+      }
+      .demo-area--center { justify-content: center; text-align: center; }
+      .demo-area--left   { justify-content: flex-start; align-items: center; }
+      @media (max-width: 640px) {
+        .demo-area { min-height: 360px; padding: 28px 22px; }
+      }
+
+      .pattern-meta { display: flex; flex-direction: column; gap: 6px; }
+      .pattern-meta .rule {
+        display: inline-block;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        background: var(--color-code-bg);
+        border: 1px solid var(--color-border);
+        padding: 3px 8px;
+        border-radius: 4px;
+        color: var(--color-text);
+        line-height: 1.6;
+        width: fit-content;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+      }
+      .pattern-meta .caption {
+        font-size: 12.5px;
+        color: var(--color-text-secondary);
+        line-height: 1.5;
+      }
+      .pattern-meta .caption a {
+        color: var(--color-text);
+        text-decoration: underline;
+        text-decoration-color: var(--color-border);
+        text-underline-offset: 3px;
+        transition: text-decoration-color 0.15s var(--ease-out);
+      }
+      .pattern-meta .caption a:hover { text-decoration-color: var(--color-text-secondary); }
+
+      /* Common staggered transition base for state-aware elements */
+      .demo-btn-01,
+      .mini-card,
+      .demo-h2,
+      .metric-big,
+      .glass-card,
+      .blob,
+      .blob-content,
+      .kpi-slop,
+      .kpi-card,
+      .slop-loader,
+      .craft-skeleton {
+        transition:
+          background 400ms var(--ease-out),
+          background-color 400ms var(--ease-out),
+          color 400ms var(--ease-out),
+          box-shadow 400ms var(--ease-out),
+          border-radius 400ms var(--ease-out),
+          border 400ms var(--ease-out),
+          transform 400ms var(--ease-out),
+          letter-spacing 400ms var(--ease-out),
+          font-weight 400ms var(--ease-out),
+          opacity 400ms var(--ease-out),
+          filter 400ms var(--ease-out);
+        transition-delay: var(--stagger, 0ms);
+      }
+
+      /* ============================================================
+         01 · Gradient button + bounce
+         ============================================================ */
+      .demo-btn-01 {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 600;
+        color: white;
+        border: 0;
+        cursor: pointer;
+      }
+      .demo-btn-01:focus-visible { outline: 2px solid oklch(0.458 0.305 268.13); outline-offset: 3px; }
+      .demo-btn-01 .btn-arrow { transition: transform 180ms var(--ease-out); }
+
+      [data-craft="off"] .demo-btn-01 {
+        background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+        box-shadow: 0 8px 32px rgba(139, 92, 246, 0.45);
+        border-radius: 999px;
+        transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      [data-craft="off"] .demo-btn-01:hover { transform: translateY(-4px); }
+
+      [data-craft="on"] .demo-btn-01 {
+        background: oklch(62% 0.15 250);
+        color: oklch(99% 0.002 250);
+        box-shadow:
+          inset 0 1px 0 oklch(100% 0 0 / 0.12),
+          0 1px 2px oklch(20% 0.02 250 / 0.08),
+          0 4px 10px -4px oklch(62% 0.15 250 / 0.40);
+        border-radius: 8px;
+        padding: 10px 16px;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "ss01";
+        transition-timing-function: var(--ease-out);
+        transition-duration: 180ms;
+      }
+      [data-craft="on"] .demo-btn-01:hover {
+        transform: translateY(-1px);
+        box-shadow:
+          inset 0 1px 0 oklch(100% 0 0 / 0.14),
+          0 2px 4px oklch(20% 0.02 250 / 0.10),
+          0 10px 24px -6px oklch(62% 0.15 250 / 0.50);
+      }
+      [data-craft="on"] .demo-btn-01:hover .btn-arrow { transform: translateX(2px); }
+      [data-craft="on"] .demo-btn-01:active {
+        transform: translateY(0);
+        box-shadow:
+          inset 0 1px 1px oklch(20% 0.08 250 / 0.18),
+          0 1px 1px oklch(20% 0.02 250 / 0.08);
+      }
+
+      /* ============================================================
+         02 · Card grid — asymmetric, each card distinct by purpose
+         ============================================================ */
+      .cards-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        width: 100%;
+      }
+      @media (max-width: 640px) {
+        .cards-grid { grid-template-columns: 1fr; }
+      }
+      .mini-card {
+        padding: 14px;
+        background: var(--color-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        min-height: 136px;
+      }
+      .emoji-icon { font-size: 20px; line-height: 1; display: inline-block; margin-bottom: 6px; }
+      .mini-card-title { font-size: 13px; font-weight: 500; color: var(--color-text); letter-spacing: -0.005em; }
+      .mini-card-body  { font-size: 12px; color: var(--color-text-secondary); line-height: 1.45; }
+
+      .mini-slop, .mini-craft { display: flex; flex-direction: column; gap: 6px; }
+
+      /* Craft card A — metric/sparkline */
+      .mini-spark { color: oklch(62% 0.15 250); display: block; margin-bottom: 4px; width: 100%; height: auto; max-width: 140px; }
+      .mini-metric-big {
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--color-text);
+        letter-spacing: -0.02em;
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "ss01", "tnum";
+        line-height: 1.05;
+      }
+      .mini-metric-label { font-size: 11px; color: var(--color-text-secondary); font-family: var(--font-mono); letter-spacing: 0.02em; }
+      .mini-metric-trend { font-size: 11px; color: var(--color-text-secondary); line-height: 1.4; }
+      .mini-metric-trend .tnum { color: oklch(52% 0.13 155); font-variant-numeric: tabular-nums; font-weight: 500; }
+
+      /* Craft card B — icon + title + caption */
+      .mini-icon { color: oklch(62% 0.15 250); margin-bottom: 4px; }
+
+      /* Craft card C — pull-quote + avatar row */
+      .mini-pullquote { margin: 0; }
+      .mini-pullquote p {
+        font-size: 12.5px;
+        font-style: italic;
+        color: var(--color-text);
+        line-height: 1.45;
+        letter-spacing: -0.005em;
+        text-wrap: pretty;
+      }
+      .mini-avatar-row { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+      .mini-avatar-meta { display: flex; flex-direction: column; line-height: 1.25; }
+      .mini-avatar-name { font-size: 11.5px; font-weight: 500; color: var(--color-text); letter-spacing: -0.005em; }
+      .mini-avatar-role { font-size: 10.5px; color: var(--color-text-secondary); font-family: var(--font-mono); }
+
+      /* Real-photo avatars (shared across patterns) */
+      .avatar-img {
+        display: block;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid oklch(92% 0.005 250);
+        background: oklch(96% 0.003 250);
+        flex-shrink: 0;
+      }
+      .avatar-img--sm { width: 28px; height: 28px; }
+      .avatar-img--md { width: 40px; height: 40px; }
+
+      /* Slop: all identical, colored top border, emoji visible */
+      [data-craft="off"] .mini-card {
+        border: 1px solid var(--color-border);
+        border-top: 3px solid hsl(270 70% 60%);
+        border-radius: 16px;
+        box-shadow: 0 2px 8px rgba(139, 92, 246, 0.08);
+      }
+      [data-craft="off"] .mini-craft { display: none; }
+      [data-craft="off"] .mini-slop { display: flex; }
+
+      /* Craft: asymmetric grid, hairline border, varied radii, layered shadow */
+      [data-craft="on"] .cards-grid {
+        grid-template-columns: 1.1fr 1fr;
+      }
+      @media (max-width: 640px) {
+        [data-craft="on"] .cards-grid { grid-template-columns: 1fr; }
+      }
+      [data-craft="on"] .mini-card {
+        border: 1px solid oklch(92% 0.005 250);
+        box-shadow:
+          0 1px 2px oklch(20% 0.02 250 / 0.04),
+          0 4px 12px -4px oklch(20% 0.02 250 / 0.05);
+      }
+      [data-craft="on"] .mini-slop { display: none; }
+      [data-craft="on"] .mini-craft { display: flex; }
+      [data-craft="on"] .mini-card--a { border-radius: 12px; }
+      [data-craft="on"] .mini-card--b { border-radius: 8px; }
+      [data-craft="on"] .mini-card--c { border-radius: 10px; }
+
+      /* ============================================================
+         03 · ALL CAPS heading — editorial block
+         ============================================================ */
+      .heading-demo { width: 100%; }
+      .demo-h2 {
+        margin: 0;
+        color: var(--color-text);
+        line-height: 1.1;
+      }
+      .demo-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--color-text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 12px;
+      }
+      .demo-eyebrow-label { color: var(--color-text-secondary); }
+      .demo-eyebrow-sep { color: oklch(75% 0.005 250); }
+      .demo-eyebrow-count { color: var(--color-text); font-variant-numeric: tabular-nums; }
+      .demo-sub {
+        margin-top: 10px;
+        font-size: 14px;
+        color: var(--color-text-secondary);
+        line-height: 1.55;
+        max-width: 46ch;
+        text-wrap: pretty;
+      }
+
+      [data-craft="off"] .heading-demo { text-align: center; }
+      [data-craft="off"] .demo-h2 {
+        font-size: 24px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      [data-craft="off"] .demo-sub {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-top: 14px;
+        color: var(--color-text-secondary);
+        text-align: center;
+      }
+      [data-craft="on"] .heading-demo { text-align: left; }
+      [data-craft="on"] .demo-h2 {
+        font-size: clamp(28px, 4.5vw, 40px);
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        line-height: 1.08;
+        text-wrap: balance;
+        max-width: 18ch;
+      }
+
+      /* ============================================================
+         04 · Gradient metric text — crafted hero number
+         ============================================================ */
+      .metric-demo { display: flex; flex-direction: column; align-items: flex-start; }
+      .metric-row {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 10px;
+      }
+      .metric-big {
+        font-size: 56px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.03em;
+      }
+      .metric-spark { color: oklch(62% 0.15 250); align-self: flex-end; margin-bottom: 6px; }
+      .metric-sub {
+        margin-top: 10px;
+        font-size: 13px;
+        color: var(--color-text-secondary);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .metric-sub-sep { color: oklch(75% 0.005 250); }
+      .metric-sub-range { font-family: var(--font-mono); font-size: 12px; color: var(--color-text); font-variant-numeric: tabular-nums; }
+      .metric-context { margin-top: 4px; font-size: 12px; color: oklch(55% 0.005 250); line-height: 1.5; max-width: 38ch; }
+
+      [data-craft="off"] .metric-big {
+        background: linear-gradient(to right, #ec4899, #8b5cf6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+      [data-craft="on"] .metric-big {
+        color: var(--color-text);
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum", "ss01";
+        font-weight: 500;
+        font-size: 64px;
+        letter-spacing: -0.035em;
+      }
+
+      /* ============================================================
+         05 · Glass + neon
+         ============================================================ */
+      .glass-stage {
+        padding: 0;
+      }
+      .glass-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, oklch(30% 0.08 280) 0%, oklch(22% 0.06 230) 100%);
+        opacity: 1;
+        transition: opacity 400ms var(--ease-out);
+      }
+      [data-craft="on"] .glass-bg { opacity: 0; }
+
+      .glass-card {
+        position: relative;
+        z-index: 1;
+        padding: 18px 20px;
+        width: calc(100% - 40px);
+        max-width: 360px;
+        text-align: left;
+      }
+
+      .glass-inner { display: flex; flex-direction: column; gap: 10px; }
+
+      /* SLOP: glassmorphism panel with cyan neon glow + gradient name */
+      [data-craft="off"] .glass-card {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        box-shadow: 0 0 40px rgba(6, 182, 212, 0.45), 0 0 80px rgba(139, 92, 246, 0.25);
+        color: white;
+        padding: 22px 22px 20px;
+      }
+      [data-craft="off"] .glass-card .glass-craft-name {
+        background: linear-gradient(90deg, #ec4899, #a78bfa, #06b6d4);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        font-weight: 700;
+        font-size: 16px;
+      }
+      [data-craft="off"] .glass-card .glass-craft-role,
+      [data-craft="off"] .glass-card .glass-craft-meta,
+      [data-craft="off"] .glass-card .glass-craft-body,
+      [data-craft="off"] .glass-card .glass-craft-stats,
+      [data-craft="off"] .glass-card .glass-craft-foot {
+        color: rgba(255, 255, 255, 0.75);
+      }
+      [data-craft="off"] .glass-card .glass-craft-stats .tnum,
+      [data-craft="off"] .glass-card .glass-craft-foot .tnum {
+        color: rgba(255, 255, 255, 0.95);
+      }
+      [data-craft="off"] .glass-card .glass-craft-divider {
+        background: rgba(255, 255, 255, 0.15);
+      }
+      [data-craft="off"] .glass-card .glass-craft-sep {
+        color: rgba(255, 255, 255, 0.4);
+      }
+      [data-craft="off"] .glass-card .avatar-img {
+        border-color: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 0 18px rgba(6, 182, 212, 0.5);
+      }
+
+      /* CRAFT: flat white card with accent hairline anchor */
+      [data-craft="on"] .glass-card {
+        background: oklch(100% 0 0);
+        border: 1px solid oklch(92% 0.005 250);
+        border-radius: 12px;
+        box-shadow:
+          0 1px 2px oklch(15% 0.03 260 / 0.06),
+          0 4px 12px oklch(15% 0.03 260 / 0.05),
+          0 16px 40px -12px oklch(15% 0.03 260 / 0.08);
+        color: var(--color-text);
+        overflow: hidden;
+        width: 90%;
+        max-width: 360px;
+        padding: 18px 20px;
+      }
+      [data-craft="on"] .glass-card::before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        bottom: 10px;
+        left: 0;
+        width: 2px;
+        background: oklch(62% 0.15 250);
+        border-radius: 0 2px 2px 0;
+      }
+
+      .glass-craft-head { display: flex; align-items: flex-start; gap: 10px; }
+      .glass-craft-id { display: flex; flex-direction: column; line-height: 1.3; }
+      .glass-craft-name {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--color-text);
+        letter-spacing: -0.005em;
+      }
+      .glass-craft-role {
+        font-size: 11px;
+        color: var(--color-text-secondary);
+        letter-spacing: -0.005em;
+        margin-top: 1px;
+      }
+      .glass-craft-meta {
+        font-size: 11.5px;
+        color: var(--color-text-secondary);
+        font-family: var(--font-mono);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 3px;
+      }
+      .glass-craft-meta .tnum { font-variant-numeric: tabular-nums; }
+      .glass-craft-sep { color: oklch(75% 0.005 250); padding: 0 5px; }
+      .glass-dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: oklch(64% 0.17 150);
+        box-shadow: 0 0 0 2px oklch(64% 0.17 150 / 0.16);
+        margin-right: 4px;
+      }
+      .glass-craft-body {
+        font-size: 12.5px;
+        color: var(--color-text);
+        line-height: 1.5;
+        margin-top: 2px;
+      }
+      .glass-craft-stats {
+        font-size: 10.5px;
+        color: var(--color-text-secondary);
+        font-family: var(--font-mono);
+        line-height: 1.5;
+      }
+      .glass-craft-stats .tnum { font-variant-numeric: tabular-nums; color: var(--color-text); font-weight: 500; }
+      .glass-craft-divider {
+        height: 1px;
+        background: oklch(92% 0.005 250);
+        margin: 2px 0;
+      }
+      .glass-craft-foot {
+        font-size: 10.5px;
+        color: oklch(60% 0.005 250);
+        font-family: var(--font-mono);
+        line-height: 1.5;
+      }
+      .glass-craft-foot .tnum { font-variant-numeric: tabular-nums; }
+
+      /* ============================================================
+         06 · Blobs
+         ============================================================ */
+      .blob-stage { padding: 0; }
+      .blob {
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        filter: blur(40px);
+        pointer-events: none;
+      }
+      .blob--pink {
+        top: -40px;
+        left: -40px;
+        background: radial-gradient(circle at 30% 30%, #ec4899 0%, transparent 60%);
+        animation: blob-bounce 5s ease-in-out infinite;
+      }
+      .blob--blue {
+        bottom: -40px;
+        right: -40px;
+        background: radial-gradient(circle at 70% 70%, #3b82f6 0%, transparent 60%);
+        animation: blob-bounce 6s ease-in-out infinite reverse;
+      }
+      [data-craft="on"] .blob { opacity: 0; animation: none; }
+
+      @keyframes blob-bounce {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50%      { transform: translate(12px, -12px) scale(1.05); }
+      }
+
+      .blob-content {
+        position: relative;
+        z-index: 1;
+        padding: 28px 24px;
+        width: 100%;
+        max-width: 420px;
+        text-align: center;
+      }
+      .blob-rule {
+        display: block;
+        width: 40px;
+        height: 1px;
+        background: var(--color-border);
+        margin: 0 auto 16px;
+      }
+      [data-craft="off"] .blob-rule { display: none; }
+      .blob-eyebrow {
+        font-size: 11px;
+        font-family: var(--font-mono);
+        color: var(--color-text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 6px;
+      }
+      .blob-title {
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--color-text);
+        letter-spacing: -0.018em;
+        line-height: 1.18;
+      }
+      .blob-sub {
+        font-size: 13px;
+        color: var(--color-text-secondary);
+        margin-top: 10px;
+        line-height: 1.55;
+      }
+      /* CRAFT: editorial whitespace */
+      [data-craft="on"] .blob-stage { border-top: 1px solid oklch(92% 0.005 250); }
+      [data-craft="on"] .blob-content {
+        text-align: left;
+        max-width: 65ch;
+        padding: 32px 28px;
+      }
+      [data-craft="on"] .blob-rule { margin: 0 0 16px; }
+      [data-craft="on"] .blob-title {
+        text-wrap: balance;
+        max-width: 20ch;
+      }
+      [data-craft="on"] .blob-quote {
+        display: block;
+        font-size: 14.5px;
+        line-height: 1.6;
+        color: var(--color-text);
+        text-wrap: pretty;
+        max-width: 52ch;
+        margin-top: 14px;
+      }
+      [data-craft="on"] .blob-quote::first-letter {
+        font-size: 2.5em;
+        float: left;
+        line-height: 0.95;
+        font-weight: 500;
+        color: var(--color-text);
+        padding: 2px 8px 0 0;
+        margin-top: 2px;
+      }
+
+      /* ============================================================
+         07 · Trend pill — Dub-style KPI card
+         ============================================================ */
+
+      /* SLOP: gradient text + emoji pill + chip row */
+      .kpi-slop {
+        width: 85%;
+        max-width: 380px;
+        padding: 16px 18px;
+        border: 1px solid #fbcfe8;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #fff1f7 0%, #f3e8ff 100%);
+        box-shadow: 0 4px 18px rgba(236, 72, 153, 0.12);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .kpi-slop-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .kpi-slop-label {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #a21caf;
+      }
+      .kpi-slop-badge {
+        font-size: 12px;
+        font-weight: 700;
+        color: white;
+        background: #10b981;
+        padding: 4px 10px;
+        border-radius: 999px;
+        box-shadow: 0 0 16px rgba(16, 185, 129, 0.45);
+      }
+      .kpi-slop-value {
+        font-size: 40px;
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        background: linear-gradient(90deg, #ec4899 0%, #8b5cf6 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        font-variant-numeric: tabular-nums;
+      }
+      .kpi-slop-context {
+        font-size: 12px;
+        color: #a21caf;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      /* CRAFT: restrained KPI card with embedded sparkline */
+      .kpi-card {
+        width: 88%;
+        max-width: 420px;
+        padding: 16px 18px;
+        border: 1px solid oklch(92% 0.005 250);
+        border-radius: 10px;
+        background: var(--color-bg);
+        box-shadow:
+          0 1px 2px oklch(20% 0.02 250 / 0.04),
+          0 4px 14px -4px oklch(20% 0.02 250 / 0.06);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .kpi-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .kpi-label {
+        font-size: 11px;
+        color: var(--color-text-secondary);
+        font-family: var(--font-mono);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .kpi-filter {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-family: var(--font-mono);
+        color: var(--color-text-secondary);
+        background: transparent;
+        border: 1px solid oklch(92% 0.005 250);
+        border-radius: 6px;
+        padding: 3px 8px;
+        cursor: default;
+      }
+      .kpi-filter svg { opacity: 0.7; }
+      .kpi-body {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .kpi-value {
+        font-size: clamp(30px, 4.5vw, 40px);
+        font-weight: 500;
+        line-height: 1;
+        color: var(--color-text);
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "ss01", "tnum";
+        letter-spacing: -0.03em;
+      }
+      .kpi-spark { color: oklch(62% 0.15 250); flex-shrink: 0; margin-right: 4px; }
+      .kpi-trend {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12.5px;
+      }
+      .trend-triangle { color: oklch(52% 0.13 155); flex-shrink: 0; }
+      .kpi-trend-pct { color: oklch(52% 0.13 155); font-weight: 500; font-variant-numeric: tabular-nums; }
+      .kpi-trend-context { color: var(--color-text-secondary); }
+      .kpi-divider {
+        height: 1px;
+        background: oklch(94% 0.005 250);
+      }
+      .kpi-foot {
+        font-size: 11px;
+        color: oklch(60% 0.005 250);
+        font-family: var(--font-mono);
+      }
+      .kpi-foot .tnum { font-variant-numeric: tabular-nums; }
+
+      /* ============================================================
+         08 · Loader
+         ============================================================ */
+      .loader-stage { }
+      .loader-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        width: 100%;
+      }
+      .loading-for {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--color-text-secondary);
+        letter-spacing: 0.04em;
+      }
+
+      /* SLOP: bigger spinner + caps + dots + subtext */
+      .slop-loader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        padding: 8px 0;
+      }
+      .spinner-ring {
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        background:
+          conic-gradient(from 0deg, #8b5cf6, #06b6d4, #ec4899, #8b5cf6);
+        mask: radial-gradient(circle 26px at center, transparent 99%, #000 100%);
+        -webkit-mask: radial-gradient(circle 26px at center, transparent 99%, #000 100%);
+        animation: spin 1s linear infinite;
+      }
+      .loader-caps {
+        font-family: var(--font-mono);
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--color-text);
+      }
+      .dots {
+        display: inline-flex;
+        gap: 4px;
+        margin-left: 6px;
+      }
+      .dots span {
+        animation: dot-bounce 1.1s ease-in-out infinite;
+        display: inline-block;
+      }
+      .dots span:nth-child(2) { animation-delay: 0.15s; }
+      .dots span:nth-child(3) { animation-delay: 0.3s; }
+      .slop-subtext {
+        font-size: 12px;
+        color: var(--color-text-secondary);
+        letter-spacing: 0.02em;
+        animation: slop-fade 2.2s ease-in-out infinite;
+      }
+
+      @keyframes spin { to { transform: rotate(360deg); } }
+      @keyframes dot-bounce {
+        0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+        40%           { transform: translateY(-5px); opacity: 1; }
+      }
+      @keyframes slop-fade {
+        0%, 100% { opacity: 0.4; }
+        50%      { opacity: 1; }
+      }
+
+      /* CRAFT: multi-row skeleton matching article/post card shape */
+      .craft-skeleton {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 90%;
+        max-width: 360px;
+      }
+      .sk-row-head { display: flex; align-items: center; gap: 12px; }
+      .sk-stack { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; }
+      .sk-body { display: flex; flex-direction: column; gap: 6px; }
+      .sk-actions { display: flex; gap: 8px; margin-top: 2px; }
+      .sk {
+        background: var(--color-code-bg);
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+      }
+      .sk::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          oklch(97% 0.003 250 / 0.9) 50%,
+          transparent 100%
+        );
+        animation: shimmer 1.5s linear infinite;
+      }
+      @keyframes shimmer {
+        from { transform: translateX(-100%); }
+        to   { transform: translateX(100%); }
+      }
+      .sk-line { height: 12px; }
+      .sk-name { height: 14px; width: 45%; }
+      .sk-meta { height: 10px; width: 30%; }
+      .sk-title-bar { height: 18px; width: 70%; border-radius: 5px; }
+      .sk-body-line { height: 12px; width: 100%; }
+      .sk-body-line:last-child { width: 92%; }
+      .sk-avatar { width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; }
+      .sk-pill { height: 22px; width: 60px; border-radius: 999px; }
+
+      /* ============================================================
+         Footer CTA
+         ============================================================ */
+      .page-cta .inline-code {
+        font-family: var(--font-mono);
+        font-size: 0.85em;
+        padding: 0.1em 0.35em;
+        background: var(--color-code-bg);
+        border-radius: 4px;
+        color: var(--color-text);
+      }
+      .cmd-chip {
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        background: var(--color-code-bg);
+        border: 1px solid var(--color-border);
+        padding: 7px 11px;
+        border-radius: 6px;
+        color: var(--color-text);
+      }
+
+      /* ============================================================
+         Reduced motion
+         ============================================================ */
+      @media (prefers-reduced-motion: reduce) {
+        .demo-btn-01,
+        .mini-card,
+        .demo-h2,
+        .metric-big,
+        .glass-card,
+        .glass-bg,
+        .blob,
+        .blob-content,
+        .kpi-slop,
+        .kpi-card,
+        .slop-loader,
+        .craft-skeleton,
+        .craft-toggle-track,
+        .craft-toggle-thumb {
+          transition-duration: 0.01ms !important;
+          transition-delay: 0ms !important;
+        }
+        .blob, .spinner-ring, .dots span, .sk::after, .slop-subtext {
+          animation: none !important;
+        }
+      }
+    </style>
+
+    <script>
+      const root = document.body;
+      const btn = document.querySelector('.craft-toggle') as HTMLButtonElement | null;
+      const fixedStat = document.querySelector('[data-fixed]') as HTMLElement | null;
+
+      function setState(next: 'off' | 'on') {
+        root.dataset.craft = next;
+        btn?.setAttribute('aria-pressed', next === 'on' ? 'true' : 'false');
+        if (fixedStat) fixedStat.textContent = next === 'on' ? '8' : '0';
+      }
+
+      function toggle() {
+        const current = (root.dataset.craft ?? 'off') as 'off' | 'on';
+        setState(current === 'off' ? 'on' : 'off');
+      }
+
+      if (btn) {
+        btn.addEventListener('click', toggle);
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            toggle();
+          }
+        });
+      }
+    </script>
+
+    <script>
+      import { inject } from '@vercel/analytics';
+      inject();
+    </script>
+
+    <FloatNav />
+  </body>
+</html>

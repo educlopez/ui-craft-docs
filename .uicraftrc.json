@@ -2,5 +2,8 @@
   "rules": {
     "unit-mixing": "off",
     "pixel-radius-inconsistency": "off"
-  }
+  },
+  "ignore": [
+    "src/pages/anti-slop.astro"
+  ]
 }
