@@ -361,11 +361,18 @@ body.guide-dragging--v * {
   transition: fill 0.4s var(--ease-out), stroke 0.4s var(--ease-out), stroke-dasharray 0.4s var(--ease-out);
 }
 
-.brand-inspect:hover .footer-brand-text {
+.brand-inspect:hover .footer-brand-text,
+.brand-inspect:focus-visible .footer-brand-text {
   fill: oklch(0.458 0.305 268.13);
   stroke: oklch(0.458 0.305 268.13);
   stroke-dasharray: none;
   stroke-width: 0;
+}
+
+.brand-inspect:focus-visible {
+  outline: 2px solid oklch(0.458 0.305 268.13);
+  outline-offset: 6px;
+  border-radius: 4px;
 }
 
 .inspect-crosshair-h,
@@ -399,7 +406,7 @@ body.guide-dragging--v * {
 @media (hover: hover) and (pointer: fine) {
   /* Footer link underline animation */
   .footer-link:hover span::after {
-    width: 100%;
+    transform: scaleX(1);
   }
 }
 
@@ -412,10 +419,12 @@ body.guide-dragging--v * {
   position: absolute;
   bottom: -2px;
   left: 0;
-  width: 0;
+  width: 100%;
   height: 1px;
   background: currentColor;
-  transition: width 0.25s var(--ease-out);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.25s var(--ease-out);
 }
 
 @media (max-width: 768px) {

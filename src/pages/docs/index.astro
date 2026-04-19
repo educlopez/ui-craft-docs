@@ -36,17 +36,17 @@ const sectionOrder = ['skill', 'cli', 'reference'];
     <section class="mt-10">
       <h2>{sectionLabels[section] ?? section}</h2>
       <ul class="not-prose list-none pl-0 mt-4 flex flex-col divide-y divide-[var(--color-border)] border-t border-b border-[var(--color-border)]">
-        {grouped[section].map((p) => (
+        {grouped[section].map((p, i) => (
           <li class="py-3">
-            <a href={`/docs/${p.slug}`} class="group flex items-baseline justify-between gap-6 no-underline">
+            <a href={`/docs/${p.slug}`} class="group flex items-baseline justify-between gap-6 no-underline rounded-md -mx-2 px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
               <span class="flex items-baseline gap-3 min-w-0">
-                <span class="text-[11px] font-[family-name:var(--font-mono)] tabular-nums text-[oklch(65%_0.005_250)] shrink-0">{String(p.order).padStart(2, '0')}</span>
+                <span class="text-[11px] font-[family-name:var(--font-mono)] tabular-nums text-[oklch(65%_0.005_250)] shrink-0">{String(i + 1).padStart(2, '0')}</span>
                 <span class="min-w-0">
-                  <span class="block text-[14px] font-medium text-[var(--color-text)] group-hover:text-blue-600 transition-colors duration-150 ease-[var(--ease-out)]">{p.title}</span>
+                  <span class="block text-[14px] font-medium text-[var(--color-text)] group-hover:text-blue-600 group-focus-visible:text-blue-600 transition-colors duration-150 ease-[var(--ease-out)]">{p.title}</span>
                   <span class="block text-[12.5px] text-[var(--color-text-secondary)] leading-snug mt-0.5">{p.description}</span>
                 </span>
               </span>
-              <span class="text-[var(--color-text-secondary)] group-hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)] text-[13px] shrink-0">&rarr;</span>
+              <span class="text-[var(--color-text-secondary)] group-hover:text-[var(--color-text)] group-focus-visible:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)] text-[13px] shrink-0">&rarr;</span>
             </a>
           </li>
         ))}

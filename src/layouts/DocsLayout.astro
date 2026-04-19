@@ -67,7 +67,7 @@ const sectionOrder = ['skill', 'cli', 'reference'];
     <title>{title} — UI Craft docs</title>
   </head>
   <body class="font-[family-name:var(--font-body)] text-[15px] leading-relaxed text-[var(--color-text)] bg-[var(--color-bg)]">
-    <a href="#doc-main" class="absolute -top-full left-4 px-4 py-2 bg-blue-600 text-white font-medium text-sm rounded-b-md z-50 transition-[top] duration-200 ease-[var(--ease-out)] focus:top-0">Skip to content</a>
+    <a href="#doc-main" class="absolute top-0 left-4 px-4 py-2 bg-blue-600 text-white font-medium text-sm rounded-b-md z-50 -translate-y-full focus:translate-y-0 transition-transform duration-200 ease-[var(--ease-out)]">Skip to content</a>
 
     <!-- Top bar -->
     <header class="sticky top-0 z-30 border-b border-[var(--color-border)] bg-[var(--color-bg)]/85 backdrop-blur">
@@ -78,10 +78,10 @@ const sectionOrder = ['skill', 'cli', 'reference'];
           <span class="text-[var(--color-text-secondary)] font-normal">/ docs</span>
         </a>
         <div class="flex items-center gap-5 text-[12px]">
-          <a href="/" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)]">Home</a>
-          <a href="/docs" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)]">Docs</a>
-          <a href="https://github.com/educlopez/ui-craft" target="_blank" rel="noopener noreferrer" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)]">GitHub&nbsp;&rarr;</a>
-          <button type="button" class="doc-nav-toggle md:hidden text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors" aria-label="Open navigation" aria-expanded="false" aria-controls="doc-nav">Menu</button>
+          <a href="/" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text)] focus-visible:text-[var(--color-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-sm transition-colors duration-150 ease-[var(--ease-out)]">Home</a>
+          <a href="/docs" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text)] focus-visible:text-[var(--color-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-sm transition-colors duration-150 ease-[var(--ease-out)]">Docs</a>
+          <a href="https://github.com/educlopez/ui-craft" target="_blank" rel="noopener noreferrer" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text)] focus-visible:text-[var(--color-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-sm transition-colors duration-150 ease-[var(--ease-out)]">GitHub&nbsp;&rarr;</a>
+          <button type="button" class="doc-nav-toggle md:hidden text-[var(--color-text-secondary)] hover:text-[var(--color-text)] focus-visible:text-[var(--color-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-sm transition-colors" aria-label="Open navigation" aria-expanded="false" aria-controls="doc-nav">Menu</button>
         </div>
       </div>
     </header>
@@ -99,10 +99,10 @@ const sectionOrder = ['skill', 'cli', 'reference'];
                     <a
                       href={`/docs/${p.slug}`}
                       class:list={[
-                        'block py-1.5 -ml-2 pl-2 pr-2 rounded-md transition-colors duration-150 ease-[var(--ease-out)]',
+                        'block py-1.5 -ml-2 pl-2 pr-2 rounded-md transition-colors duration-150 ease-[var(--ease-out)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2',
                         p.slug === currentSlug
                           ? 'text-[var(--color-text)] bg-[var(--color-code-bg)]'
-                          : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text)]',
+                          : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text)] focus-visible:text-[var(--color-text)]',
                       ]}
                       aria-current={p.slug === currentSlug ? 'page' : undefined}
                     >{p.title}</a>

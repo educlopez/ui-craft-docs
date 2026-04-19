@@ -6,11 +6,11 @@ import '../styles/global.css';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="UI Craft is an AI coding agent skill that teaches your agent to build interfaces with real design taste. 15 domains, 4 modes, 7 focused commands, anti-slop detection. Works in Claude Code, Codex, Cursor, Gemini, OpenCode." />
+    <meta name="description" content="UI Craft is an AI coding agent skill that teaches your agent to build interfaces with real design taste. 20 domains, 4 modes, 15 focused commands, anti-slop detection. Works in Claude Code, Codex, Cursor, Gemini, OpenCode." />
     <meta name="theme-color" content="#ffffff" />
     <link rel="canonical" href="https://skills.smoothui.dev/" />
     <meta property="og:title" content="UI Craft — Design taste for AI coding agents" />
-    <meta property="og:description" content="Stop getting generic AI interfaces. UI Craft teaches your coding agent real design engineering across 15 domains — with 4 modes, 7 focused commands, and anti-slop detection. Works in Claude Code, Codex, Cursor, Gemini, OpenCode." />
+    <meta property="og:description" content="Stop getting generic AI interfaces. UI Craft teaches your coding agent real design engineering across 20 domains — with 4 modes, 15 focused commands, and anti-slop detection. Works in Claude Code, Codex, Cursor, Gemini, OpenCode." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://skills.smoothui.dev/" />
     <meta property="og:site_name" content="UI Craft" />
@@ -19,7 +19,7 @@ import '../styles/global.css';
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="UI Craft — Design taste for AI coding agents" />
-    <meta name="twitter:description" content="Stop getting generic AI interfaces. UI Craft teaches your coding agent real design engineering — 15 domains, 4 modes, 7 focused commands. Works in Claude Code, Codex, Cursor, Gemini, OpenCode." />
+    <meta name="twitter:description" content="Stop getting generic AI interfaces. UI Craft teaches your coding agent real design engineering — 20 domains, 4 modes, 15 focused commands. Works in Claude Code, Codex, Cursor, Gemini, OpenCode." />
     <meta name="twitter:image" content="https://skills.smoothui.dev/og.png" />
     <link rel="icon" type="image/png" href="/icon.png" />
     <link rel="apple-touch-icon" href="/icon.png" />
@@ -30,7 +30,6 @@ import '../styles/global.css';
     <style>
       @font-face { font-family: 'Geist'; font-style: normal; font-weight: 400; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff2') format('woff2'); }
       @font-face { font-family: 'Geist'; font-style: normal; font-weight: 500; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-500-normal.woff2') format('woff2'); }
-      @font-face { font-family: 'Geist'; font-style: normal; font-weight: 600; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-600-normal.woff2') format('woff2'); }
       @font-face { font-family: 'Geist'; font-style: normal; font-weight: 700; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-700-normal.woff2') format('woff2'); }
       @font-face { font-family: 'Geist Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-mono@latest/latin-400-normal.woff2') format('woff2'); }
     </style>
@@ -48,7 +47,7 @@ import '../styles/global.css';
       <div class="alignment-guide alignment-guide--right"></div>
     </div>
 
-    <a href="#main" class="absolute -top-full left-4 px-4 py-2 bg-blue-600 text-white font-medium text-sm rounded-b-md z-50 transition-[top] duration-200 ease-[var(--ease-out)] focus:top-0">Skip to content</a>
+    <a href="#main" class="absolute top-0 left-4 px-4 py-2 bg-blue-600 text-white font-medium text-sm rounded-b-md z-50 -translate-y-full focus:translate-y-0 transition-transform duration-200 ease-[var(--ease-out)]">Skip to content</a>
 
     <div class="relative z-10 mx-auto max-w-2xl px-[clamp(1.25rem,4vw,2rem)] py-[clamp(5rem,12vw,10rem)]">
       <!-- Hero -->
@@ -58,7 +57,7 @@ import '../styles/global.css';
           <img src="/aren.jpeg" alt="Aren the dog" width="80" height="80" class="absolute inset-0 rounded-[18px] w-20 h-20 object-cover shadow-[0_1px_3px_oklch(0%_0_0/0.08),0_4px_12px_oklch(0%_0_0/0.06)] opacity-0 transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-100" />
           <span class="aren-bubble">Hi, I'm&nbsp;Aren!</span>
         </div>
-        <h1 class="text-[clamp(1.75rem,4vw,2.5rem)] font-semibold tracking-[-0.02em] leading-[1.15] [text-wrap:balance]" data-enter="2">Stop getting generic AI&nbsp;interfaces</h1>
+        <h1 class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold tracking-[-0.02em] leading-[1.15] [text-wrap:balance]" data-enter="2">Stop getting generic AI&nbsp;interfaces</h1>
         <p class="text-[var(--color-text-secondary)] text-[14px] mt-3 leading-relaxed max-w-md mx-auto" data-enter="3">A skill for AI coding agents that teaches them to build UIs with real design taste — not gradient cards and bounce&nbsp;animations.</p>
         <p class="mt-4 text-[12px]" data-enter="3"><a href="/docs" class="footer-link text-[var(--color-text-secondary)] transition-colors duration-200 ease-[var(--ease-out)] hover:text-[var(--color-text)]"><span>Read the docs&nbsp;&rarr;</span></a></p>
       </header>
@@ -68,10 +67,13 @@ import '../styles/global.css';
         <div class="inline-flex flex-wrap items-stretch justify-center gap-2.5" data-enter="4">
           <div class="inline-flex items-center gap-2 bg-[oklch(96%_0.002_250)] rounded-md pl-3 pr-1 py-1">
             <code class="text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text-secondary)] whitespace-nowrap leading-none">npx skills add educlopez/ui-craft</code>
-            <button class="copy-btn flex items-center justify-center shrink-0 w-5 h-5 p-1 rounded-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)] touch-manipulation focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.92]" aria-label="Copy install command" data-command="npx skills add educlopez/ui-craft">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <button class="copy-btn relative flex items-center justify-center shrink-0 w-5 h-5 p-1 rounded-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)] touch-manipulation focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.92]" aria-label="Copy install command" data-command="npx skills add educlopez/ui-craft">
+              <svg class="copy-icon copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <svg class="copy-icon check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
             </button>
           </div>
@@ -160,7 +162,7 @@ import '../styles/global.css';
         <section class="py-24" aria-label="Why UI Craft exists">
           <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>AI agents write code fast. They don't know what looks&nbsp;good.</h2>
           <p class="text-[14px] text-[oklch(40%_0.005_250)] leading-relaxed text-center mt-2 mb-5 max-w-[520px] mx-auto" data-reveal>Without design knowledge, every AI-generated interface ends up with the same gradient cards, bounce animations, and glassmorphism. Functional — but instantly recognizable as AI&nbsp;output.</p>
-          <p class="text-[14px] text-[oklch(40%_0.005_250)] leading-relaxed text-center max-w-[520px] mx-auto" data-reveal>UI&nbsp;Craft is not a template library or a component kit. It's <strong class="font-semibold text-[var(--color-text)]">design engineering knowledge</strong> — 15&nbsp;domains of opinionated rules about animation, layout, typography, color, accessibility, dashboards, real-world SaaS patterns, and stack integration (Motion&nbsp;/ GSAP&nbsp;/ Three.js). The kind of knowledge that takes years to develop as a frontend&nbsp;engineer.</p>
+          <p class="text-[14px] text-[oklch(40%_0.005_250)] leading-relaxed text-center max-w-[520px] mx-auto" data-reveal>UI&nbsp;Craft is not a template library or a component kit. It's <strong class="font-medium text-[var(--color-text)]">design engineering knowledge</strong> — 20&nbsp;domains of opinionated rules about motion, layout, typography, color, accessibility, dashboards, real-world SaaS patterns, and stack integration (Motion&nbsp;/ GSAP&nbsp;/ Three.js). The kind of knowledge that takes years to develop as a frontend&nbsp;engineer.</p>
         </section>
 
         <!-- Modes Section -->
@@ -193,7 +195,7 @@ import '../styles/global.css';
 
           <div class="mt-20">
             <h3 class="text-[clamp(1.1rem,2vw,1.35rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Or call a specific&nbsp;lens.</h3>
-            <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>Seven slash commands, each a focused pass from one angle. Skip routing when you know what you&nbsp;want.</p>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>Fifteen slash commands, each a focused pass from one angle. Skip routing when you know what you&nbsp;want.</p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-x-10 sm:gap-y-8" data-reveal>
               <div class="mode-card flex flex-col gap-1.5">
@@ -233,7 +235,7 @@ import '../styles/global.css';
               </div>
             </div>
 
-            <p class="text-[12px] text-[var(--color-text-secondary)] text-center mt-8" data-reveal>Full reference for all 14&nbsp;commands in <a href="/docs/commands" class="footer-link"><span>the docs&nbsp;&rarr;</span></a></p>
+            <p class="text-[12px] text-[var(--color-text-secondary)] text-center mt-8" data-reveal>Full reference for all 15&nbsp;commands in <a href="/docs/commands" class="footer-link"><span>the docs&nbsp;&rarr;</span></a></p>
           </div>
         </section>
 
@@ -264,74 +266,61 @@ import '../styles/global.css';
         </section>
 
         <!-- Domains Section -->
-        <section class="py-24" aria-label="15 domains of design knowledge">
-          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>15 domains. Opinionated rules for&nbsp;each.</h2>
-          <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>Not generic best practices. Specific, opinionated rules derived from how Stripe, Linear, and Vercel actually build their&nbsp;interfaces.</p>
+        <section class="py-24" aria-label="20 domains of design knowledge">
+          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>20 domains. Four&nbsp;clusters.</h2>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-12 max-w-lg mx-auto" data-reveal>Not generic best practices. Specific, opinionated rules derived from how Stripe, Linear, and Vercel actually build their&nbsp;interfaces.</p>
 
-          <div data-reveal>
-            <dl class="flex flex-col sm:grid sm:grid-cols-2 sm:gap-x-7">
-              <div class="py-2.5 border-b border-[var(--color-border)] sm:first:border-t first:border-t">
-                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Animation</dt>
-                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Easing curves, spring physics, duration rules, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">prefers-reduced-motion</code>, and when not to animate at all</dd>
-              </div>
-              <div class="py-2.5 border-b border-[var(--color-border)] sm:border-t">
-                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Layout</dt>
-                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Spacing systems, optical alignment, depth with layered shadows, visual hierarchy without decoration</dd>
-              </div>
-              <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Typography</dt>
-                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]"><code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">text-wrap: balance</code>, tabular-nums for data, font scale, measure, curly quotes, non-breaking spaces</dd>
-              </div>
-              <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Color</dt>
-                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">OKLCH for perceptual uniformity, design tokens, dark mode with <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">color-scheme</code>, APCA contrast</dd>
-              </div>
-              <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Accessibility</dt>
-                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">WAI-ARIA patterns, keyboard navigation, focus management, touch targets, screen reader semantics</dd>
-              </div>
-              <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Performance</dt>
-                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Compositor-only animations, FLIP technique, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">will-change</code> discipline, virtualization, CLS prevention</dd>
-              </div>
-              <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Modern&nbsp;CSS</dt>
-                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">View Transitions API, scroll-driven animations, container queries, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">:has()</code>, <code class="text-xs px-1.5 py-0.5 bg-[var(--color-code-bg)] rounded font-[family-name:var(--font-mono)]">@starting-style</code></dd>
-              </div>
-              <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Responsive</dt>
-                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Fluid sizing with clamp, mobile-first, touch zones, safe areas, adaptive not just responsive</dd>
-              </div>
-              <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Sound</dt>
-                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Web Audio API, feedback sounds, appropriateness matrix — when sound helps and when it annoys</dd>
-              </div>
-              <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">UX&nbsp;Copy</dt>
-                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Error messages that help, empty states that guide, CTAs that are specific, microcopy that respects</dd>
-              </div>
-              <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">UI&nbsp;Review</dt>
-                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Systematic critique methodology — visual audit, interaction audit, accessibility audit, anti-slop check</dd>
-              </div>
-              <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Orchestration</dt>
-                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Multi-stage animation sequences, stagger timing, readable choreography code, entrance/exit coordination</dd>
-              </div>
-              <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Dashboard</dt>
-                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Sidebar nav, metric cards, chart types, data tables, filters — patterns that scale past the marketing page</dd>
-              </div>
-              <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Inspiration</dt>
-                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Real patterns from dub, linear, vercel, stripe, cursor — documented, not&nbsp;imagined</dd>
-              </div>
-              <div class="py-2.5 border-b border-[var(--color-border)]">
-                <dt class="text-[12px] font-medium text-[var(--color-text)] mb-0.5 flex items-center gap-1.5 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blue-600 before:shrink-0">Stack</dt>
-                <dd class="text-[12px] leading-snug text-[oklch(50%_0.005_250)]">Motion, GSAP, Three.js — decision tree, patterns, perf gotchas, anti-patterns. Opt-in during&nbsp;Discovery</dd>
-              </div>
-            </dl>
+          <div class="flex flex-col gap-10">
+            <div class="domain-cluster" data-reveal>
+              <p class="text-[11px] font-medium text-[var(--color-text)] tracking-wider mb-1"><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)] tabular-nums">01</span>Visual layer</p>
+              <p class="text-[13px] text-[var(--color-text-secondary)] leading-snug mb-3 max-w-md">Where pixels live. How they're arranged, typed, and&nbsp;colored.</p>
+              <ul class="domain-chips flex flex-wrap gap-1.5" role="list">
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Layout</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Typography</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Color</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Modern&nbsp;CSS</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Responsive</code></li>
+              </ul>
+            </div>
+
+            <div class="domain-cluster" data-reveal>
+              <p class="text-[11px] font-medium text-[var(--color-text)] tracking-wider mb-1"><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)] tabular-nums">02</span>Behavior</p>
+              <p class="text-[13px] text-[var(--color-text-secondary)] leading-snug mb-3 max-w-md">What the interface does under your hands — and under&nbsp;assistive&nbsp;tech.</p>
+              <ul class="domain-chips flex flex-wrap gap-1.5" role="list">
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Motion</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Accessibility</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Performance</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Sound</code></li>
+              </ul>
+            </div>
+
+            <div class="domain-cluster" data-reveal>
+              <p class="text-[11px] font-medium text-[var(--color-text)] tracking-wider mb-1"><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)] tabular-nums">03</span>Surfaces</p>
+              <p class="text-[13px] text-[var(--color-text-secondary)] leading-snug mb-3 max-w-md">Real SaaS screens, not just marketing&nbsp;pages.</p>
+              <ul class="domain-chips flex flex-wrap gap-1.5" role="list">
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Dashboard</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Forms</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">AI&nbsp;/&nbsp;chat</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Data&nbsp;viz</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Inspiration</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Stack</code></li>
+              </ul>
+            </div>
+
+            <div class="domain-cluster" data-reveal>
+              <p class="text-[11px] font-medium text-[var(--color-text)] tracking-wider mb-1"><span class="text-[oklch(65%_0.005_250)] mr-1 font-[family-name:var(--font-mono)] tabular-nums">04</span>Critique</p>
+              <p class="text-[13px] text-[var(--color-text-secondary)] leading-snug mb-3 max-w-md">How the skill looks at work — its own and yours — and says what's&nbsp;off.</p>
+              <ul class="domain-chips flex flex-wrap gap-1.5" role="list">
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Heuristics</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Personas</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">State&nbsp;design</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">UI&nbsp;Review</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">UX&nbsp;Copy</code></li>
+              </ul>
+            </div>
           </div>
+
+          <p class="text-[12px] text-[var(--color-text-secondary)] text-center mt-10" data-reveal>Each domain expands into opinionated rules in <a href="/docs" class="footer-link"><span>the docs&nbsp;&rarr;</span></a></p>
         </section>
 
         <!-- Works everywhere Section -->
@@ -364,47 +353,73 @@ import '../styles/global.css';
 
         <!-- Anti-slop Section -->
         <section class="pt-32 pb-24" aria-label="What the skill rejects">
-          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Anti-slop built in</h2>
-          <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-8 max-w-lg mx-auto" data-reveal>Every UI gets tested against a single question: <em class="italic">"Would someone believe AI&nbsp;made this?"</em> If yes, it starts over. The skill actively rejects:</p>
-          <div class="flex flex-wrap justify-center gap-2" data-reveal>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Purple-cyan gradients</span>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Glassmorphism</span>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Gradient text on metrics</span>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Identical card grids</span>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Generic fonts</span>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Bounce/elastic easing</span>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Gray text on color</span>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Nested cards</span>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Hero metric layouts</span>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Glow effects</span>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Colored accent borders</span>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Dashed/dotted borders</span>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Simple bar charts</span>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Minimal empty results</span>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">Colored percentage pills</span>
-            <span class="slop-badge text-[13px] text-[var(--color-text-secondary)] line-through decoration-[oklch(60%_0.01_0_/_0.5)] decoration-1 px-3 py-1.5 rounded-full border border-[oklch(85%_0.01_0)] before:content-['x_'] before:no-underline before:text-[oklch(70%_0.01_0)] before:text-[11px]">ALL CAPS text</span>
-          </div>
+          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Anti-slop built&nbsp;in</h2>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>Every UI gets tested against a single question: <em class="italic">"Would someone believe AI&nbsp;made&nbsp;this?"</em> If yes, it starts over. Here's the kind of thing that fails the&nbsp;test.</p>
+
+          <figure class="slop-figure mx-auto max-w-md" data-reveal>
+            <div class="slop-demo" aria-hidden="true">
+              <button type="button" tabindex="-1" class="slop-demo-btn" disabled>Get&nbsp;Started&nbsp;Now &rarr;</button>
+              <span class="slop-slash"></span>
+            </div>
+            <figcaption class="mt-4 text-[13px] leading-snug text-[var(--color-text-secondary)] text-center">
+              <span class="block text-[var(--color-text)] font-medium">Purple-cyan gradient. Glow. Bounce on&nbsp;hover.</span>
+              <span class="block mt-1">The skill rejects this on sight — along with 15 more patterns that make interfaces look&nbsp;AI-generated. <a href="/docs" class="footer-link"><span>See the full list&nbsp;&rarr;</span></a></span>
+            </figcaption>
+          </figure>
         </section>
 
-        <!-- CTA Section -->
-        <section class="pt-32 pb-32 text-center" aria-label="Install UI Craft">
-          <div class="aren-egg group relative inline-block mx-auto mb-4" data-reveal>
-            <img src="/icon.png" alt="" width="80" height="80" class="rounded-[18px] w-20 h-20 shadow-[0_1px_3px_oklch(0%_0_0/0.08),0_4px_12px_oklch(0%_0_0/0.06)] transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-0" />
-            <img src="/aren.jpeg" alt="Aren the dog" width="80" height="80" class="absolute inset-0 rounded-[18px] w-20 h-20 object-cover shadow-[0_1px_3px_oklch(0%_0_0/0.08),0_4px_12px_oklch(0%_0_0/0.06)] opacity-0 transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-100" />
-            <span class="aren-bubble">Hi, I'm&nbsp;Aren!</span>
+        <!-- CTA Section — closing delta recap -->
+        <section class="pt-32 pb-32" aria-label="What changes after installing UI Craft">
+          <div class="text-center mb-12">
+            <div class="aren-egg group relative inline-block mx-auto mb-4" data-reveal>
+              <img src="/icon.png" alt="" width="80" height="80" class="rounded-[18px] w-20 h-20 shadow-[0_1px_3px_oklch(0%_0_0/0.08),0_4px_12px_oklch(0%_0_0/0.06)] transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-0" />
+              <img src="/aren.jpeg" alt="Aren the dog" width="80" height="80" class="absolute inset-0 rounded-[18px] w-20 h-20 object-cover shadow-[0_1px_3px_oklch(0%_0_0/0.08),0_4px_12px_oklch(0%_0_0/0.06)] opacity-0 transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-100" />
+              <span class="aren-bubble">Hi, I'm&nbsp;Aren!</span>
+            </div>
+            <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance]" data-reveal>What changes after&nbsp;<code class="font-[family-name:var(--font-mono)] text-[0.85em] bg-[var(--color-code-bg)] px-1.5 py-0.5 rounded">npx skills add</code></h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed mt-3 max-w-lg mx-auto" data-reveal>Three concrete deltas your next prompt will&nbsp;ship.</p>
           </div>
-          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance]" data-reveal>One command. Better UI from the next&nbsp;prompt.</h2>
-          <p class="text-[var(--color-text-secondary)] leading-relaxed mt-3 mb-8 max-w-lg mx-auto" data-reveal>Install the skill, ask your agent to build something, and see the&nbsp;difference.</p>
-          <div class="inline-flex items-center gap-2 bg-[oklch(96%_0.002_250)] rounded-md pl-3 pr-1 py-1 mb-3" data-reveal>
-            <code class="text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text-secondary)] whitespace-nowrap leading-none">npx skills add educlopez/ui-craft</code>
-            <button class="copy-btn flex items-center justify-center shrink-0 w-5 h-5 p-1 rounded-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)] touch-manipulation focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.92]" aria-label="Copy install command" data-command="npx skills add educlopez/ui-craft">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-              </svg>
-            </button>
+
+          <ol class="delta-list flex flex-col gap-8 max-w-xl mx-auto">
+            <li class="delta-item flex gap-5" data-reveal>
+              <span class="delta-num text-[oklch(65%_0.005_250)] font-[family-name:var(--font-mono)] tabular-nums text-[13px] leading-[1.2] pt-0.5 w-6 shrink-0">01</span>
+              <div class="flex-1">
+                <p class="delta-claim text-[15px] leading-snug text-[var(--color-text)]">No more <code class="font-[family-name:var(--font-mono)] text-[13px] bg-[var(--color-code-bg)] px-1.5 py-0.5 rounded">transition:&nbsp;all</code>.</p>
+                <p class="delta-proof text-[13px] leading-snug text-[var(--color-text-secondary)] mt-1">The detector catches the lazy shorthand. The skill teaches the property-specific alternative — and why it matters for&nbsp;compositor&nbsp;perf.</p>
+              </div>
+            </li>
+            <li class="delta-item flex gap-5" data-reveal>
+              <span class="delta-num text-[oklch(65%_0.005_250)] font-[family-name:var(--font-mono)] tabular-nums text-[13px] leading-[1.2] pt-0.5 w-6 shrink-0">02</span>
+              <div class="flex-1">
+                <p class="delta-claim text-[15px] leading-snug text-[var(--color-text)]"><code class="font-[family-name:var(--font-mono)] text-[13px] bg-[var(--color-code-bg)] px-1.5 py-0.5 rounded">tabular-nums</code> on every metric, price, and&nbsp;timestamp.</p>
+                <p class="delta-proof text-[13px] leading-snug text-[var(--color-text-secondary)] mt-1">Numbers that line up column-by-column. Craft you can see without&nbsp;squinting.</p>
+              </div>
+            </li>
+            <li class="delta-item flex gap-5" data-reveal>
+              <span class="delta-num text-[oklch(65%_0.005_250)] font-[family-name:var(--font-mono)] tabular-nums text-[13px] leading-[1.2] pt-0.5 w-6 shrink-0">03</span>
+              <div class="flex-1">
+                <p class="delta-claim text-[15px] leading-snug text-[var(--color-text)]">Focus rings keyboard users can actually&nbsp;see.</p>
+                <p class="delta-proof text-[13px] leading-snug text-[var(--color-text-secondary)] mt-1">Accessibility isn't a polish pass. It's the&nbsp;floor.</p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="flex flex-col items-center mt-14">
+            <p class="text-[12px] text-[var(--color-text-secondary)] mb-2" data-reveal>Or install anyway&nbsp;&rarr;</p>
+            <div class="inline-flex items-center gap-2 bg-[oklch(96%_0.002_250)] rounded-md pl-3 pr-1 py-1" data-reveal>
+              <code class="text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text-secondary)] whitespace-nowrap leading-none">npx skills add educlopez/ui-craft</code>
+              <button class="copy-btn relative flex items-center justify-center shrink-0 w-5 h-5 p-1 rounded-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)] touch-manipulation focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.92]" aria-label="Copy install command" data-command="npx skills add educlopez/ui-craft">
+                <svg class="copy-icon copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <svg class="copy-icon check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+            </div>
+            <p class="text-[11px] text-[var(--color-text-secondary)] mt-3" data-reveal>Free and open source. Works across 5 agent&nbsp;harnesses.</p>
           </div>
-          <p class="text-[13px] text-[var(--color-text-secondary)]" data-reveal>Free and open source. Works across 5 agent&nbsp;harnesses.</p>
         </section>
       </main>
 
@@ -416,6 +431,7 @@ import '../styles/global.css';
             <svg class="footer-brand select-none" id="footer-brand" viewBox="0 0 480 100" aria-label="UI Craft" role="img" style="width: clamp(320px, 65vw, 640px); height: auto;">
               <text x="240" y="82" text-anchor="middle" class="footer-brand-text">UI Craft</text>
             </svg>
+            {/* ui-craft-detect-ignore-next-line rule: a11y/modal-without-dialog — decorative hover overlay (Figma-style inspect ruler), not a modal */}
             <div class="inspect-overlay" id="inspect-overlay" aria-hidden="true">
               <div class="inspect-box"></div>
               <div class="inspect-ruler inspect-ruler--top"><span class="inspect-dim" id="inspect-w"></span></div>
@@ -461,26 +477,48 @@ import '../styles/global.css';
     </script>
 
     <script>
-      fetch('https://api.github.com/repos/educlopez/ui-craft')
-        .then(r => r.json())
-        .then(d => {
-          const el = document.querySelector('.stars-count');
-          if (el && d.stargazers_count != null) {
-            el.textContent = d.stargazers_count.toLocaleString();
+      // GitHub stars: 1h localStorage cache, hide gracefully on failure
+      (function () {
+        const el = document.querySelector('.stars-count');
+        if (!el) return;
+        const KEY = 'uicraft.stars.v1';
+        const TTL = 60 * 60 * 1000;
+        const render = (n) => {
+          if (typeof n === 'number' && Number.isFinite(n)) {
+            el.textContent = n.toLocaleString();
+          } else {
+            el.textContent = '';
+            el.setAttribute('hidden', '');
           }
-        })
-        .catch(() => {});
+        };
+        try {
+          const raw = localStorage.getItem(KEY);
+          if (raw) {
+            const { n, t } = JSON.parse(raw);
+            if (Date.now() - t < TTL) { render(n); return; }
+          }
+        } catch {}
+        // Empty (n == null) and error (HTTP non-ok, parse, network) both route to render(null), hiding the badge.
+        // ui-craft-detect-ignore-next-line rule: state/missing-empty-or-error
+        fetch('https://api.github.com/repos/educlopez/ui-craft')
+          .then(r => r.ok ? r.json() : Promise.reject(new Error('http ' + r.status)))
+          .then(d => {
+            const n = d && typeof d.stargazers_count === 'number' ? d.stargazers_count : null;
+            if (n == null) { render(null); return; }
+            render(n);
+            try { localStorage.setItem(KEY, JSON.stringify({ n, t: Date.now() })); } catch {}
+          })
+          .catch(() => render(null));
+      })();
 
-      const copySvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
-      const checkSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>';
-
+      // Copy buttons: icon swap is pure CSS via [data-copied]; setTimeout only resets the attribute
       document.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', function () {
           const cmd = this.getAttribute('data-command');
           navigator.clipboard.writeText(cmd).then(() => {
-            this.innerHTML = checkSvg;
-            this.classList.add('copied');
-            setTimeout(() => { this.innerHTML = copySvg; this.classList.remove('copied'); }, 2000);
+            this.setAttribute('data-copied', '');
+            // ui-craft-detect-ignore-next-line rule: perf/setTimeout-animation
+            setTimeout(() => { this.removeAttribute('data-copied'); }, 2000);
           });
         });
       });
@@ -908,7 +946,30 @@ import '../styles/global.css';
         box-shadow: 0 2px 12px oklch(0.458 0.305 268.13 / 0.4), 0 0 0 6px oklch(0.458 0.305 268.13 / 0.12);
       }
 
-      .copy-btn.copied { color: oklch(70% 0.15 268.13); }
+      /* Copy button: pure-CSS icon swap on [data-copied] (no DOM mutation) */
+      .copy-btn .copy-icon {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
+      }
+      .copy-btn .copy-icon.check {
+        opacity: 0;
+        transform: scale(0.85);
+        color: oklch(62% 0.16 150);
+      }
+      .copy-btn[data-copied] { color: oklch(62% 0.16 150); }
+      .copy-btn[data-copied] .copy-icon.copy {
+        opacity: 0;
+        transform: scale(0.85);
+      }
+      .copy-btn[data-copied] .copy-icon.check {
+        opacity: 1;
+        transform: scale(1);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .copy-btn .copy-icon { transition: none; }
+      }
 
       /* Aren easter egg — speech bubble */
       .aren-bubble {
@@ -965,14 +1026,64 @@ import '../styles/global.css';
           transform: translateY(-1px);
         }
 
-        /* Anti-slop badges hover */
-        .slop-badge {
-          transition: background-color 200ms var(--ease-out), transform 200ms var(--ease-out);
+        /* Domain chip hover — subtle lift */
+        .domain-chips code {
+          transition: background-color 200ms var(--ease-out), border-color 200ms var(--ease-out);
         }
-        .slop-badge:hover {
-          background-color: oklch(97% 0.003 250);
-          transform: scale(1.03);
+        .domain-chips li:hover code {
+          background-color: oklch(94% 0.003 250);
+          border-color: oklch(88% 0.005 250);
         }
+      }
+
+      /* Anti-slop demo — one heroic crossed-out anti-pattern */
+      .slop-figure { position: relative; }
+      .slop-demo {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 18px 8px;
+      }
+      .slop-demo-btn {
+        /* Deliberately loud — the exact pattern the skill rejects */
+        font-family: var(--font-body);
+        font-weight: 500;
+        font-size: 15px;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 9999px;
+        border: 0;
+        background: linear-gradient(135deg, oklch(0.55 0.28 300) 0%, oklch(0.75 0.18 220) 100%);
+        box-shadow:
+          0 0 22px oklch(0.6 0.25 280 / 0.45),
+          0 0 40px oklch(0.7 0.2 220 / 0.3),
+          0 6px 14px oklch(0% 0 0 / 0.15);
+        cursor: not-allowed;
+        pointer-events: none;
+        letter-spacing: 0.01em;
+      }
+      /* Diagonal slash — ruled line that feels designed, not default <s> */
+      .slop-slash {
+        position: absolute;
+        left: 8%;
+        right: 8%;
+        top: 50%;
+        height: 1px;
+        pointer-events: none;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          var(--color-text) 12%,
+          var(--color-text) 88%,
+          transparent 100%
+        );
+        transform: rotate(-6deg);
+        transform-origin: center;
+        opacity: 0.88;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .slop-demo-btn { box-shadow: 0 0 18px oklch(0.6 0.25 280 / 0.4), 0 4px 10px oklch(0% 0 0 / 0.15); }
       }
     </style>
   </body>

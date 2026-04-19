@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "unit-mixing": "off",
+    "pixel-radius-inconsistency": "off"
+  }
+}
