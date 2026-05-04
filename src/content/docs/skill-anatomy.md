@@ -1,24 +1,24 @@
 ---
 title: Skill anatomy
-description: How UI Craft is structured — the main skill, its 20 domain references, the 15 slash commands, and the 3 style variants.
+description: How UI Craft is structured — the main skill, its 23 domain references, the 18 slash commands, and the 3 style variants.
 order: 2
 section: skill
-updated: 2026-04-18
+updated: 2026-05-03
 ---
 
 UI Craft is not one long file. It is a slim entry point plus a routing table pointing to depth references — so agents only load the knowledge they need for the current task.
 
 ## Three layers
 
-1. **Main skill** — `skills/ui-craft/SKILL.md`. ~13 KB. Knobs, Discovery phase, anti-slop rules, the routing table, and the few always-needed rules.
-2. **References** — `skills/ui-craft/references/*.md`. 20 domain files. Loaded on demand based on intent.
-3. **Commands** — `commands/*.md`. 15 focused passes that apply a single lens from the skill.
+1. **Main skill** — `skills/ui-craft/SKILL.md`. ~16 KB. Knobs, Discovery phase, anti-slop rules, the routing table, and the few always-needed rules.
+2. **References** — `skills/ui-craft/references/*.md`. 23 domain files. Loaded on demand based on intent.
+3. **Commands** — `commands/*.md`. 18 focused passes that apply a single lens from the skill.
 
 Plus 3 sibling **variants** — pre-committed styles that lock the knobs. See [Style variants](/docs/variants). Playful and brutalist ship as style presets under `examples/presets/`, not full siblings.
 
 ## The main skill
 
-`SKILL.md` is deliberately small. It was slimmed from 35 KB to 13.6 KB in v0.5.0 via progressive disclosure. Always-needed rules stay in `SKILL.md`. Depth lives in references. The file contains:
+`SKILL.md` is deliberately scoped. ~16 KB after v0.16/v0.17 (judgment layer + tiered routing + decision spine integration). Always-needed rules stay in `SKILL.md`. Depth lives in references. The file contains:
 
 - Knobs block (`CRAFT_LEVEL`, `MOTION_INTENSITY`, `VISUAL_DENSITY`)
 - Discovery phase (4 questions)
@@ -28,25 +28,24 @@ Plus 3 sibling **variants** — pre-committed styles that lock the knobs. See [S
 
 [Read on GitHub &rarr;](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/SKILL.md)
 
-## The 20 domains
+## The 23 domains
 
 Each domain is one file. Agents load them based on intent.
 
 | Domain | File | Covers |
 |---|---|---|
-| Motion | [`motion.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/motion.md) | Decision ladder, duration + easing token scales, interaction rules, choreography, motion budget, reduced-motion contract |
+| Motion | [`motion.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/motion.md) | Decision ladder, duration + easing token scales, interaction rules, choreography, motion budget, reduced-motion contract. Rendering performance (compositor pipeline, FLIP, scroll timelines, will-change lifecycle, blur cost) |
 | Layout | [`layout.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/layout.md) | Spacing systems, optical alignment, layered shadows, visual hierarchy |
 | Typography | [`typography.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/typography.md) | `text-wrap: balance`, tabular-nums, font scale, curly quotes |
 | Color | [`color.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/color.md) | OKLCH, design tokens, dark mode, APCA contrast |
 | Accessibility | [`accessibility.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/accessibility.md) | WAI-ARIA, keyboard nav, focus management, touch targets |
-| Performance | [`performance.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/performance.md) | Compositor-only animations, FLIP, `will-change`, CLS prevention |
 | Modern CSS | [`modern-css.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/modern-css.md) | View Transitions, Anchor Positioning, Popover, `<dialog>`, `interpolate-size`, `color-mix()`, scroll-driven, container queries |
 | Responsive | [`responsive.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/responsive.md) | Fluid sizing, mobile-first, touch zones, safe areas |
 | Sound | [`sound.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/sound.md) | Web Audio API, feedback sounds, appropriateness matrix |
 | UX Copy | [`copy.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/copy.md) | Voice / tone matrix, reading level, terminology, locale-aware strings, inclusive language, error / empty / CTA tactics |
 | UI Review | [`review.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/review.md) | Systematic critique methodology, anti-slop detection, Polish Pass |
 | Dashboard | [`dashboard.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/dashboard.md) | Signal-to-noise hierarchy (hero / supporting / context / deep-dive), sidebar, metric cards, data tables |
-| Inspiration | [`inspiration.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/inspiration.md) | Real patterns from dub.co, cursor, linear, vercel, stripe |
+| Inspiration | [`inspiration.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/inspiration.md) | Pattern archetypes and signature details from observed mature SaaS |
 | Stack | [`stack.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/stack.md) | Motion, GSAP, Three.js — decision tree, patterns, perf gotchas, anti-patterns (opt-in) |
 | Heuristics | [`heuristics.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/heuristics.md) | Nielsen's 10 + Fitts / Hick / Doherty / Cleveland-McGill / Miller / Tesler with 1–5 scoring rubric and impact framing |
 | Personas | [`personas.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/personas.md) | 5 archetypes (first-timer, power user, low-bandwidth, screen-reader, one-thumb) with walkthrough checklists |
@@ -54,6 +53,10 @@ Each domain is one file. Agents load them based on intent.
 | Data viz | [`dataviz.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/dataviz.md) | Cleveland-McGill perceptual hierarchy, chart selection matrix, ColorBrewer + Okabe-Ito palettes, direct labeling, Tufte |
 | AI / chat surfaces | [`ai-chat.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/ai-chat.md) | Streaming contract, 7-state model, tool traces, citations, feedback affordances, generative UI, conversation layout |
 | Forms | [`forms.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/forms.md) | Validation timing, progressive disclosure, multi-step wizards, autosave, optimistic submit, field-specific patterns |
+| Brief | [`brief.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/brief.md) | Durable design brief format — product purpose, primary user, 3-5 ranked principles, success metric, out of scope. Persists at `.ui-craft/brief.md` across sessions |
+| Tokens | [`tokens.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/tokens.md) | 3-layer token spine (primitive → semantic → component). Both light and dark intentionally crafted, not just inverted. 7 required categories |
+| Finish bar | [`finish-bar.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/finish-bar.md) | 10-pass finishing protocol with measurable criteria. Hierarchy / type system / surface stack / spacing rhythm / iconography / state coverage / motion / microcopy / pixel honesty / data formatting |
+| Principles catalog | [`principles-catalog.md`](https://github.com/educlopez/ui-craft/blob/main/skills/ui-craft/references/principles-catalog.md) | 42 example design principles across 8 product categories. Seed material for the `/brief` workshop |
 
 ### Stack is opt-in
 
@@ -71,17 +74,18 @@ This is deliberate. The file is large. Loading it for a static button animation 
 | User intent | Loads |
 |---|---|
 | "Build a pricing page" | `layout.md`, `typography.md`, `color.md`, `responsive.md`, `copy.md` |
-| "Audit this component" | `accessibility.md`, `performance.md`, `responsive.md`, `review.md` |
-| "Animate this modal" | `motion.md`, `performance.md`, `accessibility.md` |
+| "Audit this component" | `accessibility.md`, `motion.md`, `responsive.md`, `review.md` |
+| "Animate this modal" | `motion.md`, `accessibility.md` |
 | "Build a dashboard" | `layout.md`, `dashboard.md`, `typography.md`, `responsive.md`, `state-design.md` |
 | "Polish this page" | `review.md`, `typography.md`, `layout.md`, `motion.md` |
 
-Agents never load all 20 references at once. That defeats the point of progressive disclosure.
+Agents never load all 23 references at once. That defeats the point of progressive disclosure.
 
-## The 15 commands
+## The 18 commands
 
 Focused passes. Each command loads a single lens. See [Commands](/docs/commands) for the full reference. They are grouped by intent:
 
+- **Decision spine & finalize** — `brief`, `tokens`, `finalize`
 - **Review & ship** — `heuristic`, `audit`, `critique`, `polish`, `harden`, `unhappy`
 - **Plan & transform** — `shape`, `animate`, `adapt`, `typeset`, `colorize`, `clarify`, `extract`
 - **Taste dial** — `distill`, `delight`
@@ -108,8 +112,8 @@ npm run sync
 ui-craft/
   skills/
     ui-craft/
-      SKILL.md                     # slim entry point (~13 KB)
-      references/                  # 20 domain files
+      SKILL.md                     # slim entry point (~16 KB)
+      references/                  # 23 domain files
         accessibility.md
         ai-chat.md
         color.md
@@ -121,19 +125,22 @@ ui-craft/
         inspiration.md
         layout.md
         modern-css.md
-        motion.md                  # unified motion reference
-        performance.md
+        brief.md
+        finish-bar.md
+        motion.md                  # unified motion + rendering performance reference
         personas.md
+        principles-catalog.md
         responsive.md
         review.md
         sound.md
         stack.md
         state-design.md
+        tokens.md
         typography.md
     ui-craft-minimal/SKILL.md
     ui-craft-editorial/SKILL.md
     ui-craft-dense-dashboard/SKILL.md
-  commands/                        # 15 source-of-truth slash commands
+  commands/                        # 18 source-of-truth slash commands
   examples/
     animation-storyboard.md        # multi-stage animation pattern
     presets/

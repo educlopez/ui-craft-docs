@@ -1,9 +1,9 @@
 ---
 title: Commands
-description: The 15 slash commands — each a focused pass that applies a single lens from the skill.
+description: The 18 slash commands — each a focused pass that applies a single lens from the skill.
 order: 4
 section: skill
-updated: 2026-04-18
+updated: 2026-05-03
 ---
 
 Commands are focused passes. Each loads a single lens from the skill and returns a structured output. Use them when you know exactly what you want and want to skip routing.
@@ -11,6 +11,14 @@ Commands are focused passes. Each loads a single lens from the skill and returns
 In Claude Code, invoke with the native slash syntax (`/ui-craft:audit`). In other harnesses, every command ships as a peer sub-skill — trigger it by intent ("audit my UI", "polish this page"). Same content, different surface.
 
 Commands honor the knobs set during Discovery. `/ui-craft:polish` with `CRAFT_LEVEL=3` is a no-op. `/ui-craft:animate` with `MOTION_INTENSITY=2` refuses entrance stagger.
+
+## Decision spine & finalize
+
+| Command | One-liner | Example prompt | Relevant knobs |
+|---|---|---|---|
+| `/ui-craft:brief` | Write or update the project's durable design brief at `.ui-craft/brief.md` — 5 required sections + principles workshop. Run before any net-new project. | "write a brief for this product" | knob-agnostic |
+| `/ui-craft:tokens` | Audit or establish the 3-layer token spine. Both modes intentionally crafted. | "audit the tokens" / "establish tokens" | knob-agnostic |
+| `/ui-craft:finalize` | Pre-ship gate. Runs detector + brief/token check + the 10-pass finish bar + feedback hierarchy filter. Output only — no auto-fix. | "finalize this surface" | `CRAFT_LEVEL` ≤ 6 runs only load-bearing passes; explicit invocation overrides |
 
 ## Review & ship
 
@@ -89,3 +97,6 @@ Every command ships as a single markdown file with YAML frontmatter. Read the so
 - [`commands/extract.md`](https://github.com/educlopez/ui-craft/blob/main/commands/extract.md)
 - [`commands/distill.md`](https://github.com/educlopez/ui-craft/blob/main/commands/distill.md)
 - [`commands/delight.md`](https://github.com/educlopez/ui-craft/blob/main/commands/delight.md)
+- [`commands/brief.md`](https://github.com/educlopez/ui-craft/blob/main/commands/brief.md)
+- [`commands/tokens.md`](https://github.com/educlopez/ui-craft/blob/main/commands/tokens.md)
+- [`commands/finalize.md`](https://github.com/educlopez/ui-craft/blob/main/commands/finalize.md)

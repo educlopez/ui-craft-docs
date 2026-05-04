@@ -26,7 +26,7 @@ Triggers on "minimal", "clean", "whitespace-heavy", "Linear-like", "Notion-like"
 
 Minimal aesthetics only work when executed precisely. Polish Pass is mandatory. One accent. Hairline borders. Almost no motion. Whitespace is the composition.
 
-Product references: **Linear, Notion, Vercel.**
+Pattern signature: **monochrome neutral surfaces, hairline borders, single accent at restrained chroma, geometric sans display.**
 
 ### `ui-craft-editorial`
 
@@ -34,7 +34,7 @@ Triggers on "editorial", "magazine", "long-form", "content-heavy", "blog", "Medi
 
 Typography is the star. Reading-aware motion (fade on reveal, link hovers). Wide reading column, generous vertical rhythm. Serif display paired with humanist body. Baseline grid, drop caps, OpenType features.
 
-Product references: **Medium, Substack, The Verge.**
+Pattern signature: **serif display + humanist body pairing, wide reading column with generous line-height, drop caps, OpenType discretionary features, intentional asymmetric sidebars.**
 
 ### `ui-craft-dense-dashboard`
 
@@ -42,7 +42,7 @@ Triggers on "dashboard", "admin panel", "data-dense UI", "analytics", "internal 
 
 Data-first, keyboard-first, operator tools. Every pixel earns its place. Tight 4/8px grid. Semantic color palette. Tabular-nums on every number. Mono for IDs. Sparklines. Keyboard-shortcut-visible chrome. Row-level micro-motion only.
 
-Product references: **Bloomberg, Retool, Linear issues view.**
+Pattern signature: **information-dense rows on 4/8px grid, tabular-nums everywhere, mono for IDs, semantic status palette, persistent keyboard-shortcut chrome, row-level micro-motion only.**
 
 ## Variants defer
 

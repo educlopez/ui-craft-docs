@@ -3,7 +3,7 @@ title: Getting started
 description: Install UI Craft in your AI coding agent, answer four discovery questions, and get non-generic interfaces from the next prompt.
 order: 1
 section: skill
-updated: 2026-04-18
+updated: 2026-05-03
 ---
 
 UI Craft is an Agent Skill. It does not install into your project — it installs into your coding agent. Once present, any prompt that touches UI routes through the skill before code is written.
@@ -14,7 +14,7 @@ UI Craft is an Agent Skill. It does not install into your project — it install
 npx skills add educlopez/ui-craft
 ```
 
-The installer detects your harness and drops the right mirror into the right folder. Main `ui-craft` skill + 3 style variants + 15 slash commands get copied in a single step.
+The installer detects your harness and drops the right mirror into the right folder. Main `ui-craft` skill + 3 style variants + 18 slash commands get copied in a single step.
 
 ### Per-agent folders
 
@@ -93,8 +93,18 @@ Or call a specific pass:
 
 The full command list lives in [Commands](/docs/commands).
 
+## Canonical pipeline
+
+Once installed, the workflow is:
+
+```
+Discovery → /brief → /tokens → build → /finalize → ship
+```
+
+The brief lands at `.ui-craft/brief.md` (durable design brief — product purpose, primary user, 3-5 ranked principles, success metric, out of scope). Tokens land at the project's preferred destination (globals.css for Tailwind, theme.ts for CSS-in-JS, tokens.css for vanilla, design-tokens.json for cross-platform). Both survive across sessions and anchor every subsequent design decision. `/finalize` runs the 10-pass finish bar before merge, gated on the brief existing.
+
 ## What to read next
 
-- [Skill anatomy](/docs/skill-anatomy) — how the skill is structured across 20 references and 15 commands.
+- [Skill anatomy](/docs/skill-anatomy) — how the skill is structured across 23 references and 18 commands.
 - [Style variants](/docs/variants) — the 3 opt-in siblings that lock in a style (minimal, editorial, dense-dashboard), plus playful and brutalist presets.
 - [ui-craft-detect](/docs/ui-craft-detect) — the standalone CLI that scans a codebase for AI-generated UI anti-patterns.
