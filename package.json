@@ -19,10 +19,5 @@
     "astro": "^6.1.10",
     "playwright": "^1.58.2",
     "tailwindcss": "^4.2.2"
-  },
-  "pnpm": {
-    "overrides": {
-      "devalue": ">=5.8.1"
-    }
   }
 }
