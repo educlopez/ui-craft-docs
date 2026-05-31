@@ -4,3 +4,9 @@ allowBuilds:
 
 overrides:
   devalue: ">=5.8.1"
+
+# SECURITY: supply-chain hardening (npm-security-best-practices)
+minimumReleaseAge: 2880
+minimumReleaseAgeExclude:
+  - "@educlopez/*"
+blockExoticSubdeps: true
