@@ -3,7 +3,7 @@ title: Getting started
 description: Install UI Craft in your AI coding agent, answer four discovery questions, and get non-generic interfaces from the next prompt.
 order: 1
 section: skill
-updated: 2026-05-03
+updated: 2026-06-11
 ---
 
 UI Craft is an Agent Skill. It does not install into your project — it installs into your coding agent. Once present, any prompt that touches UI routes through the skill before code is written.
@@ -14,7 +14,7 @@ UI Craft is an Agent Skill. It does not install into your project — it install
 npx skills add educlopez/ui-craft
 ```
 
-The installer detects your harness and drops the right mirror into the right folder. Main `ui-craft` skill + 3 style variants + 18 slash commands get copied in a single step.
+The installer detects your harness and drops the right mirror into the right folder. Main `ui-craft` skill + 3 style variants + 19 slash commands get copied in a single step.
 
 ### Per-agent folders
 
@@ -83,6 +83,14 @@ Agent: (reads your project tokens, asks Discovery questions if needed,
         returns code that doesn't look like every other AI pricing page)
 ```
 
+Or use `/craft` as the fastest path to a complete surface:
+
+```
+/craft dashboard                  # build me a dashboard — one-shot pipeline
+```
+
+The `/craft` command asks three quick questions (persona, theme, density), picks the right composition, and builds tokens → shell → hero → states → keyboard → finish in one pass. The acceptance bar must pass before it reports done. Surfaces with no recipe yet fall back to standard Build mode.
+
 Or call a specific pass:
 
 ```
@@ -105,6 +113,6 @@ The brief lands at `.ui-craft/brief.md` (durable design brief — product purpos
 
 ## What to read next
 
-- [Skill anatomy](/docs/skill-anatomy) — how the skill is structured across 23 references and 18 commands.
+- [Skill anatomy](/docs/skill-anatomy) — how the skill is structured across 26 references and 19 commands.
 - [Style variants](/docs/variants) — the 3 opt-in siblings that lock in a style (minimal, editorial, dense-dashboard), plus playful and brutalist presets.
 - [ui-craft-detect](/docs/ui-craft-detect) — the standalone CLI that scans a codebase for AI-generated UI anti-patterns.

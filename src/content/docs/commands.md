@@ -1,16 +1,32 @@
 ---
 title: Commands
-description: The 18 slash commands — each a focused pass that applies a single lens from the skill.
+description: The 19 slash commands — each a focused pass that applies a single lens from the skill.
 order: 4
 section: skill
-updated: 2026-05-03
+updated: 2026-06-11
 ---
 
 Commands are focused passes. Each loads a single lens from the skill and returns a structured output. Use them when you know exactly what you want and want to skip routing.
 
+For building a complete surface from scratch, `/craft` runs the full outcome recipe pipeline in one shot — see the section below.
+
 In Claude Code, invoke with the native slash syntax (`/ui-craft:audit`). In other harnesses, every command ships as a peer sub-skill — trigger it by intent ("audit my UI", "polish this page"). Same content, different surface.
 
 Commands honor the knobs set during Discovery. `/ui-craft:polish` with `CRAFT_LEVEL=3` is a no-op. `/ui-craft:animate` with `MOTION_INTENSITY=2` refuses entrance stagger.
+
+## Outcome recipes
+
+| Command | One-liner | Example prompt | Relevant knobs |
+|---|---|---|---|
+| `/craft` | One-shot pipeline for a complete surface — inputs (or silent defaults) → composition → theme → build order → acceptance bar enforced before reporting. | "build me a dashboard" / "craft a SaaS dashboard for operators" | `CRAFT_LEVEL`, `VISUAL_DENSITY`, `MOTION_INTENSITY` |
+
+`/craft` is the fastest path to a shippable surface. It loads the matching outcome recipe (currently `dashboard`), asks the recipe's Step 0 questions in one compact prompt, and builds top to bottom: tokens → shell → hero tier → primary region → states → keyboard → finish. The acceptance bar must pass before the command reports done.
+
+At `CRAFT_LEVEL ≥ 8`, `/craft` finishes with the full `/finalize` gate instead of the recipe's minimum passes.
+
+Surfaces with no recipe yet (landing, settings, auth) fall back to standard Build mode with the closest references — `/craft` will say which recipe is missing.
+
+The full build contract lives in [Recipe — SaaS Dashboard](/docs/recipe-dashboard).
 
 ## Decision spine & finalize
 
@@ -100,3 +116,4 @@ Every command ships as a single markdown file with YAML frontmatter. Read the so
 - [`commands/brief.md`](https://github.com/educlopez/ui-craft/blob/main/commands/brief.md)
 - [`commands/tokens.md`](https://github.com/educlopez/ui-craft/blob/main/commands/tokens.md)
 - [`commands/finalize.md`](https://github.com/educlopez/ui-craft/blob/main/commands/finalize.md)
+- [`commands/craft.md`](https://github.com/educlopez/ui-craft/blob/main/commands/craft.md)
