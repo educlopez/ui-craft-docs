@@ -26,6 +26,10 @@ importers:
       tailwindcss:
         specifier: ^4.2.2
         version: 4.2.2
+    devDependencies:
+      ui-craft-detect:
+        specifier: ^0.5.0
+        version: 0.5.0
 
 packages:
 
@@ -1495,6 +1499,11 @@ packages:
 
   ufo@1.6.3:
     resolution: {integrity: sha512-yDJTmhydvl5lJzBmy/hyOAA0d+aqCBuwl818haVdYCRrWV84o7YyeVm4QlVHStqNrrJSTb6jKuFAVqAFsr+K3Q==}
+
+  ui-craft-detect@0.5.0:
+    resolution: {integrity: sha512-924rKlHjhlbnng+wBuFrY/F5xe2S+UBhpBuFLQJXaZS8V/ylbGOTsyaBdnPAngUT5Qi5JuuKuwVZi+3OS2jA6A==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   ultrahtml@1.6.0:
     resolution: {integrity: sha512-R9fBn90VTJrqqLDwyMph+HGne8eqY1iPfYhPzZrvKpIfwkWZbcYlfpsb8B9dTvBfpy1/hqAD7Wi8EKfP9e8zdw==}
@@ -3297,6 +3306,8 @@ snapshots:
     optional: true
 
   ufo@1.6.3: {}
+
+  ui-craft-detect@0.5.0: {}
 
   ultrahtml@1.6.0: {}
 
