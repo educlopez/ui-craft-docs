@@ -7,11 +7,11 @@ import FloatNav from '../components/FloatNav.astro';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="UI Craft is an AI coding agent skill that teaches your agent to build interfaces with real design taste. 23 domain references, 4 modes, 18 focused commands, anti-slop detection. Works in Claude Code, Codex, Cursor, Gemini, OpenCode." />
+    <meta name="description" content="UI Craft is an AI coding agent skill that teaches your agent to build interfaces with real design taste. 28 domain references, 4 modes, 19 focused commands, anti-slop detection. Works in Claude Code, Codex, Cursor, Gemini, OpenCode." />
     <meta name="theme-color" content="#ffffff" />
     <link rel="canonical" href="https://skills.smoothui.dev/" />
     <meta property="og:title" content="UI Craft — Design taste for AI coding agents" />
-    <meta property="og:description" content="Stop getting generic AI interfaces. UI Craft teaches your coding agent real design engineering across 23 domain references — with 4 modes, 18 focused commands, and anti-slop detection. Works in Claude Code, Codex, Cursor, Gemini, OpenCode." />
+    <meta property="og:description" content="Stop getting generic AI interfaces. UI Craft teaches your coding agent real design engineering across 28 domain references — with 4 modes, 19 focused commands, and anti-slop detection. Works in Claude Code, Codex, Cursor, Gemini, OpenCode." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://skills.smoothui.dev/" />
     <meta property="og:site_name" content="UI Craft" />
@@ -20,7 +20,7 @@ import FloatNav from '../components/FloatNav.astro';
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="UI Craft — Design taste for AI coding agents" />
-    <meta name="twitter:description" content="Stop getting generic AI interfaces. UI Craft teaches your coding agent real design engineering — 23 domain references, 4 modes, 18 focused commands. Works in Claude Code, Codex, Cursor, Gemini, OpenCode." />
+    <meta name="twitter:description" content="Stop getting generic AI interfaces. UI Craft teaches your coding agent real design engineering — 28 domain references, 4 modes, 19 focused commands. Works in Claude Code, Codex, Cursor, Gemini, OpenCode." />
     <meta name="twitter:image" content="https://skills.smoothui.dev/og.png" />
     <link rel="icon" type="image/png" href="/icon.png" />
     <link rel="apple-touch-icon" href="/icon.png" />
@@ -50,25 +50,24 @@ import FloatNav from '../components/FloatNav.astro';
 
     <a href="#main" class="absolute top-0 left-4 px-4 py-2 bg-blue-600 text-white font-medium text-sm rounded-b-md z-50 -translate-y-full focus:translate-y-0 transition-transform duration-200 ease-[var(--ease-out)]">Skip to content</a>
 
-    <div class="relative z-10 mx-auto max-w-2xl px-[clamp(1.25rem,4vw,2rem)] py-[clamp(5rem,12vw,10rem)]">
+    <div class="relative z-10 mx-auto max-w-2xl px-[clamp(1.25rem,4vw,2rem)] pt-[clamp(3rem,6vw,4.5rem)] pb-[clamp(5rem,12vw,10rem)]">
       <!-- Hero -->
-      <header class="text-center mb-6">
-        <div class="aren-egg group relative inline-block mx-auto mb-2" data-enter="1">
+      <header class="mb-6">
+        <div class="aren-egg group relative inline-block mb-3" data-enter="1">
           <img src="/icon.png" alt="" width="80" height="80" class="rounded-[18px] w-20 h-20 shadow-[0_1px_3px_oklch(0%_0_0/0.08),0_4px_12px_oklch(0%_0_0/0.06)] transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-0" />
           <img src="/aren.jpeg" alt="Aren the dog" width="80" height="80" class="absolute inset-0 rounded-[18px] w-20 h-20 object-cover shadow-[0_1px_3px_oklch(0%_0_0/0.08),0_4px_12px_oklch(0%_0_0/0.06)] opacity-0 transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-100" />
           <span class="aren-bubble">Hi, I'm&nbsp;Aren!</span>
         </div>
         <h1 class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold tracking-[-0.02em] leading-[1.15] [text-wrap:balance]" data-enter="2">Stop getting generic AI&nbsp;interfaces</h1>
-        <p class="text-[var(--color-text-secondary)] text-[14px] mt-3 leading-relaxed max-w-md mx-auto" data-enter="3">A skill for AI coding agents that teaches them to build UIs with real design taste — not gradient cards and bounce&nbsp;animations.</p>
-        <p class="mt-4 text-[12px]" data-enter="3"><a href="/docs" class="footer-link text-[var(--color-text-secondary)] transition-colors duration-200 ease-[var(--ease-out)] hover:text-[var(--color-text)]"><span>Read the docs&nbsp;&rarr;</span></a></p>
+        <p class="text-[var(--color-text-secondary)] text-[14px] mt-3 leading-relaxed max-w-md" data-enter="3">A skill for AI coding agents that teaches them to build UIs with real design taste — not gradient cards and bounce&nbsp;animations.</p>
       </header>
 
-      <!-- Install -->
-      <section class="text-center mb-24" aria-label="Installation">
-        <div class="inline-flex flex-wrap items-stretch justify-center gap-2.5" data-enter="4">
-          <div class="inline-flex items-center gap-2 bg-[oklch(96%_0.002_250)] rounded-md pl-3 pr-1 py-1">
-            <code class="text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text-secondary)] whitespace-nowrap leading-none">npx skills add educlopez/ui-craft</code>
-            <button class="copy-btn relative flex items-center justify-center shrink-0 w-5 h-5 p-1 rounded-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)] touch-manipulation focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.92]" aria-label="Copy install command" data-command="npx skills add educlopez/ui-craft">
+      <!-- Install — primary conversion -->
+      <section class="mb-14" aria-label="Installation">
+        <div class="flex flex-wrap items-center gap-2.5" data-enter="4">
+          <div class="inline-flex items-center gap-2.5 bg-blue-600 rounded-lg pl-4 pr-1.5 py-2 shadow-[0_1px_2px_oklch(0%_0_0/0.1),0_6px_16px_oklch(55%_0.2_262/0.28)]">
+            <code class="text-[12px] font-[family-name:var(--font-mono)] text-white whitespace-nowrap leading-none">npx skills add educlopez/ui-craft</code>
+            <button class="copy-btn relative flex items-center justify-center shrink-0 w-6 h-6 p-1 rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors duration-150 ease-[var(--ease-out)] touch-manipulation focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-blue-600 active:scale-[0.92]" aria-label="Copy install command" data-command="npx skills add educlopez/ui-craft">
               <svg class="copy-icon copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -78,17 +77,24 @@ import FloatNav from '../components/FloatNav.astro';
               </svg>
             </button>
           </div>
-          <a href="https://github.com/educlopez/ui-craft" target="_blank" rel="noopener noreferrer" class="github-stars group cursor-pointer inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-[11px] font-medium text-white bg-blue-600 pl-2.5 pr-3 py-1 transition-[background-color] duration-150 ease-[var(--ease-out)] hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.98] [&_svg]:pointer-events-none [&_svg]:size-3 [&_svg]:shrink-0">
+          <a href="/docs" class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg text-[12px] font-medium text-[var(--color-text)] border border-[var(--color-border)] bg-white px-3.5 py-2 transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[oklch(96%_0.002_250)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.98]">
+            <span>Read the docs</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </a>
+          <a href="https://github.com/educlopez/ui-craft" target="_blank" rel="noopener noreferrer" class="github-stars group inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg text-[12px] font-medium text-[var(--color-text-secondary)] px-2.5 py-2 transition-colors duration-150 ease-[var(--ease-out)] hover:text-[var(--color-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 [&_svg]:pointer-events-none [&_svg]:size-3.5 [&_svg]:shrink-0">
             <svg class="transition-[fill] duration-200 ease-[var(--ease-out)] group-hover:fill-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-            <span>Star</span>
-            <span class="stars-count tabular-nums rounded-full bg-white/20 text-white px-1.5 py-0.5 text-[10px] leading-none" aria-label="star count"></span>
+            <span>Star on GitHub</span>
+            <span class="stars-count tabular-nums rounded-full bg-[oklch(96%_0.002_250)] text-[var(--color-text-secondary)] px-1.5 py-0.5 text-[10px] leading-none" aria-label="star count" hidden></span>
           </a>
         </div>
+        <p class="text-[11px] text-[var(--color-text-secondary)] mt-3" data-enter="4">Free &amp; open source · Works in Claude&nbsp;Code, Codex, Cursor, Gemini, OpenCode</p>
       </section>
 
       <main id="main">
         <!-- Comparison Section -->
-        <section class="pt-24 pb-32" aria-label="Before and after comparison">
+        <section class="relative pt-6 pb-32" aria-label="Before and after comparison">
+          <div class="fig-cursor" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="oklch(62% 0.19 35)" stroke="white" stroke-width="1.5"><path d="M3 2l7 18 2.5-7.5L20 10z"/></svg><span class="flag">Noa</span></div>
+          <span class="frame-label" aria-hidden="true">01 &middot; the-proof</span>
           <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Same prompt. Same model. Different&nbsp;result.</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-6 max-w-lg mx-auto" data-reveal>Left is an AI agent without the skill. Right is the same agent with UI&nbsp;Craft. Drag to&nbsp;compare.</p>
 
@@ -107,6 +113,7 @@ import FloatNav from '../components/FloatNav.astro';
           </div>
 
           <div class="comparison active" data-comparison="hero">
+            <div class="fig-comment" aria-hidden="true"><span class="pin"><img src="/avatars/beam-mara.svg" alt="" width="24" height="24" loading="lazy"></span><span class="note"><strong>Mara</strong> — drag the handle. Left is what you get without the skill.</span></div>
             <div class="comparison-slider" tabindex="0" role="slider" aria-label="Drag to compare hero section" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
               <img src="/screenshots/hero-with.png" alt="Hero built with UI Craft" class="slider-after" width="1440" height="900" />
               <img src="/screenshots/hero-without.png" alt="Hero built without UI Craft" class="slider-before" width="1440" height="900" />
@@ -160,14 +167,16 @@ import FloatNav from '../components/FloatNav.astro';
         </section>
 
         <!-- Why Section -->
-        <section class="py-24" aria-label="Why UI Craft exists">
+        <section class="relative py-24" aria-label="Why UI Craft exists">
+          <span class="frame-label" aria-hidden="true">02 &middot; the-problem</span>
           <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>AI agents write code fast. They don't know what looks&nbsp;good.</h2>
           <p class="text-[14px] text-[oklch(40%_0.005_250)] leading-relaxed text-center mt-2 mb-5 max-w-[520px] mx-auto" data-reveal>Without design knowledge, every AI-generated interface ends up with the same gradient cards, bounce animations, and glassmorphism. Functional — but instantly recognizable as AI&nbsp;output.</p>
-          <p class="text-[14px] text-[oklch(40%_0.005_250)] leading-relaxed text-center max-w-[520px] mx-auto" data-reveal>UI&nbsp;Craft is not a template library or a component kit. It's <strong class="font-medium text-[var(--color-text)]">design engineering knowledge</strong> — 20&nbsp;domains of opinionated rules about motion, layout, typography, color, accessibility, dashboards, real-world SaaS patterns, and stack integration (Motion&nbsp;/ GSAP&nbsp;/ Three.js). The kind of knowledge that takes years to develop as a frontend&nbsp;engineer.</p>
+          <p class="text-[14px] text-[oklch(40%_0.005_250)] leading-relaxed text-center max-w-[520px] mx-auto" data-reveal>UI&nbsp;Craft is not a template library or a component kit. It's <strong class="font-medium text-[var(--color-text)]">design engineering knowledge</strong> — 28&nbsp;domains of opinionated rules about motion, layout, typography, color, accessibility, dashboards, real-world SaaS patterns, and stack integration (Motion&nbsp;/ GSAP&nbsp;/ Three.js). The kind of knowledge that takes years to develop as a frontend&nbsp;engineer.</p>
         </section>
 
         <!-- Modes Section -->
-        <section class="py-24" aria-label="How it works">
+        <section class="relative py-24" aria-label="How it works">
+          <span class="frame-label" aria-hidden="true">03 &middot; how-it-works</span>
           <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Say what you need. It picks the right&nbsp;mode.</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>No configuration. Just describe your task and the skill routes to the right approach.</p>
 
@@ -196,7 +205,7 @@ import FloatNav from '../components/FloatNav.astro';
 
           <div class="mt-20">
             <h3 class="text-[clamp(1.1rem,2vw,1.35rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Or call a specific&nbsp;lens.</h3>
-            <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>Fifteen slash commands, each a focused pass from one angle. Skip routing when you know what you&nbsp;want.</p>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>Nineteen slash commands, each a focused pass from one angle. Skip routing when you know what you&nbsp;want.</p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-x-10 sm:gap-y-8" data-reveal>
               <div class="mode-card flex flex-col gap-1.5">
@@ -236,12 +245,14 @@ import FloatNav from '../components/FloatNav.astro';
               </div>
             </div>
 
-            <p class="text-[12px] text-[var(--color-text-secondary)] text-center mt-8" data-reveal>Full reference for all 15&nbsp;commands in <a href="/docs/commands" class="footer-link"><span>the docs&nbsp;&rarr;</span></a></p>
+            <p class="text-[12px] text-[var(--color-text-secondary)] text-center mt-8" data-reveal>Full reference for all 19&nbsp;commands in <a href="/docs/commands" class="footer-link"><span>the docs&nbsp;&rarr;</span></a></p>
           </div>
         </section>
 
         <!-- Knobs Section -->
-        <section class="py-24" aria-label="Three behavioral knobs">
+        <section class="relative py-24" aria-label="Three behavioral knobs">
+          <span class="frame-label" aria-hidden="true">04 &middot; the-dials</span>
+          <div class="fig-comment fig-comment--left" aria-hidden="true" style="top: 150px;"><span class="pin"><img src="/avatars/beam-ines.svg" alt="" width="24" height="24" loading="lazy"></span><span class="note"><strong>Ines</strong> — CRAFT_LEVEL 9 on everything we ship, no exceptions.</span></div>
           <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Three dials. Agent adapts to your&nbsp;project.</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>UI&nbsp;Craft asks about these during Discovery. The answers change behavior, not just&nbsp;tone.</p>
 
@@ -267,8 +278,10 @@ import FloatNav from '../components/FloatNav.astro';
         </section>
 
         <!-- Domains Section -->
-        <section class="py-24" aria-label="23 domains of design knowledge">
-          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>23 domains. Four&nbsp;clusters.</h2>
+        <section class="relative py-24" aria-label="28 domains of design knowledge">
+          <span class="frame-label" aria-hidden="true">05 &middot; the-knowledge</span>
+          <div class="fig-cursor" aria-hidden="true" style="left: auto; right: -84px; bottom: auto; top: 220px; animation-delay: 2s;"><svg width="14" height="14" viewBox="0 0 24 24" fill="oklch(58% 0.15 155)" stroke="white" stroke-width="1.5"><path d="M3 2l7 18 2.5-7.5L20 10z"/></svg><span class="flag" style="background: oklch(58% 0.15 155);">Teo</span></div>
+          <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>28 domains. Five&nbsp;clusters.</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-12 max-w-lg mx-auto" data-reveal>Not generic best practices. Specific, opinionated rules derived from observed mature SaaS&nbsp;patterns.</p>
 
           <div class="flex flex-col gap-10">
@@ -304,6 +317,9 @@ import FloatNav from '../components/FloatNav.astro';
                 <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Data&nbsp;viz</code></li>
                 <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Inspiration</code></li>
                 <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Stack</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Recipes&nbsp;&times;3</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Themes</code></li>
+                <li><code class="inline-flex text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text)] bg-[var(--color-code-bg)] border border-[var(--color-border)] rounded px-1.5 py-0.5 leading-none items-center">Components</code></li>
               </ul>
             </div>
 
@@ -335,39 +351,42 @@ import FloatNav from '../components/FloatNav.astro';
         </section>
 
         <!-- Works everywhere Section -->
-        <section class="py-24" aria-label="Supported agents">
+        <section class="relative py-24" aria-label="Supported agents">
+          <span class="frame-label" aria-hidden="true">06 &middot; works-everywhere</span>
           <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Works in every&nbsp;agent.</h2>
           <p class="text-[14px] text-[oklch(40%_0.005_250)] leading-relaxed text-center mt-2 mb-8 max-w-[520px] mx-auto" data-reveal>Claude&nbsp;Code reads the skill + commands directly. Codex, Cursor, Gemini, OpenCode, and the generic agent-skills spec each get a pre-built mirror — with every slash command materialized as its own invokable skill. Install once, run&nbsp;anywhere.</p>
           <div class="flex flex-wrap justify-center gap-2" data-reveal>
             <span class="inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--color-text-secondary)] pl-1.5 pr-3 py-1 rounded-full border border-[var(--color-border)]">
-              <img src="/agents/claude-code.svg" alt="" width="18" height="18" class="rounded-[4px]" loading="lazy" />
+              <img src="/agents/claude-code.svg" alt="" width="20" height="20" loading="lazy" />
               Claude&nbsp;Code
             </span>
             <span class="inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--color-text-secondary)] pl-1.5 pr-3 py-1 rounded-full border border-[var(--color-border)]">
-              <img src="/agents/codex.svg" alt="" width="18" height="18" class="rounded-[4px]" loading="lazy" />
+              <img src="/agents/codex.svg" alt="" width="20" height="20" loading="lazy" />
               Codex
             </span>
             <span class="inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--color-text-secondary)] pl-1.5 pr-3 py-1 rounded-full border border-[var(--color-border)]">
-              <img src="/agents/cursor.svg" alt="" width="18" height="18" class="rounded-[4px]" loading="lazy" />
+              <img src="/agents/cursor.svg" alt="" width="20" height="20" loading="lazy" />
               Cursor
             </span>
             <span class="inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--color-text-secondary)] pl-1.5 pr-3 py-1 rounded-full border border-[var(--color-border)]">
-              <img src="/agents/gemini.svg" alt="" width="18" height="18" class="rounded-[4px]" loading="lazy" />
+              <img src="/agents/gemini.svg" alt="" width="20" height="20" loading="lazy" />
               Gemini
             </span>
             <span class="inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--color-text-secondary)] pl-1.5 pr-3 py-1 rounded-full border border-[var(--color-border)]">
-              <img src="/agents/opencode.svg" alt="" width="18" height="18" class="rounded-[4px]" loading="lazy" />
+              <img src="/agents/opencode.svg" alt="" width="20" height="20" loading="lazy" />
               OpenCode
             </span>
           </div>
         </section>
 
         <!-- Anti-slop Section -->
-        <section class="pt-32 pb-24" aria-label="What the skill rejects">
+        <section class="relative pt-32 pb-24" aria-label="What the skill rejects">
+          <span class="frame-label" aria-hidden="true">07 &middot; anti-slop</span>
           <h2 class="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium tracking-tight leading-tight [text-wrap:balance] text-center" data-reveal>Anti-slop built&nbsp;in</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed text-center mt-2 mb-10 max-w-lg mx-auto" data-reveal>Every UI gets tested against a single question: <em class="italic">"Would someone believe AI&nbsp;made&nbsp;this?"</em> If yes, it starts over. Here's the kind of thing that fails the&nbsp;test.</p>
 
-          <figure class="slop-figure mx-auto max-w-md" data-reveal>
+          <figure class="slop-figure relative mx-auto max-w-md" data-reveal>
+            <div class="fig-comment" aria-hidden="true"><span class="pin"><img src="/avatars/beam-leo.svg" alt="" width="24" height="24" loading="lazy"></span><span class="note"><strong>Leo</strong> — I have shipped this exact button before. Never again.</span></div>
             <div class="slop-demo" aria-hidden="true">
               <button type="button" tabindex="-1" class="slop-demo-btn" disabled>Get&nbsp;Started&nbsp;Now &rarr;</button>
               <span class="slop-slash"></span>
@@ -380,7 +399,8 @@ import FloatNav from '../components/FloatNav.astro';
         </section>
 
         <!-- CTA Section — closing delta recap -->
-        <section class="pt-32 pb-32" aria-label="What changes after installing UI Craft">
+        <section class="relative pt-32 pb-32" aria-label="What changes after installing UI Craft">
+          <span class="frame-label" aria-hidden="true">08 &middot; install</span>
           <div class="text-center mb-12">
             <div class="aren-egg group relative inline-block mx-auto mb-4" data-reveal>
               <img src="/icon.png" alt="" width="80" height="80" class="rounded-[18px] w-20 h-20 shadow-[0_1px_3px_oklch(0%_0_0/0.08),0_4px_12px_oklch(0%_0_0/0.06)] transition-opacity duration-200 ease-[var(--ease-out)] group-hover:opacity-0" />
@@ -417,9 +437,9 @@ import FloatNav from '../components/FloatNav.astro';
 
           <div class="flex flex-col items-center mt-14">
             <p class="text-[12px] text-[var(--color-text-secondary)] mb-2" data-reveal>Or install anyway&nbsp;&rarr;</p>
-            <div class="inline-flex items-center gap-2 bg-[oklch(96%_0.002_250)] rounded-md pl-3 pr-1 py-1" data-reveal>
-              <code class="text-[11px] font-[family-name:var(--font-mono)] text-[var(--color-text-secondary)] whitespace-nowrap leading-none">npx skills add educlopez/ui-craft</code>
-              <button class="copy-btn relative flex items-center justify-center shrink-0 w-5 h-5 p-1 rounded-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors duration-150 ease-[var(--ease-out)] touch-manipulation focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 active:scale-[0.92]" aria-label="Copy install command" data-command="npx skills add educlopez/ui-craft">
+            <div class="inline-flex items-center gap-2.5 bg-blue-600 rounded-lg pl-4 pr-1.5 py-2 shadow-[0_1px_2px_oklch(0%_0_0/0.1),0_6px_16px_oklch(55%_0.2_262/0.28)]" data-reveal>
+              <code class="text-[12px] font-[family-name:var(--font-mono)] text-white whitespace-nowrap leading-none">npx skills add educlopez/ui-craft</code>
+              <button class="copy-btn relative flex items-center justify-center shrink-0 w-6 h-6 p-1 rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors duration-150 ease-[var(--ease-out)] touch-manipulation focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-blue-600 active:scale-[0.92]" aria-label="Copy install command" data-command="npx skills add educlopez/ui-craft">
                 <svg class="copy-icon copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                   <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -495,8 +515,10 @@ import FloatNav from '../components/FloatNav.astro';
         const KEY = 'uicraft.stars.v1';
         const TTL = 60 * 60 * 1000;
         const render = (n) => {
-          if (typeof n === 'number' && Number.isFinite(n)) {
+          // Threshold: a low star count is anti-social-proof — show it only once it impresses.
+          if (typeof n === 'number' && Number.isFinite(n) && n >= 500) {
             el.textContent = n.toLocaleString();
+            el.removeAttribute('hidden');
           } else {
             el.textContent = '';
             el.setAttribute('hidden', '');

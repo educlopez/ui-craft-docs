@@ -236,16 +236,6 @@ body.guide-dragging--v * {
   animation: poof-particle 450ms cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
-/* Frame label styling (Figma-style) */
-.frame-label {
-  font-size: 11px;
-  font-weight: 500;
-  color: oklch(55% 0.005 250);
-  letter-spacing: 0.06em;
-  margin-bottom: 12px;
-  font-family: var(--font-mono);
-}
-
 /* Footer brand inspect overlay */
 .brand-inspect {
   position: relative;
@@ -490,3 +480,137 @@ body.guide-dragging--v * {
     display: none;
   }
 }
+
+/* ——— Figma canvas layer — the tool as motif ——— */
+
+/* Frame label — Figma frame name above each section's top-left corner */
+.frame-label {
+  position: absolute;
+  top: -16px;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  color: oklch(74% 0.006 250);
+  user-select: none;
+  pointer-events: none;
+  transition: color 150ms var(--ease-out);
+}
+.frame-label::before {
+  content: "⌗";
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+/* Hovering a section "selects" the frame, Figma-style */
+section:has(> .frame-label) { transition: outline-color 150ms var(--ease-out); outline: 1px solid transparent; outline-offset: 20px; }
+section:has(> .frame-label):hover { outline-color: oklch(0.546 0.245 262.881 / 0.3); }
+section:has(> .frame-label):hover > .frame-label { color: oklch(0.546 0.245 262.881); }
+
+/* Selecting the comparison slider shows dimensions, Figma-style */
+.comparison { position: relative; }
+.comparison-slider { position: relative; }
+.comparison-slider::before {
+  content: "1440 × 900";
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  z-index: 5;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 3px;
+  background: oklch(0.546 0.245 262.881);
+  color: white;
+  opacity: 0;
+  transition: opacity 150ms var(--ease-out);
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}
+.comparison-slider:hover::before,
+.comparison-slider:focus-visible::before { opacity: 1; }
+.comparison-slider:hover,
+.comparison-slider:focus-visible { outline: 1.5px solid oklch(0.546 0.245 262.881); outline-offset: 0; }
+
+/* Comment pin — Figma comment with Aren as the collaborator */
+.fig-comment {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  cursor: default;
+}
+.fig-comment .pin {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px 15px 15px 3px;
+  background: white;
+  box-shadow: 0 0 0 1px oklch(0% 0 0 / 0.06), 0 2px 8px oklch(0% 0 0 / 0.18);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.fig-comment .pin img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.fig-comment .note {
+  position: absolute;
+  top: 0;
+  right: 38px;
+  width: max-content;
+  max-width: 230px;
+  white-space: normal;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--color-text);
+  background: white;
+  border-radius: 8px 2px 8px 8px;
+  box-shadow: 0 0 0 1px oklch(0% 0 0 / 0.06), 0 2px 8px oklch(0% 0 0 / 0.14);
+  padding: 6px 10px;
+  opacity: 0;
+  transform: translateX(4px);
+  pointer-events: none;
+  transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
+}
+.fig-comment:hover .note { opacity: 1; transform: none; }
+.fig-comment--left { left: -14px; right: auto; }
+.fig-comment--left .note { left: 38px; right: auto; border-radius: 2px 8px 8px 8px; transform: translateX(-4px); }
+
+/* Multiplayer cursor — Aren is in the file */
+.fig-cursor {
+  position: absolute;
+  left: -76px;
+  bottom: 110px;
+  z-index: 6;
+  pointer-events: none;
+  animation: cursor-drift 7s ease-in-out infinite alternate;
+}
+.fig-cursor svg { display: block; }
+.fig-cursor .flag {
+  display: inline-block;
+  margin: 2px 0 0 12px;
+  font-size: 10px;
+  font-weight: 500;
+  color: white;
+  background: oklch(62% 0.19 35);
+  border-radius: 4px 10px 10px 10px;
+  padding: 2px 7px;
+  white-space: nowrap;
+}
+@keyframes cursor-drift {
+  from { transform: translate(0, 0); }
+  50%  { transform: translate(10px, -14px); }
+  to   { transform: translate(-6px, 8px); }
+}
+@media (max-width: 1120px) { .frame-label, .fig-cursor { display: none; } }
+@media (prefers-reduced-motion: reduce) { .fig-cursor { animation: none; } }

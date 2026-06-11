@@ -116,9 +116,11 @@ const sectionOrder = ['skill', 'cli', 'reference'];
       </aside>
 
       <!-- Main content -->
-      <main id="doc-main" class="min-w-0">
+      <main id="doc-main" class="min-w-0 relative">
+        <div class="fig-cursor" aria-hidden="true" style="left: auto; right: -40px; top: 180px; bottom: auto; animation-delay: 1s;"><svg width="14" height="14" viewBox="0 0 24 24" fill="oklch(55% 0.2 300)" stroke="white" stroke-width="1.5"><path d="M3 2l7 18 2.5-7.5L20 10z"/></svg><span class="flag" style="background: oklch(55% 0.2 300);">Uma</span></div>
         <article class="doc-prose max-w-[68ch]">
-          <header class="mb-10">
+          <header class="mb-10 relative">
+            <div class="fig-comment" aria-hidden="true" style="top: -6px; right: 0;"><span class="pin"><img src="/avatars/beam-teo.svg" alt="" width="24" height="24" loading="lazy"></span><span class="note"><strong>Teo</strong> — the agent reads this page so you do not have to.</span></div>
             <h1 class="text-[clamp(1.5rem,3vw,2.25rem)] font-semibold tracking-[-0.02em] leading-[1.15] [text-wrap:balance]">{title}</h1>
             <p class="text-[var(--color-text-secondary)] mt-3 leading-relaxed">{description}</p>
             {updated && (
