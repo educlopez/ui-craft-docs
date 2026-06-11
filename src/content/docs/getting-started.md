@@ -113,6 +113,6 @@ The brief lands at `.ui-craft/brief.md` (durable design brief — product purpos
 
 ## What to read next
 
-- [Skill anatomy](/docs/skill-anatomy) — how the skill is structured across 26 references and 19 commands.
+- [Skill anatomy](/docs/skill-anatomy) — how the skill is structured across 28 references and 19 commands.
 - [Style variants](/docs/variants) — the 3 opt-in siblings that lock in a style (minimal, editorial, dense-dashboard), plus playful and brutalist presets.
 - [ui-craft-detect](/docs/ui-craft-detect) — the standalone CLI that scans a codebase for AI-generated UI anti-patterns.

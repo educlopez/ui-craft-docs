@@ -18,15 +18,15 @@ Commands honor the knobs set during Discovery. `/ui-craft:polish` with `CRAFT_LE
 
 | Command | One-liner | Example prompt | Relevant knobs |
 |---|---|---|---|
-| `/craft` | One-shot pipeline for a complete surface — inputs (or silent defaults) → composition → theme → build order → acceptance bar enforced before reporting. | "build me a dashboard" / "craft a SaaS dashboard for operators" | `CRAFT_LEVEL`, `VISUAL_DENSITY`, `MOTION_INTENSITY` |
+| `/craft` | One-shot pipeline for a complete surface — inputs (or silent defaults) → composition → theme → build order → acceptance bar enforced before reporting. | "build me a dashboard" / "craft a SaaS landing page" / "craft an auth screen" | `CRAFT_LEVEL`, `VISUAL_DENSITY`, `MOTION_INTENSITY` |
 
-`/craft` is the fastest path to a shippable surface. It loads the matching outcome recipe (currently `dashboard`), asks the recipe's Step 0 questions in one compact prompt, and builds top to bottom: tokens → shell → hero tier → primary region → states → keyboard → finish. The acceptance bar must pass before the command reports done.
+`/craft` is the fastest path to a shippable surface. It loads the matching outcome recipe (currently `dashboard · landing · auth`), asks the recipe's Step 0 questions in one compact prompt, and builds top to bottom: tokens → shell → hero tier → primary region → states → keyboard → finish. The acceptance bar must pass before the command reports done.
 
 At `CRAFT_LEVEL ≥ 8`, `/craft` finishes with the full `/finalize` gate instead of the recipe's minimum passes.
 
-Surfaces with no recipe yet (landing, settings, auth) fall back to standard Build mode with the closest references — `/craft` will say which recipe is missing.
+Surfaces with no recipe yet (settings, onboarding) fall back to standard Build mode with the closest references — `/craft` will say which recipe is missing.
 
-The full build contract lives in [Recipe — SaaS Dashboard](/docs/recipe-dashboard).
+The full build contracts live in [Recipe — SaaS Dashboard](/docs/recipe-dashboard), [Recipe — Landing Page](/docs/recipe-landing), and [Recipe — Auth](/docs/recipe-auth).
 
 ## Decision spine & finalize
 
