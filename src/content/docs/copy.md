@@ -3,7 +3,7 @@ title: UX copy
 description: Voice, tone, reading level, terminology, inclusive language, locale-aware strings, error anatomy, CTAs, empty states.
 order: 24
 section: reference
-updated: 2026-04-18
+updated: 2026-06-11
 ---
 
 The canonical reference for interface writing. System-level guidance (voice, tone, reading level, terminology, inclusive language, locale handling) sits alongside tactical microcopy (error messages, empty states, CTAs, form labels) in one file — agent-generated copy goes through every layer before it ships.
@@ -75,7 +75,7 @@ Common pitfalls:
 - `user` / `member` / `account` / `seat` — pick one per concept and stick
 - `project` / `workspace` / `board` — pick one per level of hierarchy
 - `delete` / `remove` / `archive` / `trash` — these mean different things; don't alias
-- `sign in` / `log in` — pick one (Apple uses `sign in`, Google uses `log in`; either is fine, mixing is not)
+- `sign in` / `log in` — pick one; either is fine, mixing is not
 - `save` / `publish` / `update` — same action under three names in three surfaces is a finding
 
 Red flag: in a review, grep the codebase for every verb on every button. If `Save` / `Update` / `Apply` appear on forms that do the same thing, file it.

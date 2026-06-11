@@ -3,7 +3,7 @@ title: Forms
 description: Holistic form system design — validation timing, multi-step wizards, autosave, optimistic submit, and field-specific patterns.
 order: 27
 section: reference
-updated: 2026-04-18
+updated: 2026-06-11
 ---
 
 For any form longer than 2 fields, any multi-step flow, any form with conditional logic. Covers timing, placement, progressive disclosure, wizards, autosave, optimistic submit, keyboard contract, and the field-specific patterns AI-generated forms routinely botch. Label and ARIA requirements live in accessibility docs; error tone lives in [UX copy](/docs/copy). This page is the system that ties those tactical pieces together.
@@ -28,9 +28,9 @@ Rules:
 
 ## Error placement
 
-Where error messages live on the page. Tone details live in [UX copy](/docs/copy).
+Where error messages and help text live on the page. Tone details live in [UX copy](/docs/copy).
 
-- **Below the input, not above.** Users read top-to-bottom; the error follows the field it describes.
+- **Errors below the input; hints and help text above it.** Errors appear after typing — below-field placement follows reading order. Hints are needed *while* typing — below the field they get covered by autofill menus and the mobile keyboard; above the field they stay visible.
 - **Red border on the input itself**, plus message, plus icon (`⚠` or field-specific). Color alone fails WCAG and color-blind users — pair color with shape/text.
 - **Scroll to first error on submit** if not in view. Focus it so screen readers announce it immediately.
 - **Summary at the top is additive, not a replacement.** For long forms, an aria-live summary box ("3 fields need attention") helps — but every field still has its own inline error.
@@ -40,7 +40,7 @@ Where error messages live on the page. Tone details live in [UX copy](/docs/copy
 
 Show fields only when relevant. A form with 20 visible fields reads as homework; the same form with 6 visible and 14 revealed-on-relevance feels considerate.
 
-- **Conditional fields appear smoothly** — use `animation-timeline` or a 200ms height/opacity transition, not a pop-in. `interpolate-size: allow-keywords` animates to `height: auto` without JS measurement.
+- **Conditional fields appear smoothly** — use a `transition` + `interpolate-size: allow-keywords` (Baseline 2025) to animate to `height: auto` without JS measurement. Not `animation-timeline` — that property is scroll-driven and does nothing for conditional reveals.
 - **Group related fields under a shared section header** — billing address separate from shipping address separate from payment.
 - **Optional fields behind a "More options" toggle** if there are more than 2. Most users don't need them; showing them upfront adds cognitive load for no gain.
 - **Never show 20 fields at once.** The form looks abandoned before the user starts.
@@ -52,7 +52,7 @@ When a form is too long for one screen, or the steps represent logical phases (a
 
 - **Progress indicator.** Numbered steps + current/total + short label per step. Not just "Step 3 of 5" — "Step 3 of 5: Payment."
 - **Back button always available.** Moving back preserves all state; never re-fetch or reset.
-- **Forward gated by current-step validity.** The "Next" button disables until required fields are valid — with a tooltip/inline message explaining what's missing.
+- **Forward button: prefer always-enabled + validate on press.** A disabled "Next" button can't explain itself and is often skipped by assistive tech. Keep it enabled; when the user presses, surface all errors inline. Reserve the disabled state for steps that can't proceed without a destructive or irreversible prerequisite.
 - **Save draft automatically** between steps. See Autosave below.
 - **Resume on return.** If the user leaves and comes back, restore to the last completed step, not step 1.
 - **Review step before final submit.** Summary of all entries grouped by section, with an "Edit" link per section that jumps back to that step and returns. Users catch their own errors cheaper than servers do.
@@ -120,7 +120,7 @@ Deleting accounts, subscriptions, workspaces, or data from within a settings for
 Form sins that invalidate the rest of the work:
 
 - **Placeholder as the only label.** Disappears on focus → user forgets what the field was. Accessibility and memory fail.
-- **Required asterisks without a legend.** User doesn't know `*` means required unless you say so somewhere visible.
+- **Red required asterisks, or marking convention explained nowhere.** Red is the error color — a field can't be "in error" before the user touches it. Asterisks are black; the marking scheme is self-evident or legended. In single-field forms, skip marking entirely. The optional-vs-required marking decision is a judgment call: marking optional fields works when required is the majority; marking required fields works when optional is the majority. Neither approach is wrong — but never rely on intro text alone ("fields marked * are required") because users skip it.
 - **Red validation on mount.** Nothing is wrong yet — don't punish arrival.
 - **Disabled submit button with no explanation.** User can't fix what they can't see. Tooltip or inline hint explains what's missing.
 - **Clearing the whole form on one error.** Preserve every valid field; only reset the invalid one.
